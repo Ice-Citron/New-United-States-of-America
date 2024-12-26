@@ -1,3 +1,4 @@
+---
 type: projects
 section: computer-science
 subsection: python
@@ -46,3 +47,4 @@ books:
       - Meta-programming
       - Concurrency
     projects_link: /implementations/fluent-python
+---

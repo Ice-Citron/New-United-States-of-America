@@ -1,3 +1,4 @@
+---
 type: projects
 section: computer-science
 subsection: cpp
@@ -46,3 +47,4 @@ books:
       - Templates
       - STL
     projects_link: /implementations/cpp-primer
+---

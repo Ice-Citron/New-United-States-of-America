@@ -1,8 +1,8 @@
 .po_items_ho {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 columns by default */
-    gap: 2rem;
-    padding: 1rem 0;
+    gap: 1rem;
+    padding: 0.5rem 0;
 }
 
 /* Make items horizontal rectangles */
@@ -202,9 +202,9 @@
       create as many columns of at least 90px as fit in the container, 
       but each column can expand if there's leftover space.
     */
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(90px, 0.5fr));
     gap: 0.4rem; /* spacing between squares */
-    padding: 0.4rem 0; 
+    padding: 0.5rem 0; 
   }
   
   /* Each skill item is a 90×90 square. 

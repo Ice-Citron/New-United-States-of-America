@@ -197,26 +197,19 @@
   
   .po_skills_ho {
     display: grid;
-    /* 
-      auto-fill + minmax => 
-      create as many columns of at least 90px as fit in the container, 
-      but each column can expand if there's leftover space.
-    */
-    grid-template-columns: repeat(auto-fill, minmax(90px, 0.5fr));
-    gap: 0.4rem; /* spacing between squares */
-    padding: 0.5rem 0; 
+    /* auto-fill so you can fit multiple columns, or if you want 2 columns, 
+       you can do repeat(2, 1fr) - depends on your layout preference */
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 0.4rem;
+    padding: 0.4rem 0; 
   }
   
-  /* Each skill item is a 90×90 square. 
-     We won't rely on .po_item's aspect ratio logic.
-  */
   .po_skill {
     width: 90px; 
     height: 90px;
     position: relative;
-    overflow: hidden; /* so if there's a hover overlay, it won't expand beyond 90×90 */
-    background: var(--secondary-color);
-    border: 1px solid var(--secondary-color);
+    overflow: hidden;
+    background: var(--secondary-color);  /* If this is black, you might see a black box */
     transition: 0.3s ease;
     cursor: pointer;
     display: flex;
@@ -224,19 +217,40 @@
     justify-content: center;
   }
   
-  /* On hover, add a subtle shadow if you like */
-  .po_skill:hover {
-    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.25);
-  }
-  
-  /* The icon inside is typically smaller, say 80×80, with a zoom effect on hover */
+  /* The main image inside .po_skill */
   .po_skill img {
-    object-fit: contain;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
     transition: transform 0.3s;
-    width: 80px;
-    height: 80px;
   }
   
   .po_skill:hover img {
     transform: scale(1.1);
   }
+  
+  /* The overlay */
+  .po_skill .content {
+    position: absolute;
+    /* Initially 0-size + transparent (like your .po_item .content) */
+    height: 0;
+    width: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--overlay-color); /* half-transparent gray? */
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+    /* e.g. border: 1px solid black if you want a border. Otherwise none. */
+  }
+  
+  .po_skill:hover .content {
+    height: calc(100% - 10px);
+    width: calc(100% - 10px);
+    opacity: 1;
+    /* If you want a bigger margin, adjust -30px to something else. */
+  }
+  

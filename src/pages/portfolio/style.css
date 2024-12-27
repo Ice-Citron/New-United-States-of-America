@@ -195,3 +195,48 @@
     text-decoration: underline;
   }
   
+  .po_skills_ho {
+    display: grid;
+    /* 
+      auto-fill + minmax => 
+      create as many columns of at least 90px as fit in the container, 
+      but each column can expand if there's leftover space.
+    */
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 0.4rem; /* spacing between squares */
+    padding: 0.4rem 0; 
+  }
+  
+  /* Each skill item is a 90×90 square. 
+     We won't rely on .po_item's aspect ratio logic.
+  */
+  .po_skill {
+    width: 90px; 
+    height: 90px;
+    position: relative;
+    overflow: hidden; /* so if there's a hover overlay, it won't expand beyond 90×90 */
+    background: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    transition: 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* On hover, add a subtle shadow if you like */
+  .po_skill:hover {
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.25);
+  }
+  
+  /* The icon inside is typically smaller, say 80×80, with a zoom effect on hover */
+  .po_skill img {
+    object-fit: contain;
+    transition: transform 0.3s;
+    width: 80px;
+    height: 80px;
+  }
+  
+  .po_skill:hover img {
+    transform: scale(1.1);
+  }

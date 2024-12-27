@@ -1,7 +1,7 @@
 ---
-type: projects
-section: computer-science
-subsection: aiml
+portfolio_type: "subsection"
+section: "computer-science"
+subsection: "aiml"
 display_order: 1
 show_projects: true
 show_certifications: true
@@ -14,6 +14,13 @@ projects:
     link: /projects/autonomous-car
     featured: true
   
+  - title: Natural Language Parser
+    description: Custom NLP model for technical document analysis
+    technologies: [PyTorch, NLTK, Transformers]
+    image: /assets/projects/nlp-parser.jpg
+    link: /projects/nlp-parser
+    featured: true
+
   - title: Natural Language Parser
     description: Custom NLP model for technical document analysis
     technologies: [PyTorch, NLTK, Transformers]

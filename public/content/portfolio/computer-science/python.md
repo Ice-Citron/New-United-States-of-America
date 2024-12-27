@@ -1,5 +1,5 @@
 ---
-type: projects
+portfolio_type: "subsection"
 section: computer-science
 subsection: python
 display_order: 3

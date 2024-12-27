@@ -1,5 +1,5 @@
 ---
-type: projects
+portfolio_type: "subsection"
 section: computer-science
 subsection: cpp
 display_order: 2

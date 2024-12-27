@@ -5,6 +5,8 @@ subsection: python
 display_order: 3
 show_projects: true
 show_certifications: true
+show_courses: true
+show_books: true
 
 projects:
   - title: Data Analysis Pipeline

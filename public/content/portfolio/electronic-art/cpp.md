@@ -5,6 +5,8 @@ subsection: cpp
 display_order: 2
 show_projects: true
 show_certifications: true
+show_courses: true
+show_books: true
 
 projects:
   - title: Real-time Graphics Engine

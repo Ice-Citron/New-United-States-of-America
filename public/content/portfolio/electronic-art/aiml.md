@@ -5,6 +5,8 @@ subsection: "aiml"
 display_order: 1
 show_projects: true
 show_certifications: true
+show_courses: true
+show_books: true
 
 projects:
   - title: Autonomous Car Navigation

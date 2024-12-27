@@ -5,6 +5,8 @@ subsection: "aiml"
 display_order: 1
 show_projects: true
 show_certifications: true
+show_courses: true
+show_books: true
 
 projects:
   - title: Autonomous Car Navigation
@@ -12,7 +14,7 @@ projects:
     technologies: [Python, TensorFlow, ROS]
     image: "/assets/images/test_pic1.png"
     link: /projects/autonomous-car
-    featured: true
+    featured: false
   
   - title: Natural Language Parser
     description: Custom NLP model for technical document analysis

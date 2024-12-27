@@ -3,10 +3,18 @@ import React, { useEffect, useState } from "react";
 import matter from "gray-matter";
 import { Buffer } from "buffer";
 import SkillsShowcase from "./SkillsShowcase";
+import VideoSummary from "./VideoSummary";  // If you have a separate video component
 
-if (!window.Buffer) window.Buffer = Buffer;
+if (!window.Buffer) {
+  window.Buffer = Buffer;
+}
 
 const ProjectGrid = ({ category }) => {
+  // 1) If "video-summary", skip normal logic
+  if (category === "video-summary") {
+    return <VideoSummary />;
+  }
+
   const [subsections, setSubsections] = useState([]);
   const [skillSections, setSkillSections] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +26,7 @@ const ProjectGrid = ({ category }) => {
       setError(null);
 
       try {
-        // 1) Fetch and parse index.md
+        // Fetch and parse the category's index.md
         const indexPath = `/content/portfolio/${category}/index.md`;
         const indexResp = await fetch(indexPath);
         if (!indexResp.ok) {
@@ -27,7 +35,7 @@ const ProjectGrid = ({ category }) => {
         const rawIndex = await indexResp.text();
         const { data: indexData } = matter(rawIndex);
 
-        // 2) Load subsections
+        // Load subsections
         let loadedSubs = [];
         if (indexData.sections) {
           for (const section of indexData.sections) {
@@ -40,9 +48,10 @@ const ProjectGrid = ({ category }) => {
               const subRaw = await subResp.text();
               const { data: subData } = matter(subRaw);
 
+              // subData might contain: show_projects, projects, show_certifications, certifications, etc.
               loadedSubs.push({
                 ...subData,
-                sectionTitle: section.title,
+                sectionTitle: section.title, // or subData.subsection
               });
             } catch (subErr) {
               console.error("Error fetching subsection:", subErr);
@@ -52,7 +61,7 @@ const ProjectGrid = ({ category }) => {
           console.warn("No 'sections' found in index.md");
         }
 
-        // 3) Load skills.md if present
+        // Load skills.md if present
         let loadedSkillSections = [];
         if (indexData.skills?.path) {
           try {
@@ -63,10 +72,7 @@ const ProjectGrid = ({ category }) => {
               const { data: skillsData } = matter(rawSkills);
               loadedSkillSections = skillsData.skill_sections || [];
             } else {
-              console.warn(
-                "No skills.md found or fetch error:",
-                skillsResp.status
-              );
+              console.warn("No skills.md found or fetch error:", skillsResp.status);
             }
           } catch (skillsErr) {
             console.warn("Error fetching skills.md:", skillsErr);
@@ -89,26 +95,25 @@ const ProjectGrid = ({ category }) => {
   if (loading) {
     return <div>Loading {category}...</div>;
   }
-
   if (error) {
     return <div style={{ color: "red" }}>Error: {error}</div>;
   }
-
   if (!subsections.length && !skillSections.length) {
     return <div>No data found for {category}.</div>;
   }
 
   return (
     <div className="p-4">
-      {/* 1) Normal Subsections (Projects, etc.) */}
+      {/* Render each subsection */}
       {subsections.map((sub, idx) => (
         <div className="subsection-block" key={idx}>
+          {/* A subsection heading */}
           <h2 className="text-2xl font-semibold mb-2">
             {sub.sectionTitle || sub.subsection}
           </h2>
 
           {/* Projects */}
-          {sub.projects?.length > 0 && (
+          {(sub.show_projects !== false && sub.projects?.length > 0) && (
             <>
               <h3 className="text-xl font-medium mb-2">Projects</h3>
               <div className="po_items_ho mb-4">
@@ -133,12 +138,87 @@ const ProjectGrid = ({ category }) => {
             </>
           )}
 
-          {/* (Certifications, Courses, Books) similarly... */}
-          {/* ... */}
+          {/* Certifications */}
+          {(sub.show_certifications !== false && sub.certifications?.length > 0) && (
+            <>
+              <h3 className="text-xl font-medium mb-2">Certifications</h3>
+              <ul className="list-items mb-4">
+                {sub.certifications.map((cert, cIdx) => (
+                  <li key={cIdx} className="cert-line mb-1">
+                    <strong>{cert.title}</strong>
+                    {cert.org && ` – ${cert.org}`}
+                    {cert.year && ` (${cert.year})`}
+                    {cert.detail_page && (
+                      <a
+                        href={cert.detail_page}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ms-2 text-primary"
+                      >
+                        [more details]
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          {/* Courses */}
+          {(sub.show_courses !== false && sub.courses?.length > 0) && (
+            <>
+              <h3 className="text-xl font-medium mb-2">Courses</h3>
+              <ul className="list-items mb-4">
+                {sub.courses.map((course, cIdx) => (
+                  <li key={cIdx} className="course-line mb-1">
+                    <strong>{course.title}</strong>
+                    {course.org && ` – ${course.org}`}
+                    {course.status && ` (${course.status})`}
+                    {course.detail_page && (
+                      <a
+                        href={course.detail_page}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ms-2 text-primary"
+                      >
+                        [more details]
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          {/* Books */}
+          {(sub.show_books !== false && sub.books?.length > 0) && (
+            <>
+              <h3 className="text-xl font-medium mb-2">Books</h3>
+              <ul className="list-items mb-4">
+                {sub.books.map((book, bIdx) => (
+                  <li key={bIdx} className="book-line mb-1">
+                    <strong>{book.title}</strong>
+                    {book.author && ` by ${book.author}`}
+                    {book.progress && ` — ${book.progress}`}
+                    {book.detail_page && (
+                      <a
+                        href={book.detail_page}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ms-2 text-primary"
+                      >
+                        [more details]
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
       ))}
 
-      {/* 2) Skills at the BOTTOM */}
+      {/* If there's a separate Skills approach */}
       {skillSections.length > 0 && (
         <>
           <h2 className="text-2xl font-semibold mt-8 mb-4">

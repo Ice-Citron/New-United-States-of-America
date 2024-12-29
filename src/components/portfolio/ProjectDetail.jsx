@@ -1,76 +1,116 @@
-// src/components/portfolio/ProjectDetail.jsx
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import matter from "gray-matter";
-import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
 
-export default function ProjectDetail() {
+// The new MDX approach:
+import { evaluate } from "@mdx-js/mdx";
+import * as runtime from "react/jsx-runtime";  // so MDX can create React elements
+
+import MyCarousel from "./Carousel";
+
+/**
+ * ProjectDetailMdx:
+ *  - fetches /content/portfolio/engineering/projects/<slug>/index.mdx
+ *  - uses gray-matter to extract front matter
+ *  - uses @mdx-js/mdx's "evaluate" to compile leftover MDX in the browser
+ *  - provides MyCarousel in the "components" prop
+ */
+export default function ProjectDetailMdx() {
   const { slug } = useParams();
+
   const [frontMatter, setFrontMatter] = useState({});
-  const [markdownContent, setMarkdownContent] = useState("");
+  const [mdxBody, setMdxBody] = useState("");
+  const [CompiledMDX, setCompiledMDX] = useState(null); // the final MDX component
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function loadData() {
+    async function loadMdxFile() {
       try {
-        // e.g. /content/portfolio/engineering/projects/railgun/index.md
-        const resp = await fetch(`/content/portfolio/engineering/projects/${slug}/index.md`);
+        const fileUrl = `/content/portfolio/engineering/projects/${slug}/index.mdx`;
+        console.log("[ProjectDetailMdx] fetching =>", fileUrl);
+
+        const resp = await fetch(fileUrl);
         if (!resp.ok) {
-          throw new Error(`Failed to fetch detail for '${slug}': ${resp.status}`);
+          throw new Error(`Failed to fetch MDX for '${slug}': ${resp.status}`);
         }
-        const raw = await resp.text();
-        const { data, content } = matter(raw);
-        setFrontMatter(data);
-        setMarkdownContent(content);
+        const rawText = await resp.text();
+        console.log("[ProjectDetailMdx] raw MDX length =>", rawText.length);
+
+        // 1) parse front matter
+        const { data, content } = matter(rawText);
+        console.log("[ProjectDetailMdx] frontMatter =>", data);
+
+        setFrontMatter(data || {});
+        setMdxBody(content || "");
       } catch (err) {
+        console.error("[ProjectDetailMdx] Error =>", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadMdxFile();
+  }, [slug]);
+
+  // 2) Evaluate the MDX content => produce a React component
+  useEffect(() => {
+    async function compileMdx() {
+      if (!mdxBody) return; // no content yet
+      try {
+        console.log("[ProjectDetailMdx] evaluate() with length =>", mdxBody.length);
+
+        // The new approach: pass the leftover MDX + the "runtime" from "react/jsx-runtime"
+        const { default: MdxComponent } = await evaluate(mdxBody, {
+          ...runtime,
+          // You can also pass remarkPlugins, rehypePlugins, etc. here if needed
+        });
+
+        // MdxComponent is a React component
+        setCompiledMDX(() => MdxComponent);
+      } catch (err) {
+        console.error("[ProjectDetailMdx] compile error =>", err);
         setError(err.message);
       }
     }
-    loadData();
-  }, [slug]);
 
-  if (error) return <div style={{ color: "red" }}>Error: {error}</div>;
-  if (!markdownContent) return <div>Loading project detail...</div>;
+    compileMdx();
+  }, [mdxBody]);
 
-  // We'll rewrite relative images from "./images/foo.jpg" to
-  // "/content/portfolio/engineering/projects/<slug>/images/foo.jpg".
-  // For example, if MD has "![text](./images/IMG_4963.jpg)",
-  // that becomes "/content/portfolio/engineering/projects/railgun/images/IMG_4963.jpg".
-  function rewriteUrl(url, node) {
-    // If it's already absolute (starts with "/" or "http"),
-    // we leave it alone:
-    if (url.startsWith("/") || url.startsWith("http")) {
-      return url;
-    }
-
-    // If it's a relative path (like "./images/foo.jpg"), we prefix
-    // the known path:
-    return `/content/portfolio/engineering/projects/${slug}/${url}`;
+  if (error) {
+    return <p style={{ color: "red" }}>{error}</p>;
+  }
+  if (loading || !CompiledMDX) {
+    return <p>Loading MDX...</p>;
   }
 
+  // "CompiledMDX" is our final React component from the MDX source
+  // We pass "MyCarousel" in the "components" prop. 
+  // So in .mdx, <MyCarousel> is recognized.
+  const MdxOutput = (
+    <CompiledMDX
+      components={{
+        MyCarousel,
+        // or any other custom components you want to pass
+      }}
+    />
+  );
+
   return (
-    <div style={{ padding: "1rem" }}>
-      {frontMatter?.title && <h1>{frontMatter.title}</h1>}
-      {frontMatter?.summary && <p>{frontMatter.summary}</p>}
+    <div style={{ maxWidth: "900px", margin: "0 auto", padding: "1rem" }}>
+      {/* If you want to show the front matter's title, summary, etc. */}
+      {frontMatter.title && <h1>{frontMatter.title}</h1>}
+      {frontMatter.summary && <p>{frontMatter.summary}</p>}
 
-      <ReactMarkdown
-        rehypePlugins={[rehypeRaw]} // allow raw HTML (video/iframe)
-        urlTransform={rewriteUrl}
-      >
-        {markdownContent}
-      </ReactMarkdown>
+      {/* Render the final MDX content */}
+      {MdxOutput}
+      {/* If you want to show the front matter's title, summary, etc. */}
+      {frontMatter.title && <h1>{frontMatter.title}</h1>}
+      {frontMatter.summary && <p>{frontMatter.summary}</p>}
 
-      {frontMatter?.skills?.length > 0 && (
-        <>
-          <h3>Skills Involved:</h3>
-          <ul>
-            {frontMatter.skills.map((skill, i) => (
-              <li key={i}>{skill}</li>
-            ))}
-          </ul>
-        </>
-      )}
+      {/* Render the final MDX content */}
+      {MdxOutput}
     </div>
   );
 }

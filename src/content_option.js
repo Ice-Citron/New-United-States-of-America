@@ -1,15 +1,15 @@
 const logotext = "SIENAR INDUSTRIES";
 const meta = {
-    title: "John Doe",
-    description: "I’m John Doe data scientist _ Full stack devloper,currently working in Berlin",
+    title: "Shi Hao",
+    description: "I’m Shi Hao. AI Czar. Nuclear Fusion Enthusiast",
 };
 
 const introdata = {
-    title: "I’m John Doe",
+    title: "I’m Shi Hao, God Emperor",
     animated: {
-        first: "I love coding",
-        second: "I code cool websites",
-        third: "I develop mobile apps",
+        first: "I love Nuclear Fusion",
+        second: "I am the AI Czar",
+        third: "I can make anything",
     },
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum",
     your_img_url: "https://images.unsplash.com/photo-1514790193030-c89d266d5a9d",
@@ -147,8 +147,8 @@ const contactConfig = {
 };
 
 const socialprofils = {
-    github: "https://github.com",
-    facebook: "https://facebook.com",
+    github: "https://github.com/Ice-Citron",
+    facebook: "https://www.instagram.com/shng2025",
     linkedin: "https://linkedin.com",
     twitter: "https://twitter.com",
 };

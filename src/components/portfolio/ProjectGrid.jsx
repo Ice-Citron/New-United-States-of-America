@@ -9,11 +9,6 @@ import VideoSummary from "./VideoSummary";  // If you have a separate video comp
 if (!window.Buffer) window.Buffer = Buffer;
 
 const ProjectGrid = ({ category }) => {
-  // 1) If "video-summary", skip normal logic
-  if (category === "video-summary") {
-    return <VideoSummary />;
-  }
-
   const [subsections, setSubsections] = useState([]);
   const [skillSections, setSkillSections] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -89,6 +84,11 @@ const ProjectGrid = ({ category }) => {
 
     loadData();
   }, [category]);
+
+  // 1) If "video-summary", skip normal logic
+  if (category === "video-summary") {
+    return <VideoSummary />;
+  }
 
   if (loading) {
     return <div>Loading {category}...</div>;

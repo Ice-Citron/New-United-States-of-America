@@ -14,24 +14,33 @@ skills:
 I've been designing and building a multi-stage railgun to explore electromagnetic propulsion. 
 The project involves coil arrangement, projectile design, and high-voltage testing.
 
-### Coil Arrangement
+### Early Stage Assembly
 
-![Coil 1 design](./images/IMG_4945.HEIC)
+![Coil mount design](/content/portfolio/engineering/projects/railgun/images/IMG_4963.jpg)
 
-Some text about the coil arrangement, challenges, etc...
+Discuss the coil arrangement, design tools used, etc.
 
-### Test Firing
+![Another angle](./images/IMG_4945.jpg)
 
-<iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/YourVideoID"
-  frameborder="0"
-  allowfullscreen
-></iframe>
+### Final Stage Tests
 
-Here's the first test firing at 300V capacitor bank, capturing projectile speed data...
+Here are some final test images:
+
+![Test Fire Setup](./images/Final%20Stage/IMG_4979.jpg)
+
+*(We used a 500V capacitor bank, measuring projectile velocity...)*
+
+### Final Stage MP4 Video
+
+Below is a local `.mp4`:
+
+<video width="560" height="315" controls>
+  <source src="./images/Final%20Stage/IMG_4984.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+*(This clip shows the final test firing with improved coil geometry.)*
 
 ### Next Steps
 
-More testing at higher voltages, improved projectile materials, and further simulation with ANSYS EM...
+Additional refinements: better projectile materials, more robust housing, further simulation in ANSYS EM...

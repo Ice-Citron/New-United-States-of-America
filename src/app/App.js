@@ -16,6 +16,7 @@ import Home from "../pages/home";       // Example "Home" component
 import Portfolio from "../pages/portfolio";  // Main portfolio page
 import ProjectDetail from "../components/portfolio/ProjectDetail"; // The new detail component
 
+
 function _ScrollToTop(props) {
   const { pathname } = useLocation();
   useEffect(() => {

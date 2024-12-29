@@ -12,11 +12,10 @@ import AnimatedCursor from "../hooks/AnimatedCursor";
 import "./App.css";
 
 // Import your pages/components
-// (You may need to adjust these import paths depending on your folder structure)
 import Home from "../pages/home";       // Example "Home" component
-import Portfolio from "../pages/portfolio";  // Your main portfolio page (index.js in /pages/portfolio)
+import Portfolio from "../pages/portfolio";  // Main portfolio page
+import ProjectDetail from "../components/portfolio/ProjectDetail"; // The new detail component
 
-// Scroll-to-top helper
 function _ScrollToTop(props) {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -25,6 +24,21 @@ function _ScrollToTop(props) {
   return props.children;
 }
 const ScrollToTop = withRouter(_ScrollToTop);
+
+// A wrapper that extracts `:slug` param and passes it to ProjectDetail
+function ProjectDetailWrapper() {
+  const { slug } = useLocation().state || {}; 
+  // ^ This is one approach if you're passing state. 
+  // Alternatively, you can do "import { useParams } from 'react-router-dom';" 
+  // and use "const { slug } = useParams();" 
+  // if you define <Route path="/project/:slug" element={<ProjectDetailWrapper />} />
+
+  // If you're not using location.state, do the standard approach:
+  // import { useParams } from 'react-router-dom';
+  // const { slug } = useParams();
+
+  return <ProjectDetail slug={slug} />;
+}
 
 export default function App() {
   return (
@@ -42,7 +56,6 @@ export default function App() {
       <ScrollToTop>
         <Headermain />
         
-        {/* Define your main routes inline */}
         <Routes>
           {/* Home page (optional) */}
           <Route path="/" element={<Home />} />
@@ -51,21 +64,16 @@ export default function App() {
           <Route path="/portfolio" element={<Portfolio />} />
 
           {/*
-            Optional: If you want to handle /portfolio/cs, /portfolio/engineering, etc.
-            automatically, you can add this route:
-
+            If you want /portfolio/:category to handle "engineering", "cs" etc. automatically:
             <Route path="/portfolio/:category" element={<Portfolio />} />
-            
-            Then inside Portfolio.jsx, read `useParams().category` to decide which
-            "index.md" to fetch (cs, engineering, etc.).
           */}
 
+          {/* The new route for "view project" detail pages:
+              e.g. /project/railgun or /project/f1-in-schools */}
+          <Route path="/project/:slug" element={<ProjectDetail />} />
           {/*
-            In the future, if you create a detail page for books or courses, 
-            you can add something like:
-            
-            <Route path="/courses/:slug" element={<CourseDetail />} />
-            <Route path="/books/:slug" element={<BookDetail />} />
+            Alternatively, if you want a state-based approach or a wrapper:
+            <Route path="/project/:slug" element={<ProjectDetailWrapper />} />
           */}
         </Routes>
       </ScrollToTop>

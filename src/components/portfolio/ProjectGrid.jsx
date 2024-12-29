@@ -2,12 +2,11 @@
 import React, { useEffect, useState } from "react";
 import matter from "gray-matter";
 import { Buffer } from "buffer";
+import { Link } from "react-router-dom";  // <-- import Link from React Router
 import SkillsShowcase from "./SkillsShowcase";
 import VideoSummary from "./VideoSummary";  // If you have a separate video component
 
-if (!window.Buffer) {
-  window.Buffer = Buffer;
-}
+if (!window.Buffer) window.Buffer = Buffer;
 
 const ProjectGrid = ({ category }) => {
   // 1) If "video-summary", skip normal logic
@@ -26,7 +25,7 @@ const ProjectGrid = ({ category }) => {
       setError(null);
 
       try {
-        // Fetch and parse the category's index.md
+        // 1) Fetch and parse the category's index.md
         const indexPath = `/content/portfolio/${category}/index.md`;
         const indexResp = await fetch(indexPath);
         if (!indexResp.ok) {
@@ -35,7 +34,7 @@ const ProjectGrid = ({ category }) => {
         const rawIndex = await indexResp.text();
         const { data: indexData } = matter(rawIndex);
 
-        // Load subsections
+        // 2) Load subsections
         let loadedSubs = [];
         if (indexData.sections) {
           for (const section of indexData.sections) {
@@ -48,10 +47,9 @@ const ProjectGrid = ({ category }) => {
               const subRaw = await subResp.text();
               const { data: subData } = matter(subRaw);
 
-              // subData might contain: show_projects, projects, show_certifications, certifications, etc.
               loadedSubs.push({
                 ...subData,
-                sectionTitle: section.title, // or subData.subsection
+                sectionTitle: section.title,
               });
             } catch (subErr) {
               console.error("Error fetching subsection:", subErr);
@@ -61,7 +59,7 @@ const ProjectGrid = ({ category }) => {
           console.warn("No 'sections' found in index.md");
         }
 
-        // Load skills.md if present
+        // 3) Load skills.md if present
         let loadedSkillSections = [];
         if (indexData.skills?.path) {
           try {
@@ -107,7 +105,6 @@ const ProjectGrid = ({ category }) => {
       {/* Render each subsection */}
       {subsections.map((sub, idx) => (
         <div className="subsection-block" key={idx}>
-          {/* A subsection heading */}
           <h2 className="text-2xl font-semibold mb-2">
             {sub.sectionTitle || sub.subsection}
           </h2>
@@ -122,11 +119,24 @@ const ProjectGrid = ({ category }) => {
                     <img src={proj.image} alt={proj.title} />
                     <div className="content">
                       <p>{proj.description}</p>
-                      {proj.link && (
-                        <a
-                          href={proj.link}
-                          target="_blank"
+
+                      {/* 1) If you have a 'slug', link to /project/slug */}
+                      {proj.slug && (
+                        <Link
+                          to={`/project/${proj.slug}`}
+                          className="project-link"
+                        >
+                          view project
+                        </Link>
+                      )}
+
+                      {/* 2) If there's an external link, e.g. 'http' in proj.link: */}
+                      {proj.link && proj.link.startsWith("http") && !proj.slug && (
+                        <a 
+                          href={proj.link} 
+                          target="_blank" 
                           rel="noopener noreferrer"
+                          className="project-link"
                         >
                           view project
                         </a>
@@ -137,6 +147,7 @@ const ProjectGrid = ({ category }) => {
               </div>
             </>
           )}
+
 
           {/* Certifications */}
           {(sub.show_certifications !== false && sub.certifications?.length > 0) && (
@@ -172,7 +183,7 @@ const ProjectGrid = ({ category }) => {
                 {sub.courses.map((course, cIdx) => (
                   <li key={cIdx} className="course-line mb-1">
                     <strong>{course.title}</strong>
-                    {course.org && ` – ${course.org}`}
+                    {course.institution && ` – ${course.institution}`}
                     {course.status && ` (${course.status})`}
                     {course.detail_page && (
                       <a

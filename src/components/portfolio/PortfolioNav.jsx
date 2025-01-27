@@ -2,11 +2,11 @@ import React from 'react';
 
 const PortfolioNav = ({ activeCategory, onCategoryChange }) => {
     const categories = [
-        { id: "computer-science", label: "Computer Science" },
+        { id: "video-summary", label: "Video Summary" }, // The new subsection
         { id: "engineering", label: "Engineering" },
+        { id: "computer-science", label: "Computer Science" },
         { id: "electronic-art", label: "Electronic Art" },
         { id: "academic", label: "Academic & Miscellaneous" },
-        { id: "video-summary", label: "Video Summary" }, // The new subsection
     ];      
 
   return (

@@ -1,9 +1,13 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteRule ^index\.html$ - [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME} !-l
-  RewriteRule . /index.html [L]
+RewriteEngine On
+
+# If the requested file or directory doesn't exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Set Permission-Policy header to suppress warnings
+<IfModule mod_headers.c>
+    Header set Permissions-Policy "attribution-reporting=(),run-ad-auction=(),private-state-token-redemption=(),private-state-token-issuance=(),join-ad-interest-group=(),browsing-topics=()"
 </IfModule>
+
+# Redirect everything to index.php
+RewriteRule ^ index.php [L]

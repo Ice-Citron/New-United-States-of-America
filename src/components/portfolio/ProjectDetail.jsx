@@ -5,8 +5,14 @@ import { evaluate } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
 import MyCarousel from "./Carousel";
 
+// Add the base URL utility function
+const getBaseUrl = () => {
+  return process.env.NODE_ENV === 'development' 
+    ? '' 
+    : window.location.origin;
+};
 
-// Add simple PDF Viewer component
+// PDF Viewer component remains the same
 const PDFViewer = ({ url }) => (
   <div style={{ width: '100%', height: '600px', marginBottom: '1rem' }}>
     <iframe
@@ -17,43 +23,43 @@ const PDFViewer = ({ url }) => (
   </div>
 );
 
-/**
- * ProjectDetailMdx:
- *  - fetches /content/portfolio/engineering/projects/<slug>/index.mdx
- *  - uses gray-matter to extract front matter
- *  - uses @mdx-js/mdx's "evaluate" to compile leftover MDX in the browser
- *  - provides MyCarousel in the "components" prop
- */
-export default function ProjectDetailMdx() {
+export default function ProjectDetail() {  // Changed name to match your file
   const { slug } = useParams();
 
   const [frontMatter, setFrontMatter] = useState({});
   const [mdxBody, setMdxBody] = useState("");
-  const [CompiledMDX, setCompiledMDX] = useState(null); // the final MDX component
+  const [CompiledMDX, setCompiledMDX] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadMdxFile() {
       try {
-        const fileUrl = `/content/portfolio/engineering/projects/${slug}/index.mdx`;
-        console.log("[ProjectDetailMdx] fetching =>", fileUrl);
+        // Debug logging
+        console.log("Current pathname:", window.location.pathname);
+        
+        // Ensure we have correct slug
+        const currentSlug = slug || window.location.pathname.split('/').pop();
+        console.log("Using slug:", currentSlug);
+        
+        // Construct URL carefully
+        const fileUrl = new URL(`/content/portfolio/engineering/projects/${currentSlug}/index.mdx`, window.location.origin);
+        console.log("Attempting to fetch from:", fileUrl.toString());
 
         const resp = await fetch(fileUrl);
         if (!resp.ok) {
-          throw new Error(`Failed to fetch MDX for '${slug}': ${resp.status}`);
+          throw new Error(`Failed to fetch MDX for '${currentSlug}': ${resp.status}`);
         }
         const rawText = await resp.text();
-        console.log("[ProjectDetailMdx] raw MDX length =>", rawText.length);
+        console.log("[ProjectDetail] raw MDX length =>", rawText.length);
 
-        // 1) parse front matter
         const { data, content } = matter(rawText);
-        console.log("[ProjectDetailMdx] frontMatter =>", data);
+        console.log("[ProjectDetail] frontMatter =>", data);
 
         setFrontMatter(data || {});
         setMdxBody(content || "");
       } catch (err) {
-        console.error("[ProjectDetailMdx] Error =>", err);
+        console.error("[ProjectDetail] Error =>", err);
         setError(err.message);
       } finally {
         setLoading(false);

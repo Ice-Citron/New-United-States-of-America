@@ -5,11 +5,11 @@ const meta = {
 };
 
 const introdata = {
-    title: "I’m Shi Hao, God Emperor",
+    title: "I’m Shi Hao, psst this website is still in progress, sorry uni if it's not done yet :(",
     animated: {
         first: "I love Nuclear Fusion",
-        second: "I am the AI Czar",
-        third: "I can make anything",
+        second: "I am the machine herald",
+        third: "I love r/Singularity",
     },
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum",
     your_img_url: "https://images.unsplash.com/photo-1514790193030-c89d266d5a9d",

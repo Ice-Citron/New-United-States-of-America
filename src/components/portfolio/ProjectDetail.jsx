@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import matter from "gray-matter";
-
-// The new MDX approach:
 import { evaluate } from "@mdx-js/mdx";
-import * as runtime from "react/jsx-runtime";  // so MDX can create React elements
-
+import * as runtime from "react/jsx-runtime";
 import MyCarousel from "./Carousel";
+
+
+// Add simple PDF Viewer component
+const PDFViewer = ({ url }) => (
+  <div style={{ width: '100%', height: '600px', marginBottom: '1rem' }}>
+    <iframe
+      src={url}
+      style={{ width: '100%', height: '100%', border: 'none' }}
+      title="PDF Viewer"
+    />
+  </div>
+);
 
 /**
  * ProjectDetailMdx:
@@ -92,25 +101,46 @@ export default function ProjectDetailMdx() {
     <CompiledMDX
       components={{
         MyCarousel,
-        // or any other custom components you want to pass
+        PDFViewer, // Add PDFViewer to available components
       }}
     />
   );
 
   return (
-    <div style={{ maxWidth: "900px", margin: "0 auto", padding: "1rem" }}>
-      {/* If you want to show the front matter's title, summary, etc. */}
-      {frontMatter.title && <h1>{frontMatter.title}</h1>}
-      {frontMatter.summary && <p>{frontMatter.summary}</p>}
+    <div style={{ 
+      maxWidth: "1200px", 
+      margin: "0 auto", 
+      padding: "0.5rem",  // Reduced padding
+    }}>
+      <div style={{ marginBottom: '1rem' }}> {/* Reduced margin for header */}
+        {frontMatter.title && (
+          <h1 style={{ 
+            fontSize: '2rem', 
+            fontWeight: 'bold',
+            marginBottom: '0.5rem' 
+          }}>
+            {frontMatter.title}
+          </h1>
+        )}
+        {frontMatter.summary && (
+          <p style={{ 
+            fontSize: '1.1rem',
+            marginBottom: '0.5rem'
+          }}>
+            {frontMatter.summary}
+          </p>
+        )}
+      </div>
 
-      {/* Render the final MDX content */}
-      {MdxOutput}
-      {/* If you want to show the front matter's title, summary, etc. */}
-      {frontMatter.title && <h1>{frontMatter.title}</h1>}
-      {frontMatter.summary && <p>{frontMatter.summary}</p>}
+      {/* Show PDF if specified in frontmatter */}
+      {frontMatter.pdfUrl && (
+        <PDFViewer url={frontMatter.pdfUrl} />
+      )}
 
-      {/* Render the final MDX content */}
-      {MdxOutput}
+      {/* Main content with reduced spacing */}
+      <div style={{ lineHeight: 1.4 }}>
+        {MdxOutput}
+      </div>
     </div>
   );
 }

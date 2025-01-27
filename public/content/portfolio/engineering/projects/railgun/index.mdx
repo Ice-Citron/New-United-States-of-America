@@ -3,6 +3,8 @@
 
 Overview paragraph here... about why and what I built here...
 
+---
+
 # Stage 1
 
 ### Version 1 RG
@@ -53,6 +55,8 @@ So for a long time, I abandoned this project.
 <br></br>
 <br></br>
 
+---
+
 # Stage 2
 
 ## LS-Dyna IB Physics Coursework
@@ -61,7 +65,7 @@ So for a long time, I abandoned this project.
   slides={[
     {
       type: "video",
-      src: "/content/portfolio/engineering/projects/railgun/images/Stage 1/Project Railgun - LS-Dyna IB Physics Coursework/qwqwqw.MP4",
+      src: "/content/portfolio/engineering/projects/railgun/images/Stage 2/Project Railgun - LS-Dyna IB Physics Coursework/qwqwqw.MP4",
       videoType: "video/mp4",
       caption: "Capacitor Testing"
     }
@@ -86,7 +90,7 @@ As I believe that Fusion’s main hurdle is modelling plasma-instabilities, an a
 <MyCarousel 
   slides={[
     {
-      src: "/content/portfolio/engineering/projects/railgun/images/Stage 1/Project Railgun - Coiling a Transformer/IMG_3494.JPG",
+      src: "/content/portfolio/engineering/projects/railgun/images/Stage 2/Project Railgun - Coiling a Transformer/IMG_3494.JPG",
       caption: "Transformer Coiling"
     }
   ]}
@@ -111,40 +115,106 @@ And I need to say that building a step-up transformer, converting DC to AC back 
 <br></br>
 <br></br>
 
+## Initial Transformer Testing
 
-
-<br></br>
-<br></br>
-<br></br>
-
-<MyCarousel
-  width={800}
-  height={450}
+<MyCarousel 
   slides={[
     {
-      src: "/images/image1.jpg",
-      caption: "Image 1"
-    },
-    {
-      type: "video",
-      youtube: "VIDEO_ID",
-      caption: "YouTube Video"
-    },
-    {
-      type: "video",
-      src: "/videos/local-video.mp4",
-      caption: "Local Video"
-    },
-    {
-      src: "/images/image2.jpg",
-      caption: "Image 2"
+      src: "/content/portfolio/engineering/projects/railgun/images/Stage 2/Project Railgun - Initial Transformer Testing/IMG_3572.JPG",
+      caption: "ZVS Testing"
     }
   ]}
+  width={600}
+  height={600}
 />
 
-## Documentation
-Check out the PDF below:
+This image showcases my initial attempt at testing my ZVS transformer. 
 
-<PDFViewer url="/content/portfolio/engineering/projects/railgun/images/T10_ANDURIL_PORTFOLIO.pdf" />
+The ZVS driver can be seen in the image, powered by a DC power supply I borrowed from MCM. 
 
-This is more text afterwards...
+I learned a lot more as well about transformers. As I realised that for a ZVS design for example, building a step-up transformer isn't as easy as just plugging in 60 hertz AC for example, then expecting 60 hertz out. As a ZVS driver is actually needed to convert my DC input, into extremely high frequency AC output, at like millions of hertz. Because if not, the energy loss would be far too significant. 
+
+The ZVS transformer then outputs to a full bridge rectifier, converting the AC current back to DC. Building the full bridge rectifier itself wasn't easy too. As I realised how much was my soldering techniques lacking.
+
+<br></br>
+<br></br>
+
+## Full Bridge Rectifier initial attempts [2024]
+
+<MyCarousel 
+  slides={[
+    {
+      src: "/content/portfolio/engineering/projects/railgun/images/Stage 2/Project Railgun - Full Bridge Rectifier initial attempts/IMG_3538.JPG",
+      caption: "1N4001 blown up"
+    }
+  ]}
+  width={900}
+  height={450}
+/>
+
+This image showcases one of my first full bridge rectifier that I built. 
+
+It blown up because the output of my transformer was farrr too high initially. As I simply coiled it far too much. At 30,000+ Volts. And even the air was being ionised into a purple plasma. 
+
+I had to coil it down manually until it's suitable for charging my 400V capacitors. 
+
+One time, I accidentally overcharged my capacitor using a transformer that had far too many coils. Charged the capacitor rated for 400V to 800V. Thankfully, it didn't explode and I was also wearing safety gloves.
+
+<br></br>
+<br></br>
+
+## Version 2 Railgun
+
+<MyCarousel 
+  slides={[
+    {
+      src: "/content/portfolio/engineering/projects/railgun/images/Stage 2/Porject Railgun - Version 2/IMG_3739.JPG",
+      caption: "Version 2 Railgun"
+    },
+    {
+      src: "/content/portfolio/engineering/projects/railgun/images/Stage 2/Porject Railgun - Version 2/IMG_3746.JPG",
+      caption: "Version 2 Railgun Spring Normal"
+    },
+    {
+      src: "/content/portfolio/engineering/projects/railgun/images/Stage 2/Porject Railgun - Version 2/IMG_3747.JPG",
+      caption: "Version 2 Railgun Spring Stretched"
+    }
+  ]}
+  width={600}
+  height={600}
+/>
+
+This image showcase my version 2 Railgun setup. 
+
+It was still very inefficient (because of crocodile wire and aluminium rods increasing resistance) and hence I wasn't really proud of it still. It uses a spring-launch mechanism. 
+
+The capacitors can be seen held in a plastic box though. As I was afraid of capacitor failures resulting in capacitor explosion.
+
+<br></br>
+<br></br>
+
+## Version 2 firing sequence
+
+<MyCarousel 
+  slides={[
+    {
+      type: "video",
+      src: "/content/portfolio/engineering/projects/railgun/images/Stage 2/Project Railgun - Version 2 firing sequence/VID_20240319152131.mov",
+      videoType: "video/mp4",
+      caption: "V2 RG Firing"
+    }
+  ]}
+  width={900}
+  height={450}
+/>
+
+This image showcase the firing sequence of my v2 Railgun. 
+
+As you can see, it was very inefficient. Further, the projectile itself was also a bit too big and heavy. Hence, this was changed in my final iteration. Where I used soldered wire, copper bars and a 0.8 gram copper stapler instead as my armature.
+
+<br></br>
+<br></br>
+
+---
+
+# Stage 3

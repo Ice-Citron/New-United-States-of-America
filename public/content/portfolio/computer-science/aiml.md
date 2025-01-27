@@ -12,21 +12,21 @@ projects:
   - title: Autonomous Car Navigation
     description: Deep learning model for autonomous vehicle path planning
     technologies: [Python, TensorFlow, ROS]
-    image: "/assets/images/test_pic1.png"
+    image: 
     link: /projects/autonomous-car
     featured: true
   
   - title: Natural Language Parser
     description: Custom NLP model for technical document analysis
     technologies: [PyTorch, NLTK, Transformers]
-    image: "/assets/images/test_pic1.png"
+    image: 
     link: /projects/nlp-parser
     featured: true
 
   - title: Natural Language Parser
     description: Custom NLP model for technical document analysis
     technologies: [PyTorch, NLTK, Transformers]
-    image: "/assets/images/test_pic1.png"
+    image: # "/assets/images/test_pic1.png"
     link: /projects/nlp-parser
     featured: true
 

@@ -1,15 +1,12 @@
 ---
 sections:
-  - id: aiml
-    title: "AI/ML"
-    path: "/content/portfolio/computer-science/aiml.md"
-  - id: cpp
-    title: "C/C++"
-    path: "/content/portfolio/computer-science/cpp.md"
-  - id: python
-    title: "Python"
-    path: "/content/portfolio/computer-science/python.md"
+  # - id: aiml
+  #  title: "AI/ML"
+  #  path: "/content/portfolio/academic/aiml.md"
+  # - id: cpp
+  #  title: "C/C++"
+  #  path: "/content/portfolio/academic/cpp.md"
 
 skills:
-  path: "/content/portfolio/computer-science/skills.md"
+  # path: "/content/portfolio/academic/skills.md"
 ---

@@ -11,8 +11,8 @@ const introdata = {
         second: "I am the machine herald",
         third: "I love r/Singularity",
     },
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum",
-    your_img_url: "https://images.unsplash.com/photo-1514790193030-c89d266d5a9d",
+    description: "I sincerely apologize that most of this website will be unpolished and unready for a long time till mid-March, which ironically Uni Applications season is already finished then. But you can still see my Maker Portfolio and some of my projects which I will slowly populate gradually. Please bear with me, IB is killing me :(",
+    your_img_url: "/assets/images/IMG_4109.JPG",
 };
 
 const dataabout = {

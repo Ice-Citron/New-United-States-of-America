@@ -23,6 +23,76 @@ const PDFViewer = ({ url }) => (
   </div>
 );
 
+// Document Link Box component for external documents
+const DocumentLink = ({ href, title, description, icon = "📄" }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      padding: '1rem 1.25rem',
+      margin: '1rem 0',
+      backgroundColor: 'var(--bg-secondary, #f8f9fa)',
+      border: '1px solid var(--border-color, #dee2e6)',
+      borderRadius: '8px',
+      textDecoration: 'none',
+      color: 'inherit',
+      transition: 'all 0.2s ease',
+      boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+      e.currentTarget.style.borderColor = 'var(--primary-color, #4a90d9)';
+      e.currentTarget.style.transform = 'translateY(-2px)';
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)';
+      e.currentTarget.style.borderColor = 'var(--border-color, #dee2e6)';
+      e.currentTarget.style.transform = 'translateY(0)';
+    }}
+  >
+    <span style={{
+      fontSize: '2rem',
+      marginRight: '1rem',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: '48px',
+      height: '48px',
+      backgroundColor: 'var(--bg-tertiary, #e9ecef)',
+      borderRadius: '8px',
+    }}>
+      {icon}
+    </span>
+    <div style={{ flex: 1 }}>
+      <div style={{
+        fontWeight: '600',
+        fontSize: '1rem',
+        marginBottom: description ? '0.25rem' : 0,
+        color: 'var(--text-primary, #212529)',
+      }}>
+        {title}
+      </div>
+      {description && (
+        <div style={{
+          fontSize: '0.875rem',
+          color: 'var(--text-secondary, #6c757d)',
+        }}>
+          {description}
+        </div>
+      )}
+    </div>
+    <span style={{
+      color: 'var(--text-secondary, #6c757d)',
+      marginLeft: '0.5rem',
+    }}>
+      →
+    </span>
+  </a>
+);
+
 export default function ProjectDetail() {  // Changed name to match your file
   const { slug } = useParams();
 
@@ -107,7 +177,8 @@ export default function ProjectDetail() {  // Changed name to match your file
     <CompiledMDX
       components={{
         MyCarousel,
-        PDFViewer, // Add PDFViewer to available components
+        PDFViewer,
+        DocumentLink,
       }}
     />
   );

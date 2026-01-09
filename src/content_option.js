@@ -5,13 +5,13 @@ const meta = {
 };
 
 const introdata = {
-    title: "I’m Shi Hao, psst this website is still in progress, sorry uni if it's not done yet :(",
+    title: "I'm Shi Hao",
     animated: {
         first: "I love Nuclear Fusion",
         second: "I am the machine herald",
         third: "I love r/Singularity",
     },
-    description: "I sincerely apologize that most of this website will be unpolished and unready for a long time till mid-March, which ironically Uni Applications season is already finished then. But you can still see my Maker Portfolio and some of my projects which I will slowly populate gradually. Please bear with me, IB is killing me :(",
+    description: "This portfolio is currently updated through January 2025. I will be updating soon with all the work and projects I've done between January 2025 and January 2026, including the many hackathons I've attended. Stay tuned!",
     your_img_url: "/assets/images/IMG_4109.JPG",
 };
 

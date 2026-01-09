@@ -1,7 +1,24 @@
 
 # Introduction
 
-Overview paragraph here... about why and what I built here...
+This is my journey building a functional electromagnetic railgun - from initial failed attempts in November 2023 to a working augmented railgun design by December 2024.
+
+I started building this railgun because I saw a DIY railgun on YouTube and thought it looked very cool. But my initial motivation evolved significantly when I discovered how railguns are used in the Nuclear Fusion industry. First Light Fusion, a UK private fusion firm, uses railguns to achieve inertial confinement fusion for their Machine 3.
+
+I want to stress that I'm not building a railgun for it to become a weapon. It would make a very terrible weapon due to durability issues - which is, in fact, why the US military cancelled their railgun project. Missiles or lasers simply make much more sense cost-wise given our current level of material science.
+
+Through this project, I gained invaluable experience with LS-Dyna FEA simulations, high-voltage electronics, transformer design, and hands-on fabrication techniques. The experience from using LS-Dyna and Ansys Fluent (from F1 in Schools) is extremely useful for my future plans - tackling Nuclear Fusion by building a multiphysics FEA-driven deep learning system to model plasma instabilities.
+
+**Related Documentation:**
+
+<PDFViewer url="/content/portfolio/engineering/projects/railgun/Physics_IA_Railgun.pdf" />
+
+<DocumentLink
+  href="https://docs.google.com/document/d/1gprXPwxTy_E5e2jCCYmBK_HHdFBfU2vu7njF-C8hT4M/edit?tab=t.0"
+  title="View on Google Docs"
+  description="Open the original document in Google Docs"
+  icon="📄"
+/>
 
 ---
 
@@ -343,4 +360,109 @@ A diode was also soldered onto the capacitor bank as well, to preserve the lifes
 
 # Final Stage
 
+## Safety and PPE
+
+<MyCarousel
+  slides={[
+    {
+      src: "/content/portfolio/engineering/projects/railgun/images/Final Stage/Safety and PPE/IMG_4947.jpg",
+      caption: "PPE worn throughout experiment"
+    },
+    {
+      src: "/content/portfolio/engineering/projects/railgun/images/Final Stage/Safety and PPE/IMG_4981.PNG",
+      caption: "Multimeter for checking residual charge"
+    },
+    {
+      src: "/content/portfolio/engineering/projects/railgun/images/Final Stage/Safety and PPE/IMG_4982.PNG",
+      caption: "Safety setup"
+    }
+  ]}
+  width={600}
+  height={600}
+/>
+
+As mentioned, capacitors are terrifyingly dangerous. You can't tell when they have residual charge left, hence frequently I would continuously measure each one of them to ensure they are fully discharged.
+
+Throughout the experiment, as seen in the screenshot, proper PPE had always been worn, from face shield, rubber boots, rubber gloves rated for 12kV to lab coat.
+
+When charging, the capacitor banks are placed under a plastic box, just in case of risk of capacitor explosion.
+
+<br></br>
+<br></br>
+
+## Capacitor Bank Setup
+
+In this image, my railgun's capacitor bank setup can be seen. On the very left, the capacitor bank can be seen, which a significant improvement I made was, with the help of Mr Fauzi, I created a jig/box to directly insert the capacitor together and soldered them together. This significantly helped reduce contact resistance issues which plagued Version 2 Railgun.
+
+In the middle of the table, a 24V 15A power supply can be seen powering a ZVS driver, which powers a Ferrite-core transformer that I coiled by hand manually.
+
+<br></br>
+<br></br>
+
+## Charging Sequence
+
+<MyCarousel
+  slides={[
+    {
+      type: "video",
+      src: "/content/portfolio/engineering/projects/railgun/images/Final Stage/Charging Sequence/IMG_4930.mov",
+      videoType: "video/mp4",
+      caption: "Charging the capacitor bank"
+    }
+  ]}
+  width={900}
+  height={450}
+/>
+
+In this video, the charging process of the capacitors can be seen.
+
+<br></br>
+<br></br>
+
+## Firing Sequence [Red Switch Design]
+
+<MyCarousel
+  slides={[
+    {
+      type: "video",
+      src: "/content/portfolio/engineering/projects/railgun/images/Final Stage/Firing Sequence/IMG_4937_shrink.mov",
+      videoType: "video/mp4",
+      caption: "Firing sequence - red button"
+    },
+    {
+      type: "video",
+      src: "/content/portfolio/engineering/projects/railgun/images/Final Stage/Firing Sequence/IMG_4941_shrunk.mov",
+      videoType: "video/mp4",
+      caption: "Another firing sequence"
+    }
+  ]}
+  width={900}
+  height={450}
+/>
+
+This is the more fun videos. Though you can still see that PPE had been taken very seriously throughout, as high voltage and capacitors are very very dangerous.
+
+Boom, it fired as the big red button is pressed.
+
+Though this design was decommissioned later as the button itself is only rated for 20A, whilst we likely had 1000+ Amps during the firing sequence due to the capacitors discharging. Which, this caused the switch to break, as it's likely welded as a consequence of the high current.
+
+But the red button does look cooler tho.
+
+<br></br>
+<br></br>
+
+## My Favourite Image
+
+<MyCarousel
+  slides={[
+    {
+      src: "/content/portfolio/engineering/projects/railgun/images/Final Stage/Plasma Ionization/IMG_4938.PNG",
+      caption: "Armature ionised into plasma"
+    }
+  ]}
+  width={900}
+  height={600}
+/>
+
+This is my favourite image of project Railgun. As this really reminds me of First Light Fusion's machine 3. As the armature gets ionised into plasma at the pushed of a button.
 

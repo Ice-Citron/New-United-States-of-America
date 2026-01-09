@@ -1,13 +1,14 @@
 RewriteEngine On
+RewriteBase /
 
 # If the requested file or directory doesn't exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Set Permission-Policy header to suppress warnings
+# Optional: Set Permissions-Policy header to suppress console warnings
 <IfModule mod_headers.c>
     Header set Permissions-Policy "attribution-reporting=(),run-ad-auction=(),private-state-token-redemption=(),private-state-token-issuance=(),join-ad-interest-group=(),browsing-topics=()"
 </IfModule>
 
-# Redirect everything to index.php
-RewriteRule ^ index.php [L]
+# Rewrite everything else to index.html (React entry point)
+RewriteRule ^ index.html [L]

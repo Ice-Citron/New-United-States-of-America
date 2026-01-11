@@ -9,64 +9,61 @@ show_courses: true
 show_books: true
 
 projects:
-  - title: Autonomous Car Navigation
-    description: Deep learning model for autonomous vehicle path planning
-    technologies: [Python, TensorFlow, ROS]
-    image: 
-    link: /projects/autonomous-car
-    featured: true
-  
-  - title: Natural Language Parser
-    description: Custom NLP model for technical document analysis
-    technologies: [PyTorch, NLTK, Transformers]
-    image: 
-    link: /projects/nlp-parser
+  - title: "GPT-Valkyrie"
+    description: "Independent AI research reproducing GPT-2 with ablation studies on normalization techniques"
+    technologies: ["PyTorch", "Nvidia H100", "Weights & Biases"]
+    image: "/assets/projects/gpt-valkyrie/gpt-hero.png"
+    link: "/computer-science/projects/gpt-valkyrie"
+    slug: "gpt-valkyrie"
     featured: true
 
-  - title: Natural Language Parser
-    description: Custom NLP model for technical document analysis
-    technologies: [PyTorch, NLTK, Transformers]
-    image: # "/assets/images/test_pic1.png"
-    link: /projects/nlp-parser
+  - title: "Recon Drone (Edutech Asia)"
+    description: "AI-powered drone detection system - Google Edutech Asia Champions"
+    technologies: ["YOLOv8", "PyTorch", "ReactJS"]
+    image: "/assets/projects/edutech/edutech-hero.jpg"
+    link: "/computer-science/projects/edutech"
+    slug: "edutech"
     featured: true
 
 certifications:
-  - title: "Deep Learning Specialization"
-    org: "DeepLearning.AI"
-    year: "2023"
+  - title: "NVIDIA Deep Neural Networks"
+    org: "NVIDIA"
+    year: "2024"
+    status: "Completed"
+    topics:
+      - "GPU Computing"
+      - "Deep Learning"
+    detail_page: "/certifications/nvidia-dnn"
+
+courses:
+  - title: "Andrej Karpathy Zero-to-Hero"
+    institution: "Independent Study"
+    year: "2024"
     status: "Completed"
     topics:
       - "Neural Networks"
-      - "Optimization"
-    detail_page: "/certifications/deep-learning-specialization"
+      - "GPT Implementation"
+      - "Backpropagation"
+    detail_page: "/courses/karpathy-zero-to-hero"
 
-  - title: "Machine Learning Engineer Nanodegree"
-    org: "Udacity"
-    year: "2023"
-    topics:
-      - "Supervised Learning"
-      - "Unsupervised Learning"
-    detail_page: "/certifications/ml-engineer-nanodegree"
-
-courses:
-  - title: "CS231n Convolutional Neural Networks"
-    institution: "Stanford Online"
-    year: "N/A"
+  - title: "O'Reilly NLP with Transformers"
+    institution: "O'Reilly Media"
+    year: "2024"
     status: "Completed"
     topics:
-      - "CNNs"
-      - "Backpropagation"
-      - "Image Classification"
-    detail_page: "/courses/cs231n"
+      - "Transformers"
+      - "NLP"
+      - "HuggingFace"
+    detail_page: "/courses/oreilly-nlp"
 
 books:
-  - title: "Hands-On Machine Learning"
+  - title: "Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow"
     author: "Aurélien Géron"
-    year: "2023"
-    status: "Completed"
+    year: "2024"
+    status: "Reading"
     topics:
       - "Scikit-learn"
       - "TensorFlow"
-      - "Practical Examples"
+      - "Practical ML"
     detail_page: "/books/hands-on-ml"
 ---

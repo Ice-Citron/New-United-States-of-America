@@ -23,6 +23,35 @@ const PDFViewer = ({ url }) => (
   </div>
 );
 
+// Google Slides Embed component
+const GoogleSlides = ({ url, height = 569 }) => {
+  // Convert share URL to embed URL
+  // From: https://docs.google.com/presentation/d/ID/edit...
+  // To: https://docs.google.com/presentation/d/ID/embed
+  const embedUrl = url.replace(/\/edit.*$/, '/embed?start=false&loop=false&delayms=3000');
+
+  return (
+    <div style={{
+      width: '100%',
+      marginBottom: '1rem',
+      borderRadius: '8px',
+      overflow: 'hidden',
+      boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+    }}>
+      <iframe
+        src={embedUrl}
+        style={{
+          width: '100%',
+          height: `${height}px`,
+          border: 'none',
+        }}
+        allowFullScreen={true}
+        title="Google Slides Presentation"
+      />
+    </div>
+  );
+};
+
 // Document Link Box component for external documents
 const DocumentLink = ({ href, title, description, icon = "📄" }) => (
   <a
@@ -179,6 +208,7 @@ export default function ProjectDetail() {  // Changed name to match your file
         MyCarousel,
         PDFViewer,
         DocumentLink,
+        GoogleSlides,
       }}
     />
   );

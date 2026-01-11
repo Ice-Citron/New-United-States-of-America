@@ -1,52 +1,59 @@
 ---
 portfolio_type: "subsection"
-section: computer-science
-subsection: cpp
+section: "computer-science"
+subsection: "cpp"
 display_order: 2
 show_projects: true
-show_certifications: true
+show_certifications: false
 show_courses: true
 show_books: true
 
 projects:
-  - title: Real-time Graphics Engine
-    description: Custom 3D graphics engine built from scratch
-    technologies: [C++, OpenGL, GLSL]
-    image: /assets/projects/graphics-engine.jpg
-    link: /projects/graphics-engine
-    featured: true
-  
-  - title: Memory Manager Implementation
-    description: Custom memory allocation system
-    technologies: [C++, Assembly]
-    image: /assets/projects/memory-manager.jpg
-    link: /projects/memory-manager
+  - title: "Sparky Game Engine"
+    description: "Custom 3D game engine built from scratch following TheCherno's tutorials"
+    technologies: ["C++", "OpenGL", "GLSL"]
+    image: "/assets/projects/game-engine/engine-hero.png"
+    link: "/computer-science/projects/game-engine"
+    slug: "game-engine"
     featured: true
 
-certifications:
-  - name: C++ Programming
-    issuer: Microsoft
-    date: 2023
-    image: /assets/certs/cpp-cert.jpg
-    verification_link: https://verify.microsoft.com
+  - title: "Hazel Engine (WIP)"
+    description: "Advanced game engine following TheCherno's Hazel series"
+    technologies: ["C++17", "OpenGL", "ImGui"]
+    image: "/assets/projects/hazel/hazel-hero.png"
+    link: "https://github.com/Ice-Citron/CAS-Project--Hazel"
+    featured: false
 
 courses:
-  - name: Computer Systems Programming
-    institution: MIT OCW
-    status: Completed
+  - title: "TheCherno C++ Series"
+    institution: "YouTube"
+    status: "Completed"
+    year: "2023"
     topics:
-      - Memory Management
-      - System Architecture
-      - Performance Optimization
-      - Parallel Computing
+      - "Modern C++"
+      - "Memory Management"
+      - "Templates"
+      - "Smart Pointers"
+    detail_page: "/courses/cherno-cpp"
+
+  - title: "TheCherno OpenGL Series"
+    institution: "YouTube"
+    status: "Completed"
+    year: "2023"
+    topics:
+      - "Shaders"
+      - "Textures"
+      - "Batch Rendering"
+    detail_page: "/courses/cherno-opengl"
 
 books:
-  - title: C++ Primer
-    author: Stanley Lippman
-    progress: Completed
+  - title: "Professional C++ (Marc Gregoire)"
+    author: "Marc Gregoire"
+    status: "Completed"
+    year: "2023"
     topics:
-      - Modern C++
-      - Templates
-      - STL
-    projects_link: /implementations/cpp-primer
+      - "Advanced C++"
+      - "Best Practices"
+      - "Design Patterns"
+    detail_page: "/books/professional-cpp"
 ---

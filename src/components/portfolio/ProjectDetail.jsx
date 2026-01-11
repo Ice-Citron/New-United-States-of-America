@@ -136,20 +136,37 @@ export default function ProjectDetail() {  // Changed name to match your file
       try {
         // Debug logging
         console.log("Current pathname:", window.location.pathname);
-        
+
         // Ensure we have correct slug
         const currentSlug = slug || window.location.pathname.split('/').pop();
         console.log("Using slug:", currentSlug);
-        
-        // Construct URL carefully
-        const fileUrl = new URL(`/content/portfolio/engineering/projects/${currentSlug}/index.mdx`, window.location.origin);
-        console.log("Attempting to fetch from:", fileUrl.toString());
 
-        const resp = await fetch(fileUrl);
-        if (!resp.ok) {
-          throw new Error(`Failed to fetch MDX for '${currentSlug}': ${resp.status}`);
+        // Try multiple sections to find the project
+        const sections = ['engineering', 'computer-science', 'electronic-art', 'academic'];
+        let rawText = null;
+        let foundSection = null;
+
+        for (const section of sections) {
+          const fileUrl = new URL(`/content/portfolio/${section}/projects/${currentSlug}/index.mdx`, window.location.origin);
+          console.log("Trying:", fileUrl.toString());
+
+          try {
+            const resp = await fetch(fileUrl);
+            if (resp.ok) {
+              rawText = await resp.text();
+              foundSection = section;
+              console.log(`Found project in ${section}`);
+              break;
+            }
+          } catch (e) {
+            // Continue to next section
+          }
         }
-        const rawText = await resp.text();
+
+        if (!rawText) {
+          throw new Error(`Failed to fetch MDX for '${currentSlug}' in any section`);
+        }
+
         console.log("[ProjectDetail] raw MDX length =>", rawText.length);
 
         const { data, content } = matter(rawText);

@@ -90,6 +90,44 @@ const ProjectGrid = ({ category }) => {
     return <VideoSummary />;
   }
 
+  // 2) If "resume", show embedded PDF
+  if (category === "resume") {
+    return (
+      <div style={{ marginTop: "2rem" }}>
+        <h2 className="text-2xl font-bold mb-3">Resume</h2>
+        <div style={{
+          width: "100%",
+          height: "85vh",
+          border: "1px solid var(--border-color, #dee2e6)",
+          borderRadius: "8px",
+          overflow: "hidden",
+        }}>
+          <iframe
+            src="/assets/Shi-Hao-Ng__Resume.pdf"
+            style={{ width: "100%", height: "100%", border: "none" }}
+            title="Resume - Shi Hao Ng"
+          />
+        </div>
+        <div style={{ marginTop: "1rem" }}>
+          <a
+            href="/assets/Shi-Hao-Ng__Resume.pdf"
+            download
+            style={{
+              display: "inline-block",
+              padding: "0.5rem 1.5rem",
+              border: "1px solid var(--border-color, #dee2e6)",
+              borderRadius: "6px",
+              textDecoration: "none",
+              color: "inherit",
+            }}
+          >
+            Download PDF
+          </a>
+        </div>
+      </div>
+    );
+  }
+
   if (loading) {
     return <div>Loading {category}...</div>;
   }

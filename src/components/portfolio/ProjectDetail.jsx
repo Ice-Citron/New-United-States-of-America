@@ -153,7 +153,14 @@ export default function ProjectDetail() {  // Changed name to match your file
           try {
             const resp = await fetch(fileUrl);
             if (resp.ok) {
-              rawText = await resp.text();
+              const text = await resp.text();
+              // SPA fallback returns index.html with 200 for missing files
+              // Detect and skip HTML responses
+              if (text.trimStart().startsWith('<!') || text.trimStart().startsWith('<html')) {
+                console.log(`Skipping ${section} - got HTML fallback`);
+                continue;
+              }
+              rawText = text;
               foundSection = section;
               console.log(`Found project in ${section}`);
               break;

@@ -1,6 +1,9 @@
 RewriteEngine On
 RewriteBase /
 
+# External redirects (tracked by Hostinger analytics)
+Redirect 302 /tractable/se3-labs https://jobs.ashbyhq.com/se3/9e554e3e-94fe-4e0d-8aa4-7928849a04e7/application
+
 # If the requested file or directory doesn't exist
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

@@ -1,7 +1,7 @@
 const logotext = "SIENAR INDUSTRIES";
 const meta = {
     title: "Shi Hao",
-    description: "I’m Shi Hao. AI Czar. Nuclear Fusion Enthusiast",
+    description: "I'm Shi Hao. AI Czar. Nuclear Fusion Enthusiast",
 };
 
 const introdata = {
@@ -11,64 +11,87 @@ const introdata = {
         second: "I am the machine herald",
         third: "I love r/Singularity",
     },
-    description: "This portfolio is currently updated through January 2025. I will be updating soon with all the work and projects I've done between January 2025 and January 2026, including the many hackathons I've attended. Stay tuned!",
+    description: "This portfolio isn't fully ready yet — I've been busy with school, hackathons, and work. It's currently updated through January 2025. I'll be updating soon with everything I've done between January 2025 and March 2026. Stay tuned!",
     your_img_url: "/assets/images/IMG_4109.JPG",
 };
 
 const dataabout = {
-    title: "abit about my self",
-    aboutme: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis dolor id ligula semper elementum feugiat pretium nulla. Nunc non commodo dolor. Nunc mollis dignissim facilisis. Morbi ut magna ultricies.",
+    title: "about me",
+    aboutme: "I'm Shi Hao Ng — a first-year MEng Computing (AI & ML) student at Imperial College London. Before that, I graduated from Marlborough College Malaysia with a 42-point IB Diploma (777 in HL subjects) and 10A* at IGCSE, earning Best in Asia for Computer Science and Best in Malaysia for Design Technology, Physics, and Chemistry. I've built electromagnetic railguns, pre-trained GPT-2 from scratch on H100 GPUs, won Google's Edutech Asia as ML lead, led F1 in Schools as chief engineer, designed custom FPV racing drones, and spent years creating photorealistic 3D renders in Blender. Currently, I'm co-president of Imperial's Drone Society, working on RoboCup autonomous robots, and building sim-to-real robotics with NVIDIA Isaac Sim. My long-term goal is applying deep learning to plasma physics and fusion energy.",
 };
-const worktimeline = [{
-        jobtitle: "Designer of week",
-        where: "YAdfi",
-        date: "2020",
+
+const worktimeline = [
+    {
+        jobtitle: "Co-President & Re-Founder",
+        where: "Imperial College Drone Society",
+        date: "2025–Present",
     },
     {
-        jobtitle: "Designer of week",
-        where: "Jamalya",
-        date: "2019",
+        jobtitle: "AI Engineer",
+        where: "First Order Robotics (RoboCup)",
+        date: "2025–Present",
     },
     {
-        jobtitle: "Designer of week",
-        where: "ALquds",
-        date: "2019",
+        jobtitle: "Engineering Intern",
+        where: "Nosco Asia — Taichung, Taiwan",
+        date: "2025",
+    },
+    {
+        jobtitle: "Full-Stack Developer",
+        where: "Nosco Asia — Singapore (ReactJS, Firebase, GCP)",
+        date: "2024",
+    },
+    {
+        jobtitle: "Founder & Director",
+        where: "Computational Engineering Society — MCM",
+        date: "2024–2025",
+    },
+    {
+        jobtitle: "Chief Engineer & Team Lead",
+        where: "F1 in Schools — Team Anduril",
+        date: "2023–2024",
     },
 ];
 
-const skills = [{
-        name: "Python",
+const skills = [
+    {
+        name: "Python (PyTorch, RLAIF, GRPO, LoRA)",
         value: 90,
     },
     {
-        name: "Djano",
-        value: 85,
-    },
-    {
-        name: "Javascript",
+        name: "C / C++ / CUDA (OpenGL, MPC, Robotics)",
         value: 80,
     },
     {
-        name: "React",
-        value: 60,
+        name: "JavaScript / TypeScript (React, Node, Firebase)",
+        value: 75,
     },
     {
-        name: "Jquery",
+        name: "Blender & CAD (Fusion 360, SolidWorks)",
         value: 85,
+    },
+    {
+        name: "FEA / CFD (Ansys Fluent, LS-Dyna)",
+        value: 70,
+    },
+    {
+        name: "Robotics (Isaac Sim, Betaflight, ROS2)",
+        value: 65,
     },
 ];
 
-const services = [{
-        title: "UI & UX Design",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum sollicitudin.",
+const services = [
+    {
+        title: "AI & Machine Learning",
+        description: "GPT pre-training, RLAIF pipelines, computer vision (YOLOv11), RL for robotics, distributed training on H100 HPC nodes, and agentic AI systems.",
     },
     {
-        title: "Mobile Apps",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum sollicitudin.",
+        title: "Engineering & Robotics",
+        description: "FPV drone design & fabrication, electromagnetic systems, CFD/FEA simulation (Ansys, LS-Dyna), CNC machining, sim-to-real transfer with Isaac Sim.",
     },
     {
-        title: "Wordpress Design",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed at nisl euismod urna bibendum sollicitudin.",
+        title: "Full-Stack Development",
+        description: "ReactJS, Firebase, GCP, Node.js, TypeScript. Built enterprise workforce management apps and portfolio websites.",
     },
 ];
 
@@ -136,10 +159,10 @@ const dataportfolio = [{
 ];
 
 const contactConfig = {
-    YOUR_EMAIL: "name@domain.com",
-    YOUR_FONE: "(555)123-4567",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vehicula eu nunc et sollicitudin. Cras pulvinar, nisi at imperdiet pharetra. ",
-    // creat an emailjs.com account 
+    YOUR_EMAIL: "shi-hao.ng25@imperial.ac.uk",
+    YOUR_FONE: "",
+    description: "Feel free to reach out if you'd like to collaborate on frontier AI, defense tech, robotics, or anything interesting.",
+    // creat an emailjs.com account
     // check out this tutorial https://www.emailjs.com/docs/examples/reactjs/
     YOUR_SERVICE_ID: "service_id",
     YOUR_TEMPLATE_ID: "template_id",
@@ -148,9 +171,7 @@ const contactConfig = {
 
 const socialprofils = {
     github: "https://github.com/Ice-Citron",
-    facebook: "https://www.instagram.com/shng2025",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
+    linkedin: "https://www.linkedin.com/in/shi-hao-ng-83b55b224/",
 };
 export {
     meta,

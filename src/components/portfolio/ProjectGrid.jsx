@@ -92,6 +92,8 @@ const ProjectGrid = ({ category }) => {
 
   // 2) If "resume", show embedded PDF
   if (category === "resume") {
+    const pdfUrl = window.location.origin + "/assets/Shi-Hao-Ng__Resume.pdf";
+    const googleViewerUrl = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(pdfUrl)}`;
     return (
       <div style={{ marginTop: "2rem" }}>
         <h2 className="text-2xl font-bold mb-3">Resume</h2>
@@ -103,7 +105,7 @@ const ProjectGrid = ({ category }) => {
           overflow: "hidden",
         }}>
           <iframe
-            src="/assets/Shi-Hao-Ng__Resume.pdf"
+            src={googleViewerUrl}
             style={{ width: "100%", height: "100%", border: "none" }}
             title="Resume - Shi Hao Ng"
           />

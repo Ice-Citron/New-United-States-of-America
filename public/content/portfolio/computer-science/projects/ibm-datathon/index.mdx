@@ -1,0 +1,39 @@
+# Introduction
+
+At the **IBM Datathon Z** (2025), I led a team of 5 to build a full **agentic RLAIF pipeline** for legal AI assistance in 24 hours. We went from knowing only the theory about RLAIF/GRPO/RAG to having a fully working system by the end of the event.
+
+We fine-tuned **Qwen3-14B-Instruct** via GRPO with Gemini 2.5 Flash as an LLM-as-judge, using **LoRA** on an **H100 SXM5**.
+
+<DocumentLink
+  href="https://github.com/Ice-Citron/IBM-Z-Datathon"
+  title="GitHub Repository"
+  description="Source code for the RLAIF Legal LLM project"
+  icon="💻"
+/>
+
+---
+
+# The Pipeline
+
+**RLAIF (Reinforcement Learning from AI Feedback)** pipeline:
+
+1. **Synthetic Data Generation** — Generated QA datasets from FOSS (Free and Open Source Software) law cases using Gemini 2.5 Pro
+2. **RAG Database** — Built a retrieval-augmented generation system with tool-use, mimicking real-world lawyer case-retrieval workflows
+3. **Fine-tuning** — Applied GRPO (Group Relative Policy Optimization) with LoRA adapters on Qwen3-14B-Instruct
+4. **Evaluation** — Gemini 2.5 Flash served as LLM-as-judge for scoring model outputs
+
+The goal was to create **affordable legal assistance** by training an open-source model to handle legal queries with case retrieval capabilities.
+
+<br></br>
+<br></br>
+
+---
+
+# Skills Developed
+
+- RLAIF and GRPO fine-tuning pipelines
+- LoRA adapter training on H100 SXM5
+- RAG system architecture with tool-use
+- Synthetic dataset generation at scale
+- Hackathon team leadership
+- Rapid prototyping under time pressure

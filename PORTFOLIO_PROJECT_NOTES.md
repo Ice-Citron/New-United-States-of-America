@@ -1,92 +1,118 @@
 # Portfolio Website Project Notes
 
-**Last Updated:** January 2026
+**Last Updated:** March 7, 2026
 **Project Location:** `/Users/administrator/Python/New United States of America`
+**Live URL:** https://sienarindustries.com
 
 ---
 
 ## Project Overview
 
-This is a personal portfolio website built with **React** and **MDX** for content management. The site showcases engineering projects, computer science work, and electronic art (Blender renders).
+Personal portfolio website for **Shi Hao Ng** — MEng Computing (AI & ML) student at Imperial College London. Built with **React** and **MDX** for content management.
 
 ### Tech Stack
 - **React** (Create React App with CRACO)
 - **MDX** (@mdx-js/mdx) for rich content pages
 - **gray-matter** for YAML frontmatter parsing
 - **react-router-dom** for routing
+- **Hostinger** for hosting (Apache with .htaccess SPA routing)
+
+### Owner Info
+- Email: shi-hao.ng25@imperial.ac.uk
+- GitHub: github.com/Ice-Citron
+- LinkedIn: linkedin.com/in/shi-hao-ng-83b55b224/
 
 ---
 
-## Current Bug (Needs Fixing)
+## Session 3 Progress (March 7, 2026)
 
-When clicking into any project page (e.g., `/project/blender-donut`), there's an MDX compilation error:
+### Completed This Session
 
-```
-Unexpected character `!` (U+0021) before name, expected a character that can start a name, such as a letter, `$`, or `_`
-```
+1. **Resume tab** — Added "Resume" to portfolio nav, embeds `/assets/Shi-Hao-Ng__Resume.pdf` with download button
+2. **Tractable redirect** — `sienarindustries.com/tractable/se3-labs` → Ashby job application (server-side .htaccess 302 redirect, tracked in Hostinger analytics)
+3. **MDX loading bug FIXED** — `ProjectDetail.jsx` now detects HTML fallback responses (SPA catch-all returning index.html for missing files) and skips them. Root cause: `resp.ok` was true (200) for SPA fallback HTML.
+4. **About page filled** — Real bio, Imperial College, IB 42pts (777 HL), 10A* IGCSE, work timeline (Drone Society, RoboCup, Nosco Asia, F1 in Schools, CompEng Society), real skills, real services
+5. **Academic section enabled** — IB results + certifications, self-study courses, books. Removed fake placeholder cpp.md and python.md files.
+6. **Contact updated** — Email: shi-hao.ng25@imperial.ac.uk. Description: frontier AI, defense, robotics.
+7. **Social links** — GitHub + LinkedIn only (removed Facebook/Twitter)
+8. **Front page text** — Updated "not fully ready yet" message
+9. **Game engine video** — Replaced 298MB local .mov with YouTube embed (https://youtu.be/hbHgIjmsBgs), build size reduced from 721MB → 417MB
+10. **Vision API setup** — OpenRouter with Gemini flash-lite for image identification. Script at `/tmp/vision_helper.py`. Used to scan all existing project images.
 
-**Console shows:**
-- `raw MDX length => 818` (suspiciously short - likely receiving HTML instead of MDX)
-- The fetch is probably returning `index.html` (the React app) instead of the actual `.mdx` file
+### Image Mismatches Found (Vision Scan)
+These images appear to be in wrong locations or don't match their context:
+- `maze/images/maze-render.png` → Shows a camera model (should be in pinhole-camera?)
+- `solar-heater/images/solar-heater-2.jpg` → Shows a car parked on road, not a solar heater
+- `f1-in-schools/images/Car Design/img2.jpg` → Shows school hall video on laptop
+- `f1-in-schools/images/Renders/cyberstation.jpg` → Shows students at table, not a render
+- `f1-in-schools/images/Renders/darkstar.jpg` → Shows model car on newspaper
+- `f1-in-schools/images/Track Building/img2.jpg` → Shows a pull-up banner
+- `f1-in-schools/images/CFD Analysis/img1.jpg` → Shows race cars at competition
+- `f1-in-schools/images/CFD Analysis/img2.jpg` → Shows award certificates
 
-**Likely cause:** The dev server might not be serving static files from subdirectories correctly, or there's a caching issue.
+### Still To Do (Next Session)
 
-**To debug:**
-1. Check if the MDX files are accessible directly: `http://localhost:3000/content/portfolio/electronic-art/projects/blender-donut/index.mdx`
-2. If that returns HTML, the issue is with the dev server static file serving
-3. May need to adjust webpack/CRACO config or move files
+#### New Projects to Add (from resume)
+- [ ] **Tissue Culture** (2023) — Images at `/Users/administrator/Documentations/Academic & Miscellaneous/Biotechnology - Tissue Culture/` (15 JPGs + 2 MOVs)
+- [ ] **Custom FPV Racing Drone** (2025) — Need images from user
+- [ ] **RLAIF Legal LLM / IBM Datathon Z** (2025) — Need images/screenshots
+- [ ] **Nosco WorkHours App** (2024) — Full-stack dev, check `/Users/administrator/Documentations/Computer Science/Nosco WorkHours App/`
+- [ ] **New Dejima** (2026, in-progress) — Autonomous AI agent revenue system
+- [ ] **RoboCup / First Order Robotics** (2025, in-progress) — MPC, Isaac Sim, RL
+- [ ] **Isaac Sim Robotics** (2026, in-progress) — SO-101 arm, sim-to-real
+- [ ] **Interceptor Drone** (2026, in-progress) — 400km/h drone with CV
 
----
-
-## What's Been Completed
-
-### Engineering Section (Fully Populated)
-| Project | Slug | Location |
-|---------|------|----------|
-| Railgun | `railgun` | `/public/content/portfolio/engineering/projects/railgun/` |
-| F1 in Schools | `f1-in-schools` | `/public/content/portfolio/engineering/projects/f1-in-schools/` |
-| Display Spinner | `display-spinner` | `/public/content/portfolio/engineering/projects/display-spinner/` |
-| Solar Heater | `solar-heater` | `/public/content/portfolio/engineering/projects/solar-heater/` |
-| Maze | `maze` | `/public/content/portfolio/engineering/projects/maze/` |
-| Pinhole Camera | `pinhole-camera` | `/public/content/portfolio/engineering/projects/pinhole-camera/` |
-
-**Removed:** TinkerCAD Drones (no evidence available)
-
-### Computer Science Section (Newly Enabled)
-| Project | Slug | Location |
-|---------|------|----------|
-| GPT-Valkyrie | `gpt-valkyrie` | `/public/content/portfolio/computer-science/projects/gpt-valkyrie/` |
-| Edutech Asia (Recon Drone) | `edutech` | `/public/content/portfolio/computer-science/projects/edutech/` |
-| Game Engine (C++) | `game-engine` | `/public/content/portfolio/computer-science/projects/game-engine/` |
-
-### Electronic Art Section (Newly Enabled - Individual Projects)
-| Project | Slug | Location |
-|---------|------|----------|
-| McLaren Speedtail | `mclaren-speedtail` | `/public/content/portfolio/electronic-art/projects/mclaren-speedtail/` |
-| Mercedes G Class | `mercedes-g-class` | `/public/content/portfolio/electronic-art/projects/mercedes-g-class/` |
-| Ferrari LaFerrari | `ferrari-laferrari` | `/public/content/portfolio/electronic-art/projects/ferrari-laferrari/` |
-| McLaren P1 | `mclaren-p1` | `/public/content/portfolio/electronic-art/projects/mclaren-p1/` |
-| Dodge Challenger | `dodge-challenger` | `/public/content/portfolio/electronic-art/projects/dodge-challenger/` |
-| Blender Donut | `blender-donut` | `/public/content/portfolio/electronic-art/projects/blender-donut/` |
-
-**TODO:** Add Mystical Cube project (user said they re-added it to `/Users/administrator/Documentations/Electronic Arts/Blender - Mystical Cube/`)
+#### Other TODO
+- [ ] Fix mismatched images identified by vision scan (see above)
+- [ ] Add Mystical Cube to electronic-art (directory exists but was empty last check)
+- [ ] Create RESOURCES-NEEDED.md for missing assets
+- [ ] Compress large images (some >5MB PNGs in electronic-art and display-spinner)
+- [ ] Hero images for project cards (still using placeholder paths)
+- [ ] Consider uploading large railgun videos to YouTube like game engine
 
 ---
 
-## What's Left To Do
+## What's Been Completed (All Sessions)
 
-### Immediate (Bug Fix)
-- [ ] Fix MDX loading error for project pages
-- [ ] Add Mystical Cube to electronic-art projects
+### Engineering Section (6 projects)
+| Project | Slug | Status |
+|---------|------|--------|
+| Railgun | `railgun` | Complete with extensive MDX + images + PDF + videos |
+| F1 in Schools | `f1-in-schools` | Complete (some images may be in wrong subfolders) |
+| Display Spinner | `display-spinner` | Complete with Google Slides embed |
+| Solar Heater | `solar-heater` | Complete (1 mismatched image) |
+| Maze | `maze` | Complete (1 mismatched image - shows camera) |
+| Pinhole Camera | `pinhole-camera` | Complete |
 
-### Content Still Available
-- [ ] Academic section (currently disabled)
-- [ ] Renaissance Python projects (in documentation folder)
-- [ ] More Caltech HTML entries not yet used
+### Computer Science Section (3 projects)
+| Project | Slug | Status |
+|---------|------|--------|
+| GPT-Valkyrie | `gpt-valkyrie` | Complete with ablation diagrams, GPU screenshots |
+| Edutech Asia | `edutech` | Complete with competition photos |
+| Game Engine | `game-engine` | Complete — video now YouTube embed |
 
-### Polish
-- [ ] Hero images for project cards (currently using placeholder paths like `/assets/projects/xxx/hero.png`)
-- [ ] Fix any mislinked images (user mentioned they'd handle this)
+### Electronic Art Section (6 projects)
+| Project | Slug | Status |
+|---------|------|--------|
+| McLaren Speedtail | `mclaren-speedtail` | Complete |
+| Mercedes G Class | `mercedes-g-class` | Complete |
+| Ferrari LaFerrari | `ferrari-laferrari` | Complete |
+| McLaren P1 | `mclaren-p1` | Complete |
+| Dodge Challenger | `dodge-challenger` | Complete |
+| Blender Donut | `blender-donut` | Complete |
+
+### Academic Section (enabled this session)
+- IB Diploma & Coursework subsection (ib.md)
+- Self-Study & Online Courses subsection (self-study.md)
+- Skills showcase (skills.md)
+
+### Portfolio Nav Tabs
+1. Video Summary (YouTube embed of maker portfolio)
+2. Resume (PDF embed + download)
+3. Engineering
+4. Computer Science
+5. Electronic Art
+6. Academic & Miscellaneous
 
 ---
 
@@ -96,264 +122,94 @@ Unexpected character `!` (U+0021) before name, expected a character that can sta
 ```
 /craco.config.js          - CRACO config (fixes ResizeObserver error)
 /package.json             - Uses CRACO instead of react-scripts
+/public/.htaccess         - SPA routing + Tractable redirect
 /src/index.js             - React entry point
 ```
 
 ### Main Components
 ```
-/src/components/portfolio/ProjectDetail.jsx   - Renders individual project pages (MDX)
-/src/components/portfolio/Carousel.jsx        - Image/video carousel component
+/src/app/App.js                                - Routes (/, /portfolio, /project/:slug)
+/src/content_option.js                         - All About page data, skills, services, contact
+/src/components/portfolio/ProjectDetail.jsx    - Renders individual project pages (MDX)
+/src/components/portfolio/ProjectGrid.jsx      - Grid view + Resume/VideoSummary special cases
+/src/components/portfolio/PortfolioNav.jsx     - Tab navigation
+/src/components/portfolio/Carousel.jsx         - Image/video carousel component
+/src/components/portfolio/VideoSummary.jsx     - Video summary tab
+/src/components/portfolio/SkillsShowcase.jsx   - Skills grid component
 ```
 
 ### Content Structure
 ```
 /public/content/portfolio/
+├── video-summary/index.md
 ├── engineering/
-│   ├── index.md              - Section config (lists year subsections)
-│   ├── year-2024.md          - Projects: Railgun, F1, Solar Heater
-│   ├── year-2023.md          - Projects: Display Spinner
-│   ├── year-2022.md          - Projects: Maze, Pinhole Camera
-│   ├── ongoing.md            - Currently empty (CNC machine removed)
-│   └── projects/
-│       ├── railgun/index.mdx
-│       ├── f1-in-schools/index.mdx
-│       ├── display-spinner/index.mdx
-│       ├── solar-heater/index.mdx
-│       ├── maze/index.mdx
-│       └── pinhole-camera/index.mdx
-│
+│   ├── index.md, year-2024.md, year-2023.md, year-2022.md, ongoing.md, skills.md
+│   └── projects/{railgun,f1-in-schools,display-spinner,solar-heater,maze,pinhole-camera}/
 ├── computer-science/
-│   ├── index.md              - Section config (AI/ML, C++)
-│   ├── aiml.md               - AI/ML subsection with GPT-Valkyrie, Edutech
-│   ├── cpp.md                - C++ subsection with Game Engine
-│   └── projects/
-│       ├── gpt-valkyrie/index.mdx
-│       ├── edutech/index.mdx
-│       └── game-engine/index.mdx
-│
+│   ├── index.md, aiml.md, cpp.md, skills.md
+│   └── projects/{gpt-valkyrie,edutech,game-engine}/
 ├── electronic-art/
-│   ├── index.md              - Section config (Blender subsection)
-│   ├── blender.md            - Lists all car render projects
-│   └── projects/
-│       ├── mclaren-speedtail/index.mdx
-│       ├── mercedes-g-class/index.mdx
-│       ├── ferrari-laferrari/index.mdx
-│       ├── mclaren-p1/index.mdx
-│       ├── dodge-challenger/index.mdx
-│       └── blender-donut/index.mdx
-│
-└── academic/                 - Currently disabled
+│   ├── index.md, blender.md, skills.md
+│   └── projects/{mclaren-speedtail,mercedes-g-class,ferrari-laferrari,mclaren-p1,dodge-challenger,blender-donut}/
+└── academic/
+    ├── index.md, ib.md, self-study.md, skills.md
+    └── projects/ (empty)
 ```
 
-### Source Documentation (Content pulled from here)
+### Source Documentation
 ```
 /Users/administrator/Documentations/
-├── Caltech HTML/                    - Saved web pages with portfolio text (use textarea extraction)
-├── Engineering/                     - PDFs, images for engineering projects
-├── Computer Science/
-│   ├── AI RELATED/GPT Pictures/     - GPT-Valkyrie images
-│   ├── Edutech Asia/                - Competition photos/videos
-│   └── C:C++ Sparky Game Engine/    - Game engine demo video
-├── Electronic Arts/
-│   ├── Blender - McLaren P1/
-│   ├── Blender - LaFerrari/
-│   ├── Blender - G Class/
-│   ├── Blender - Mystical Cube/     - User said they re-added content here
-│   └── Adobe Photoshop & Blender - Speedtail/
-├── Renaissance Blender Projects/    - Early Blender work (Donut, Dodge Challenger)
-└── MIT/Caltech Additional/          - More documentation
+├── Caltech HTML/                              - 94 saved web pages (content in <textarea> tags)
+├── Engineering/                               - PDFs, images for engineering projects
+├── Computer Science/                          - CS project files
+│   ├── Nosco WorkHours App/                   - Full-stack dev project
+│   └── Computational Engineering Society/     - Society content
+├── Electronic Arts/                           - Blender project source files
+├── Academic & Miscellaneous/
+│   ├── Biotechnology - Tissue Culture/        - 15 JPGs + 2 MOVs
+│   ├── Mist Irrigation/
+│   └── Nosco Biotechnology - Foliar Fertiliser + Expos/
+├── Renaissance Blender Projects/              - Early Blender work
+└── MIT/Caltech Additional/                    - More docs, images, videos
 ```
 
 ---
 
 ## Key Techniques & Patterns
 
-### 1. Extracting Text from Caltech HTML Files
-The Caltech HTML files are saved web pages. Content is in `<textarea>` tags:
-
-```python
-import re
-with open('Portfolio XX.html', 'r') as f:
-    content = f.read()
-textareas = re.findall(r'<textarea[^>]*>(.*?)</textarea>', content, re.DOTALL)
-for t in textareas:
-    if len(t.strip()) > 20:
-        print(t)
-```
-
-### 2. MDX Content Structure
-Each project has an `index.mdx` file with this pattern:
-
-```mdx
-# Title
-
-Introduction paragraph...
-
----
-
-# Section Name
-
-<MyCarousel
-  slides={[
-    {
-      src: "/content/portfolio/SECTION/projects/SLUG/images/image.png",
-      caption: "Caption text"
-    },
-    {
-      type: "video",
-      src: "/content/portfolio/SECTION/projects/SLUG/images/video.mov",
-      videoType: "video/mp4",
-      caption: "Video caption"
-    }
-  ]}
-  width={900}
-  height={600}
-/>
-
-Content text...
-
-<br></br>
-<br></br>
-
----
-
-# Another Section
-...
-```
-
-### 3. Available MDX Components
-Defined in `ProjectDetail.jsx`:
-
+### Available MDX Components (in ProjectDetail.jsx)
 ```jsx
-// Image/Video Carousel
-<MyCarousel slides={[...]} width={900} height={600} />
-
-// PDF Embed
+<MyCarousel slides={[{src, caption}, {type:"video", src, videoType, caption}]} width={900} height={600} />
 <PDFViewer url="/path/to/file.pdf" />
-
-// Google Slides Embed
-<GoogleSlides url="https://docs.google.com/presentation/d/ID/edit..." height={569} />
-
-// Styled Document Link
-<DocumentLink
-  href="https://example.com"
-  title="Document Title"
-  description="Description text"
-  icon="📄"
-/>
+<GoogleSlides url="https://docs.google.com/.../edit..." height={569} />
+<DocumentLink href="url" title="Title" description="Desc" icon="icon" />
 ```
 
-### 4. YAML Frontmatter for Subsections
-Each year/category `.md` file uses this structure:
-
-```yaml
----
-portfolio_type: "subsection"
-section: "engineering"
-subsection: "year-2024"
-display_order: 3
-show_projects: true
-show_certifications: false
-show_courses: true
-show_books: false
-
-projects:
-  - title: "Project Name"
-    description: "Short description"
-    technologies: ["Tech1", "Tech2"]
-    image: "/assets/projects/slug/hero.jpg"
-    link: "/section/projects/slug"
-    slug: "slug"                        # IMPORTANT: This makes it clickable!
-    featured: true
----
+### YouTube Embed Pattern (used for game engine)
+```jsx
+<div style={{position: "relative", width: "100%", paddingBottom: "56.25%", marginBottom: "1rem"}}>
+  <iframe src="https://www.youtube.com/embed/VIDEO_ID" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", borderRadius: "8px"}} allowFullScreen title="Title" />
+</div>
 ```
 
-### 5. ProjectDetail.jsx Multi-Section Search
-The component searches multiple sections for projects:
-
-```javascript
-const sections = ['engineering', 'computer-science', 'electronic-art', 'academic'];
-for (const section of sections) {
-  const fileUrl = new URL(`/content/portfolio/${section}/projects/${slug}/index.mdx`, window.location.origin);
-  // Try fetch...
-}
-```
-
-### 6. ResizeObserver Error Fix
-Created `/craco.config.js`:
-
-```javascript
-module.exports = {
-  devServer: {
-    client: {
-      overlay: {
-        runtimeErrors: (error) => {
-          if (error.message === 'ResizeObserver loop completed with undelivered notifications.' ||
-              error.message === 'ResizeObserver loop limit exceeded') {
-            return false;
-          }
-          return true;
-        },
-      },
-    },
-  },
-};
-```
-
-And updated `package.json` scripts to use `craco` instead of `react-scripts`.
-
----
-
-## Quick Commands
-
+### Vision API for Image Identification
 ```bash
-# Start dev server
+python3 /tmp/vision_helper.py "/path/to/image.jpg" "What does this show?"
+# Uses OpenRouter API with google/gemini-2.0-flash-lite-001
+# API key in environment, NOT committed to git
+```
+
+### Quick Commands
+```bash
 cd "/Users/administrator/Python/New United States of America"
-npm start
-
-# List all MDX files
-find public/content/portfolio -name "*.mdx"
-
-# Extract Caltech HTML content for portfolio entry XX
-python3 -c "
-import re
-with open('/Users/administrator/Documentations/Caltech HTML/Portfolio XX.html', 'r') as f:
-    content = f.read()
-for t in re.findall(r'<textarea[^>]*>(.*?)</textarea>', content, re.DOTALL):
-    if len(t.strip()) > 20: print(t)
-"
-
-# Copy images to a new project
-mkdir -p public/content/portfolio/SECTION/projects/SLUG/images
-cp "/Users/administrator/Documentations/SOURCE/image.png" public/content/portfolio/SECTION/projects/SLUG/images/
+npm start          # Dev server
+npx craco build    # Production build → /build/
 ```
 
 ---
 
-## Front Page Notes
+## Session History
 
-Updated in `/src/content_option.js`:
-- Removed "CNC machine" from ongoing projects
-- Added note that portfolio is updated through January 2025
-- User mentioned they'll update with hackathons from Jan 2025 - Jan 2026 soon
-
----
-
-## Session History Summary
-
-1. Started with populating engineering projects from Caltech HTML
-2. Added PDF embed, Google Slides embed, DocumentLink components
-3. Fixed ResizeObserver error with CRACO config
-4. Enabled Computer Science section (GPT-Valkyrie, Edutech, Game Engine)
-5. Enabled Electronic Art section (6 Blender car projects, separated individually)
-6. Removed TinkerCAD from engineering (no evidence)
-7. Fixed ProjectDetail.jsx to search multiple sections
-8. **Current issue:** MDX files not loading properly (getting HTML instead)
-
----
-
-## Contact/Notes
-
-- Images may be mislinked (user will fix manually)
-- User mentioned they re-added Mystical Cube content - needs to be added as a project
-- User wants individual pages for each Blender project (done), ordered: Speedtail > G Class > Ferrari > P1 > Challenger > Donut > Cube
+1. **Session 1 (Jan 2026):** Populated engineering projects from Caltech HTML, added PDF/Slides/DocumentLink components, fixed ResizeObserver, enabled CS and Electronic Art sections
+2. **Session 2 (Jan 2026):** Continued populating projects, fixed ProjectDetail multi-section search, hit MDX loading bug
+3. **Session 3 (Mar 7, 2026):** Fixed MDX bug, added Resume tab, Tractable redirect, filled About/Academic/Contact with real data from resume, vision-scanned all images, swapped game engine video to YouTube, set up for adding new projects from resume

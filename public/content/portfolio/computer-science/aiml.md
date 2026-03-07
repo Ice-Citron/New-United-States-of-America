@@ -25,6 +25,20 @@ projects:
     slug: "edutech"
     featured: true
 
+  - title: "RLAIF Legal LLM (IBM Datathon Z)"
+    description: "Agentic RLAIF pipeline — fine-tuned Qwen3-14B via GRPO on H100, RAG for legal assistance"
+    technologies: ["PyTorch", "GRPO", "LoRA", "RAG"]
+    image: "/assets/projects/ibm-datathon/hero.jpg"
+    slug: "ibm-datathon"
+    featured: true
+
+  - title: "New Dejima — Autonomous AI Agent Revenue System"
+    description: "No-human-in-the-loop pipeline: AI generates Android apps, compiles, deploys, QAs, and self-debugs"
+    technologies: ["OpenClaw", "ElevenLabs", "Veo 3.1"]
+    image: "/assets/projects/new-dejima/hero.jpg"
+    slug: "new-dejima"
+    featured: true
+
 certifications:
   - title: "NVIDIA Deep Neural Networks"
     org: "NVIDIA"

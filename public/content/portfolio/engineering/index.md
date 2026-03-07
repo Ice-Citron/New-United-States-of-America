@@ -1,11 +1,11 @@
 ---
-# This file is the main "landing" or "index" for Engineering.
-# It references the 4 year-based .md files plus a skills.md.
-
 sections:
   - id: "ongoing"
     title: "Current & Ongoing Projects"
     path: "/content/portfolio/engineering/ongoing.md"
+  - id: "2025"
+    title: "Year 2025"
+    path: "/content/portfolio/engineering/year-2025.md"
   - id: "2024"
     title: "Year 2024"
     path: "/content/portfolio/engineering/year-2024.md"

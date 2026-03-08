@@ -77,18 +77,6 @@ I sourced servo motors and electronics from Shenzhen, purchased a Bambu Lab A1 3
       caption: "Close-up of the assembled SO-101 arm with servo wiring and joint connections"
     },
     {
-      type: "video",
-      src: "/content/portfolio/engineering/projects/isaac-sim/images/so101-arm-movement-1.mov",
-      videoType: "video/mp4",
-      caption: "SO-101 arm movement test -- joint articulation demo"
-    },
-    {
-      type: "video",
-      src: "/content/portfolio/engineering/projects/isaac-sim/images/so101-arm-movement-2.mov",
-      videoType: "video/mp4",
-      caption: "SO-101 arm movement test -- range of motion check"
-    },
-    {
       src: "/content/portfolio/engineering/projects/isaac-sim/images/so101-parts-packed-suitcase.jpg",
       caption: "SO-101 arm and FPV drone packed in a suitcase for transport to London"
     },
@@ -100,6 +88,26 @@ I sourced servo motors and electronics from Shenzhen, purchased a Bambu Lab A1 3
   width={900}
   height={600}
 />
+
+## SO-101 Arm Movement Tests
+
+<div style={{position: "relative", width: "100%", paddingBottom: "56.25%", marginBottom: "1rem"}}>
+  <iframe
+    src="https://www.youtube.com/embed/I6fmQ-RUpyw"
+    style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", borderRadius: "8px"}}
+    allowFullScreen
+    title="SO-101 Arm Movement Test 1"
+  />
+</div>
+
+<div style={{position: "relative", width: "100%", paddingBottom: "56.25%", marginBottom: "1rem"}}>
+  <iframe
+    src="https://www.youtube.com/embed/2WafN8yf-kY"
+    style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", borderRadius: "8px"}}
+    allowFullScreen
+    title="SO-101 Arm Movement Test 2"
+  />
+</div>
 
 <br></br>
 <br></br>
@@ -168,6 +176,94 @@ The project follows three progressive phases, moving from foundational infrastru
 - **Domain randomisation** across multiple simulators (Isaac Sim, MuJoCo, Gazebo) for robust sim-to-real transfer
 
 The **lerobot** framework (from Hugging Face) is integrated for imitation learning and policy deployment. The ACT (Action Chunking with Transformers) policy architecture enables learning from small demonstration datasets, which is particularly valuable for fine manipulation tasks where reward engineering is difficult.
+
+<br></br>
+<br></br>
+
+---
+
+# RTX 5090 Workstation Build
+
+I built a custom workstation around an **NVIDIA RTX 5090** (Gainward Phantom, 32GB VRAM) specifically for running Isaac Sim locally and training RL policies. The build includes a white Antec case with AIO liquid cooling, Samsung 990 Pro NVMe, and Kingston Fury RAM.
+
+<MyCarousel
+  slides={[
+    {
+      src: "/content/portfolio/engineering/projects/isaac-sim/images/5090-new-pc.jpg",
+      caption: "Custom RTX 5090 workstation — Gainward Phantom 32GB with white Antec case and RGB fans"
+    },
+    {
+      src: "/content/portfolio/engineering/projects/isaac-sim/images/5090-pc-interior.jpg",
+      caption: "Interior view — AIO liquid cooler, RTX 5090 GPU, and RGB-lit fans through the glass panel"
+    },
+    {
+      src: "/content/portfolio/engineering/projects/isaac-sim/images/pc-repairs-gpu-closeup.jpg",
+      caption: "Close-up of RTX 5090 installed with Samsung 990 Pro NVMe and Kingston Fury RAM"
+    },
+    {
+      src: "/content/portfolio/engineering/projects/isaac-sim/images/pc-repairs-interior.jpg",
+      caption: "Full interior build during assembly — GPU, AIO cooler, and cabling"
+    },
+    {
+      src: "/content/portfolio/engineering/projects/isaac-sim/images/5090-nvidia-smi.jpg",
+      caption: "nvidia-smi confirming RTX 5090 operational with CUDA 13.0"
+    },
+    {
+      src: "/content/portfolio/engineering/projects/isaac-sim/images/isaac-sim-local-5090.jpg",
+      caption: "NVIDIA Isaac Sim running locally on the RTX 5090 — warehouse simulation environment"
+    },
+  ]}
+  width={900}
+  height={600}
+/>
+
+<br></br>
+<br></br>
+
+---
+
+# VR Teleoperation with Meta Quest 3
+
+Using a **Meta Quest 3** headset for VR teleoperation of the SO-101 arm — recording demonstrations for imitation learning via the LeRobot framework.
+
+<MyCarousel
+  slides={[
+    {
+      src: "/content/portfolio/engineering/projects/isaac-sim/images/quest3-and-pc.jpg",
+      caption: "Meta Quest 3 alongside the RTX 5090 workstation"
+    },
+    {
+      src: "/content/portfolio/engineering/projects/isaac-sim/images/quest3-selfie.jpg",
+      caption: "Testing the Quest 3 with Link cable at Imperial College"
+    },
+    {
+      src: "/content/portfolio/engineering/projects/isaac-sim/images/intrinsic-ai-repo.jpg",
+      caption: "Intrinsic AI for Industry Challenge — URDF task board documentation and policy code"
+    }
+  ]}
+  width={900}
+  height={600}
+/>
+
+## Project Automaton Videos
+
+<div style={{position: "relative", width: "100%", paddingBottom: "56.25%", marginBottom: "1rem"}}>
+  <iframe
+    src="https://www.youtube.com/embed/ZnokOyQuvvo"
+    style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", borderRadius: "8px"}}
+    allowFullScreen
+    title="Quest 3 VR Isaac Sim Demo"
+  />
+</div>
+
+<div style={{position: "relative", width: "100%", paddingBottom: "56.25%", marginBottom: "1rem"}}>
+  <iframe
+    src="https://www.youtube.com/embed/IUY39CWeqOQ"
+    style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", borderRadius: "8px"}}
+    allowFullScreen
+    title="SO-101 Imitation Learning"
+  />
+</div>
 
 <br></br>
 <br></br>

@@ -4,6 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#ffffff" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <meta name="author" content="Shi Hao Ng">
     <base href="/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -16,5 +19,13 @@
   <body>
     <noscript>Jaemus AJXW.</noscript>
     <div id="root"></div>
+    <script>
+      // Unregister any stale service workers from previous deploys
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          registrations.forEach(function(registration) { registration.unregister(); });
+        });
+      }
+    </script>
   </body>
 </html>

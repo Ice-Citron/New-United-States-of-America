@@ -4,14 +4,33 @@ RewriteBase /
 # External redirects (tracked by Hostinger analytics)
 Redirect 302 /tractable/se3-labs https://jobs.ashbyhq.com/se3/9e554e3e-94fe-4e0d-8aa4-7928849a04e7/application
 
-# If the requested file or directory doesn't exist
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+# Never cache index.html — forces browser to always fetch latest version
+<IfModule mod_headers.c>
+    <FilesMatch "^index\.html$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
+    </FilesMatch>
+</IfModule>
+
+# Long-term cache for hashed static assets (JS, CSS, media)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
 
 # Optional: Set Permissions-Policy header to suppress console warnings
 <IfModule mod_headers.c>
     Header set Permissions-Policy "attribution-reporting=(),run-ad-auction=(),private-state-token-redemption=(),private-state-token-issuance=(),join-ad-interest-group=(),browsing-topics=()"
 </IfModule>
 
-# Rewrite everything else to index.html (React entry point)
+# If the requested file or directory doesn't exist, rewrite to index.html (React SPA routing)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.html [L]

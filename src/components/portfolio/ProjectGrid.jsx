@@ -95,6 +95,13 @@ const ProjectGrid = ({ category }) => {
 
   // 2) If "resume", show embedded PDF
   if (category === "resume") {
+    const pdfPath = "/assets/Shi-Hao-Ng__Resume.pdf";
+    const isMobile = typeof window !== "undefined" &&
+      (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768);
+    const pdfSrc = isMobile
+      ? `https://docs.google.com/gview?url=${encodeURIComponent(window.location.origin + pdfPath)}&embedded=true`
+      : pdfPath;
+
     return (
       <div style={{ marginTop: "2rem" }}>
         <h2 className="text-2xl font-bold mb-3">Resume</h2>
@@ -106,14 +113,14 @@ const ProjectGrid = ({ category }) => {
           overflow: "hidden",
         }}>
           <iframe
-            src="/assets/Shi-Hao-Ng__Resume.pdf"
+            src={pdfSrc}
             style={{ width: "100%", height: "100%", border: "none" }}
             title="Resume - Shi Hao Ng"
           />
         </div>
         <div style={{ marginTop: "1rem" }}>
           <a
-            href="/assets/Shi-Hao-Ng__Resume.pdf"
+            href={pdfPath}
             download
             style={{
               display: "inline-block",
@@ -159,6 +166,7 @@ const ProjectGrid = ({ category }) => {
                   <div key={pIdx} className="po_item">
                     <img src={proj.image} alt={proj.title} />
                     <div className="content">
+                      <h4 className="project-title">{proj.title}</h4>
                       <p>{proj.description}</p>
 
                       {/* 1) If you have a 'slug', link to /project/slug */}

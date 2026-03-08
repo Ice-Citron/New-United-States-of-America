@@ -57,7 +57,7 @@ projects:
     slug: "blender-donut"
     featured: false
 
-  - title: "Voodoo Block"
+  - title: "Voodoo Cube"
     description: "Blender sculpting exercise"
     technologies: ["Blender", "Cycles"]
     image: "/assets/images/thumbnails/Electronic Arts/Voodoo Block/voodoo_block.webp"

@@ -9,8 +9,8 @@ show_courses: true
 show_books: true
 
 projects:
-  - title: "GPT-Valkyrie"
-    description: "Independent AI research reproducing GPT-2 with ablation studies on normalization techniques"
+  - title: "IB Extended Essay — Transformer Architecture Research"
+    description: "Pre-trained GPT-2 from scratch using PyTorch on H100, LayerNorm ablation studies (Grade A)"
     technologies: ["PyTorch", "Nvidia H100", "Weights & Biases"]
     image: "/assets/images/thumbnails/Computing/GPT-Valkyrie/thumbnail.png"
     link: "/computer-science/projects/gpt-valkyrie"
@@ -18,26 +18,33 @@ projects:
     featured: true
 
   - title: "Recon Drone (Edutech Asia)"
-    description: "AI-powered drone detection system - Google Edutech Asia Champions"
+    description: "Champion of Asia — ML Engineer, drone-based waste detection, YOLO-v11 fine-tuning, geospatial heatmap analytics"
     technologies: ["YOLOv8", "PyTorch", "ReactJS"]
     image: "/assets/images/thumbnails/Computing/Edutech/20241107_163531.JPEG"
     link: "/computer-science/projects/edutech"
     slug: "edutech"
     featured: true
 
-  - title: "RLAIF Legal LLM (IBM Datathon Z)"
-    description: "Agentic RLAIF pipeline — fine-tuned Qwen3-14B via GRPO on H100, RAG for legal assistance"
+  - title: "RLAIF Agentic Legal LLM — IBM Datathon Z"
+    description: "Team Leader — RLAIF pipeline fine-tuning Qwen3-14B via GRPO on H100, RAG for legal assistance"
     technologies: ["PyTorch", "GRPO", "LoRA", "RAG"]
     image: "/assets/images/thumbnails/Computing/IBM Datathon/venue-google-developer-space.jpg"
     slug: "ibm-datathon"
     featured: true
 
-  - title: "New Dejima — Autonomous AI Agent Revenue System"
-    description: "No-human-in-the-loop pipeline: AI generates Android apps, compiles, deploys, QAs, and self-debugs"
+  - title: "New Dejima — Modified OpenClaw"
+    description: "Autonomous AI agent revenue system — no-human-in-the-loop pipeline for Android app generation, deployment, and self-debugging"
     technologies: ["OpenClaw", "ElevenLabs", "Veo 3.1"]
     image: "/assets/images/thumbnails/Computing/New Dejima/New Dejima - Eiffel 1.JPG"
     slug: "new-dejima"
     featured: true
+
+  - title: "IB AAHL IA — Optimisers Exploration"
+    description: "Comparative study of Gradient Descent vs Newton-Raphson across benchmark functions and neural network training"
+    technologies: ["Python", "NumPy", "Matplotlib", "SciPy"]
+    image: "/assets/images/thumbnails/Computing/Optimisers/thumbnail.png"
+    slug: "aah-ia-optimiser"
+    featured: false
 
 certifications:
   - title: "Getting Started with Accelerated Computing in CUDA C/C++"

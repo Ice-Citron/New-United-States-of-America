@@ -9,8 +9,8 @@ show_courses: false
 show_books: false
 
 projects:
-  - title: "Nosco WorkHours App"
-    description: "Enterprise workforce management app — ReactJS, Firebase, GCP (client work)"
+  - title: "Nosco Workhours App"
+    description: "Full-stack workforce management app — ReactJS, Firebase, GCP (client work)"
     technologies: ["ReactJS", "Firebase", "GCP", "Tailwind CSS"]
     image: "/assets/images/thumbnails/Computing/Nosco App/thumbnail.png"
     slug: "nosco-workhours"

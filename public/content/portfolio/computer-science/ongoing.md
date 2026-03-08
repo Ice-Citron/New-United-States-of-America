@@ -9,8 +9,8 @@ show_courses: false
 show_books: false
 
 projects:
-  - title: "New Dejima — Autonomous AI Agent Revenue System"
-    description: "No-human-in-the-loop pipeline: AI generates Android apps, compiles, deploys, QAs, and self-debugs"
+  - title: "New Dejima — Modified OpenClaw"
+    description: "Autonomous AI agent revenue system — no-human-in-the-loop pipeline for Android app generation, deployment, and self-debugging"
     technologies: ["OpenClaw", "ElevenLabs", "Veo 3.1"]
     image: "/assets/images/thumbnails/Computing/New Dejima/New Dejima - Eiffel 1.JPG"
     slug: "new-dejima"

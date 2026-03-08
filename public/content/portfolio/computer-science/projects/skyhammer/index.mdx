@@ -44,6 +44,23 @@ The core of the project is an **interactive CLI** with an Evangelion/Cyberpunk a
 
 **Vulnerability types covered:** SQL Injection, XSS, Command Injection, Path Traversal, Hardcoded Secrets.
 
+<MyCarousel
+  slides={[
+    {
+      src: "/content/portfolio/computer-science/projects/skyhammer/images/cli-offensive-mode.jpg",
+      caption: "SkyHammer ATTACK mode — scanning target with exploit engine online, intervention prompt for authorization"
+    },
+    {
+      src: "/content/portfolio/computer-science/projects/skyhammer/images/cli-workstation.jpg",
+      caption: "Full workstation view — SkyHammer CLI with offensive security interface, nvidia-smi showing L40S GPUs"
+    }
+  ]}
+  width={900}
+  height={600}
+/>
+
+<br></br>
+
 ---
 
 # Grokathon Version (Grok / xAI)
@@ -76,6 +93,21 @@ The Gemini Hackathon build extended the system with larger models and distribute
 - Solved FP8 model loading issues (A100 cannot natively handle FP8 — requires H100/H200 Hopper architecture)
 - Fixed FSDP weight synchronization issues with large model sharding
 - Resolved TRL API breaking changes (v0.13+)
+
+<MyCarousel
+  slides={[
+    {
+      src: "/content/portfolio/computer-science/projects/skyhammer/images/sft-training-logs.jpg",
+      caption: "SFT training in progress — loss, entropy, and learning rate metrics across training steps on H200 GPUs"
+    },
+    {
+      src: "/content/portfolio/computer-science/projects/skyhammer/images/sft-model-loading.jpg",
+      caption: "Loading Mistral CausalLM checkpoint weights for supervised fine-tuning"
+    }
+  ]}
+  width={900}
+  height={600}
+/>
 
 <br></br>
 <br></br>

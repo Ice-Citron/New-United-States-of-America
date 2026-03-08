@@ -2,12 +2,13 @@ import React from 'react';
 
 const PortfolioNav = ({ activeCategory, onCategoryChange }) => {
     const categories = [
-        { id: "video-summary", label: "Video Summary" },
         { id: "resume", label: "Resume" },
+        { id: "computing", label: "Computing" },
         { id: "engineering", label: "Engineering" },
-        { id: "computer-science", label: "Computer Science" },
+        { id: "mit-portfolio", label: "MIT Portfolio" },
+        { id: "academic", label: "Academic" },
         { id: "electronic-art", label: "Electronic Art" },
-        { id: "academic", label: "Academic & Miscellaneous" },
+        { id: "miscellaneous", label: "Miscellaneous" },
     ];      
 
   return (

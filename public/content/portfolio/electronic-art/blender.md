@@ -12,7 +12,7 @@ projects:
   - title: "McLaren Speedtail"
     description: "Photorealistic render of McLaren's ultimate grand tourer"
     technologies: ["Blender", "Cycles", "HDRI"]
-    image: "/assets/projects/mclaren-speedtail/speedtail-hero.png"
+    image: "/content/portfolio/electronic-art/projects/mclaren-speedtail/images/speedtail-photorealistic.png"
     link: "/electronic-art/projects/mclaren-speedtail"
     slug: "mclaren-speedtail"
     featured: true
@@ -20,7 +20,7 @@ projects:
   - title: "Mercedes-Benz G Class"
     description: "Iconic SUV with boxy, angular design"
     technologies: ["Blender", "Cycles"]
-    image: "/assets/projects/mercedes-g-class/g-class-hero.png"
+    image: "/content/portfolio/electronic-art/projects/mercedes-g-class/images/g-class-front.png"
     link: "/electronic-art/projects/mercedes-g-class"
     slug: "mercedes-g-class"
     featured: true
@@ -28,7 +28,7 @@ projects:
   - title: "Ferrari LaFerrari"
     description: "Italian hypercar with aggressive aerodynamics"
     technologies: ["Blender", "Cycles"]
-    image: "/assets/projects/ferrari-laferrari/laferrari-hero.png"
+    image: "/content/portfolio/electronic-art/projects/ferrari-laferrari/images/laferrari-front.png"
     link: "/electronic-art/projects/ferrari-laferrari"
     slug: "ferrari-laferrari"
     featured: true
@@ -36,7 +36,7 @@ projects:
   - title: "McLaren P1"
     description: "British hypercar with active aerodynamic elements"
     technologies: ["Blender", "Cycles"]
-    image: "/assets/projects/mclaren-p1/p1-hero.png"
+    image: "/content/portfolio/electronic-art/projects/mclaren-p1/images/p1-front-green.png"
     link: "/electronic-art/projects/mclaren-p1"
     slug: "mclaren-p1"
     featured: true
@@ -44,7 +44,7 @@ projects:
   - title: "Dodge Challenger"
     description: "Classic American muscle car - my first Blender project"
     technologies: ["Blender", "Cycles"]
-    image: "/assets/projects/dodge-challenger/challenger-hero.png"
+    image: "/content/portfolio/electronic-art/projects/dodge-challenger/images/challenger-red.png"
     link: "/electronic-art/projects/dodge-challenger"
     slug: "dodge-challenger"
     featured: false
@@ -52,7 +52,7 @@ projects:
   - title: "Blender Donut Tutorial"
     description: "Where it all began - BlenderGuru's famous introduction"
     technologies: ["Blender", "Cycles"]
-    image: "/assets/projects/blender-donut/donut-hero.png"
+    image: "/content/portfolio/electronic-art/projects/blender-donut/images/coffee-cup.png"
     link: "/electronic-art/projects/blender-donut"
     slug: "blender-donut"
     featured: false

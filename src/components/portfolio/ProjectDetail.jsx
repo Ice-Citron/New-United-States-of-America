@@ -142,7 +142,7 @@ export default function ProjectDetail() {  // Changed name to match your file
         console.log("Using slug:", currentSlug);
 
         // Try multiple sections to find the project
-        const sections = ['engineering', 'computer-science', 'electronic-art', 'academic'];
+        const sections = ['engineering', 'computer-science', 'electronic-art', 'academic', 'miscellaneous'];
         let rawText = null;
         let foundSection = null;
 

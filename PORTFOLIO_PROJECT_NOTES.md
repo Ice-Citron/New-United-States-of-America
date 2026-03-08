@@ -302,18 +302,22 @@ These images appear to be in wrong locations or don't match their context:
 ### Subsection Structure
 | Section | Subsections |
 |---------|-------------|
-| Computer Science | AI/ML (`aiml.md`), Robotics & Simulation (`robotics.md`), Full-Stack & Apps (`fullstack.md`), Hackathons & Competitions (`hackathons.md`), C/C++ (`cpp.md`) |
-| Engineering | Current/Ongoing (`ongoing.md`), 2025 (`year-2025.md`), 2024 (`year-2024.md`), 2023 (`year-2023.md`), 2022 (`year-2022.md`) |
-| Electronic Art | Blender (`blender.md`) |
-| Academic | IB (`ib.md`), Self-Study (`self-study.md`) |
+| Computing (`computer-science/`) | AI/ML (`aiml.md`), Robotics & Simulation (`robotics.md`), Full-Stack & Apps (`fullstack.md`), C/C++ (`cpp.md`) |
+| Engineering (`engineering/`) | Current/Ongoing (`ongoing.md`), 2025 (`year-2025.md`), 2024 (`year-2024.md`), 2023 (`year-2023.md`), 2022 (`year-2022.md`) |
+| Electronic Art (`electronic-art/`) | Blender (`blender.md`) |
+| Academic (`academic/`) | IB (`ib.md`), Self-Study (`self-study.md`) |
+| Miscellaneous (`miscellaneous/`) | Hackathons & Competitions (`hackathons.md`) |
 
-### Portfolio Nav Tabs
-1. Video Summary (YouTube embed of maker portfolio)
-2. Resume (PDF embed + download)
+### Portfolio Nav Tabs (RESTRUCTURED Session 4)
+1. Resume (PDF embed + download)
+2. Computing (was "Computer Science" — content folder still `computer-science/`)
 3. Engineering
-4. Computer Science
-5. Electronic Art
-6. Academic & Miscellaneous
+4. MIT Portfolio (was "Video Summary" — YouTube embed, notes "projects till December 2024")
+5. Academic (was "Academic & Miscellaneous")
+6. Electronic Art
+7. Miscellaneous (NEW — hackathons and smaller/unfinished projects)
+
+**Key mapping:** Tab id `computing` → content folder `computer-science/`. Tab id `mit-portfolio` → special component `VideoSummary` (fetches from `video-summary/index.md`).
 
 ---
 
@@ -343,19 +347,22 @@ These images appear to be in wrong locations or don't match their context:
 ### Content Structure
 ```
 /public/content/portfolio/
-├── video-summary/index.md
+├── video-summary/index.md              ← MIT Portfolio content (heading, video URL)
 ├── engineering/
 │   ├── index.md, year-2025.md, year-2024.md, year-2023.md, year-2022.md, ongoing.md, skills.md
 │   └── projects/{railgun,f1-in-schools,display-spinner,solar-heater,maze,pinhole-camera,fpv-drone,interceptor-drone,tissue-culture}/
-├── computer-science/
-│   ├── index.md, aiml.md, robotics.md, fullstack.md, cpp.md, skills.md
-│   └── projects/{gpt-valkyrie,edutech,game-engine,ibm-datathon,new-dejima,robocup,isaac-sim,nosco-workhours}/
+├── computer-science/                    ← "Computing" tab maps here
+│   ├── index.md, aiml.md, robotics.md, fullstack.md, cpp.md, hackathons.md (legacy), skills.md
+│   └── projects/{gpt-valkyrie,edutech,game-engine,ibm-datathon,new-dejima,robocup,isaac-sim,nosco-workhours,xai-grokathon,skyhammer,edth-warsaw,perplexity-hack,rockstar-datathon,reply-aim,rl-iterate,drone-go-brrrrr,project-liberty}/
 ├── electronic-art/
 │   ├── index.md, blender.md, skills.md
 │   └── projects/{mclaren-speedtail,mercedes-g-class,ferrari-laferrari,mclaren-p1,dodge-challenger,blender-donut}/
-└── academic/
-    ├── index.md, ib.md, self-study.md, skills.md
-    └── projects/ (empty)
+├── academic/
+│   ├── index.md, ib.md, self-study.md, skills.md
+│   └── projects/{igcse-awards}/
+└── miscellaneous/                       ← NEW — hackathons moved here
+    ├── index.md, hackathons.md
+    └── projects/                        ← MDX files still in computer-science/projects/ (slug lookup searches all sections)
 ```
 
 ### Source Directories on Computer
@@ -466,6 +473,16 @@ npx craco build    # Production build → /build/
 2. **Session 2 (Jan 2026):** Continued populating projects, fixed ProjectDetail multi-section search, hit MDX loading bug
 3. **Session 3 (Mar 7, 2026):** Fixed MDX bug, added Resume tab, Tractable redirect, filled About/Academic/Contact with real data from resume, vision-scanned all images (found mismatches), swapped game engine video to YouTube, set up for adding new projects, created new project pages (ibm-datathon, new-dejima, robocup, isaac-sim, nosco-workhours, fpv-drone, interceptor-drone, tissue-culture), added subsections (robotics.md, fullstack.md), created RESOURCES-NEEDED.md. **Crashed at end due to corrupted edutech images.**
 4. **Session 4 (Mar 7-8, 2026):** Fresh start after crash. Scanned entire computer for repos and images. Found: xAI Grokathon, SkyHammer-Gemini-Hack, Project-Liberty as new repos not on CV. Found photos for IBM Datathon (7), FPV Drone (17), RoboCup (12), Isaac Sim/SO-101 (27), Perplexity Hackathon (4), IGCSE awards (7). Created image validation script. Identified 5 corrupted edutech JPEGs as crash root cause. Queried GitHub (`gh repo list Ice-Citron`) — found 50 repos total. Launched 6 parallel agents to: copy images for IBM/FPV/RoboCup/Isaac Sim, create new hackathon pages (xAI Grokathon, SkyHammer, EDTH-Warsaw, Perplexity, Rockstar, Reply-AIM), read Black Projects repos deeply, create Hackathons subsection.
+   - **Context crash & resume (Session 4b):** Fixed electronic art hero image paths in `blender.md`. Then RESTRUCTURED LAYOUT per user request:
+     - Nav: [Resume] [Computing] [Engineering] [MIT Portfolio] [Academic] [Electronic Art] [Miscellaneous]
+     - `video-summary` → `mit-portfolio` (note: "projects till December 2024")
+     - `computer-science` label → `Computing` (content folder unchanged)
+     - `academic` label dropped "& Miscellaneous"
+     - NEW `miscellaneous` section — moved hackathons from computer-science to here
+     - Default tab changed from `video-summary` to `resume`
+     - `ProjectDetail.jsx` sections array updated to include `miscellaneous`
+     - Files modified: `PortfolioNav.jsx`, `ProjectGrid.jsx`, `ProjectDetail.jsx`, `portfolio/index.js`, `video-summary/index.md`, `computer-science/index.md`
+     - Files created: `miscellaneous/index.md`, `miscellaneous/hackathons.md`
 
 ---
 

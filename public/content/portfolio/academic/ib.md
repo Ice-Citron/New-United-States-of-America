@@ -12,7 +12,7 @@ projects:
   - title: "IB Extended Essay — Pre-training GPT-2 (Grade A)"
     description: "Reproduced GPT-2 from scratch with modified LayerNorm ablation studies, trained on H100 GPUs"
     technologies: ["PyTorch", "Nvidia H100", "Weights & Biases"]
-    image: "/assets/projects/gpt-valkyrie/gpt-hero.png"
+    image: "/content/portfolio/computer-science/projects/gpt-valkyrie/images/training-setup.jpg"
     slug: "gpt-valkyrie"
     featured: true
 
@@ -26,7 +26,7 @@ projects:
   - title: "iGCSE Design Technology — POV Display Spinner"
     description: "Persistence of Vision display with Arduino Mega, PIR sensors, and laser-cut acrylic structure"
     technologies: ["Arduino", "C++", "Laser Cutting"]
-    image: "/assets/projects/display-spinner/spinner-hero.png"
+    image: "/assets/projects/display-spinner/spinner-hero.jpg"
     slug: "display-spinner"
     featured: true
 

@@ -7,7 +7,7 @@ import ProjectGrid from "../../components/portfolio/ProjectGrid";
 import PortfolioNav from "../../components/portfolio/PortfolioNav";
 
 export const Portfolio = () => {
-  const [activeCategory, setActiveCategory] = useState("video-summary");
+  const [activeCategory, setActiveCategory] = useState("resume");
 
   return (
     <HelmetProvider>

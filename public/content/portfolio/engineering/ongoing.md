@@ -12,7 +12,7 @@ projects:
   - title: "Interceptor Drone"
     description: "400 km/h interceptor drone with Raspberry Pi computer vision — Imperial College Drone Society"
     technologies: ["FPV", "Raspberry Pi", "YOLO", "Computer Vision"]
-    image: "/assets/projects/interceptor-drone/hero.jpg"
+    image: "/content/portfolio/engineering/projects/fpv-drone/images/drone-assembled-top-view.jpg"
     slug: "interceptor-drone"
     featured: true
 ---

@@ -38,9 +38,12 @@
 
 /* Make images fill the container while maintaining aspect ratio */
 .po_item img {
-    width: 100%;
-    height: 100%;
+    width: calc(100% - 12px);
+    height: calc(100% - 12px);
     object-fit: cover;
+    position: absolute;
+    top: 6px;
+    left: 6px;
 }
 
 .po_item .content {

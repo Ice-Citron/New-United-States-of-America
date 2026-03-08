@@ -1,6 +1,9 @@
 RewriteEngine On
 RewriteBase /
 
+# Serve .md files as plain text (prevents Apache from blocking them)
+AddType text/plain .md .mdx
+
 # External redirects (tracked by Hostinger analytics)
 Redirect 302 /tractable/se3-labs https://jobs.ashbyhq.com/se3/9e554e3e-94fe-4e0d-8aa4-7928849a04e7/application
 

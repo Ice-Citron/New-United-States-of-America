@@ -1,8 +1,9 @@
 # Portfolio Website Project Notes
 
-**Last Updated:** March 8, 2026 (Session 4 — ongoing)
+**Last Updated:** March 8, 2026 (Session 5 — end of session)
 **Project Location:** `/Users/administrator/Python/New United States of America`
 **Live URL:** https://sienarindustries.com
+**Build Size:** ~456MB (down from 1.4GB after Session 5 optimization)
 
 ---
 
@@ -12,8 +13,9 @@ Personal portfolio website for **Shi Hao Ng** — MEng Computing (AI & ML) stude
 
 ### Tech Stack
 - **React** (Create React App with CRACO)
-- **MDX** (@mdx-js/mdx) for rich content pages
+- **MDX** (@mdx-js/mdx v3) for rich content pages
 - **gray-matter** for YAML frontmatter parsing
+- **remark-gfm v4** (upgraded from v3 to fix `this.getData is not a function` error)
 - **react-router-dom** for routing
 - **Hostinger** for hosting (Apache with .htaccess SPA routing)
 
@@ -24,260 +26,216 @@ Personal portfolio website for **Shi Hao Ng** — MEng Computing (AI & ML) stude
 
 ---
 
-## Session 5 Context (March 8, 2026)
+## Current State (End of Session 5)
 
-### What Was Done This Session
-1. **remark-gfm installed** — Added `remark-gfm@3` so MDX tables render properly (New Dejima page had broken tables)
-2. **New Dejima MDX rewritten** — Full rewrite with LinkedIn post content: HackEurope Paris origin story, 7-phase pipeline, 12 apps, marketing engine, crypto wallet, revenue tracking, tech stack, next steps
-3. **NVIDIA certifications fixed** — Corrected to: "Getting Started with Accelerated Computing in CUDA C/C++" and "Building Transformer-Based NLP Applications", added Ansys Innovation Course
-4. **Broken course/certification links removed** — Removed all `detail_page` fields from aiml.md, cpp.md, blender.md (pointed to non-existent routes)
-5. **Game engine entries merged** — "Sparky Game Engine" + "Hazel Engine (WIP)" → single "Sparky & Hazel Game Engines" in cpp.md
-6. **RoboCup thumbnail updated** — User added new screenshot, renamed from unicode filename to `thumbnail.png`
-7. **Electronic Art thumbnails updated** — Blender Donut now uses `Electronic Arts/Donut/Donut Render Final.webp`, added Voodoo Block project entry
-8. **SkyHammer MDX** — Merged xAI Grokathon + Gemini Hackathon into unified "Project SkyHammer" page
-9. **YouTube embeds added** — IBM Datathon (VdRrR-3tqBI), FPV Drone flying (VfRMeVB7RLk) + maiden flight (A3WwhNlCwlY), SkyHammer (u8NdAZnB5io)
-10. **GitHub buttons redesigned** — Sharp corners, monospace, uppercase "SOURCE CODE", color-inversion hover, flat SVG icons
-11. **DocumentLink redesigned** — Sharp corners, 3px left border, flat monochrome SVG icons, getDocIcon() mapper
-12. **EmailJS fixed** — New service (service_bicnrhc) with fresh Gmail connection after old one expired
-13. **Skills tags fixed** — All uniform white bg / black text / black border (were invisible with var(--primary-color))
-14. **About page restructured** — Full LinkedIn profile, contact details, current projects, work timeline, SkillsShowcase
-15. **Robocup + Isaac Sim moved to Engineering** — from computer-science ongoing.md
-16. **drone-go-brrrrr removed** — from misc hackathons (not user's project)
-17. **xAI Grokathon removed** — merged into SkyHammer
+### What Works
+- All portfolio tabs render correctly on localhost
+- Resume tab uses Google Docs viewer on mobile (iOS) for multi-page PDF rendering
+- All project titles renamed to match CV/LinkedIn naming conventions
+- Project hover overlay now shows **title + description** (previously description only)
+- `.htaccess` configured with no-cache headers on `index.html` + long-term cache on hashed assets
+- Cache-busting `?v=Date.now()` query params on all `.md` fetch calls in `ProjectGrid.jsx`
+- `AddType text/plain .md .mdx` in `.htaccess` to ensure Apache serves markdown files
+- Service worker unregistration script in `index.html`
+- Copyright footer: `© 2026 SIENAR INDUSTRIES`
 
-### Still To Do
-- [ ] Copy New Dejima photos from Red Coast Base (14 files: Eiffel Tower, HackEurope venue, team photos) into project images
-- [ ] Copy SkyHammer photos from Red Coast Base (CLI screenshots, SFT training) into project images
-- [ ] Copy Automaton photos from Red Coast Base (5090 PC, Isaac Sim, Quest 3 VR) into project images
-- [ ] Copy Interceptor photos from Red Coast Base (prototype, eCalc, assembled) into project images
-- [ ] SkyHammer thumbnail still needed
-- [ ] Voodoo Block — need project page MDX (currently just thumbnail)
-- [ ] Polish GitHub READMEs with sienarindustries.com backlinks
-- [ ] Fix corrupted edutech JPEGs (5 files missing EOI markers)
-- [ ] Optimize build/ size (~900MB) — compress images, lazy-load
+### Known Issues / Bugs
+1. **Brave browser caching** — Old `index.html` (without no-cache headers) is stuck in some browsers. User needs to hard-clear cache once. New deploys will have proper headers going forward.
+2. **Mobile thumbnails** — Bottom border of project cards may be slightly clipped on some phones. Added `box-sizing: border-box` and mobile overflow fixes but needs visual verification.
+3. **Corrupted edutech images** — 5 JPEGs (6-8MB, missing EOI markers) still broken. Files: `award-ceremony.jpg`, `competition-1.jpg`, `competition-2.jpg`, `pit-display-1.jpg`, `pit-display-2.jpg` in `computer-science/projects/edutech/images/`
+4. **Permissions-Policy console warnings** — Harmless, from Hostinger's headers. Could remove the custom Permissions-Policy header in `.htaccess` to silence them.
 
 ---
 
-## Session 4 Context (March 7, 2026)
+## Session 5 Changes (March 8, 2026)
 
-### Previous Session Bug
-The previous session (end of Session 3) crashed with `API Error: 400 "Could not process image"`. Root cause: **5 corrupted JPEG files** in `computer-science/projects/edutech/images/` — these are 6-8MB files missing JPEG EOI markers:
-- `award-ceremony.jpg` (6.7MB)
-- `competition-1.jpg` (7.6MB)
-- `competition-2.jpg` (7.7MB)
-- `pit-display-1.jpg` (7.8MB)
-- `pit-display-2.jpg` (7.8MB)
+### Build Optimization (1.4GB → 456MB)
+- Replaced local videos with YouTube embeds (saved ~460MB):
+  - Isaac Sim/Automaton: ZnokOyQuvvo, IUY39CWeqOQ, 2WafN8yf-kY, I6fmQ-RUpyw
+  - RL-Iterate: KBBktEzvcEQ, kJSmBLhmAb4
+  - Nosco: w9Vges5LNsE
+  - Previously existing: VfRMeVB7RLk, A3WwhNlCwlY (FPV drone), VdRrR-3tqBI (IBM), u8NdAZnB5io (SkyHammer)
+- Compressed images via `sips --resampleWidth 1920` and `sips -s formatOptions 70` (saved ~500MB)
+- Removed duplicate files: FPV maiden flight video (140MB), IBM datathon video (26MB), railgun PDF duplicate (11MB)
+- ~200MB of video still local (railgun ×4, tissue culture, f1-in-schools ×2, maze, solar heater, new-dejima ×2) — user hit YouTube upload limit
 
-The `team-1.jpg` and `team-2.jpg` (144KB, 188KB) are valid. **Action needed:** Re-export or re-save the 5 corrupted files, or replace them.
+### New Images Added (from `/Users/administrator/imperial-college-london/Projects/2026/Red Coast Base/8 March 2026/`)
+- **New Dejima**: 14 files — Eiffel Tower, HackEurope venue/sponsors/auditorium, Paris scenes (10-slide carousel)
+- **Isaac Sim/Automaton**: 16 files — RTX 5090 workstation build (7-slide carousel), VR teleoperation with Meta Quest 3 (carousel + YouTube embeds)
+- **SkyHammer**: 4 images — CLI offensive mode, workstation, SFT training logs, model loading (2 carousels)
+- **Interceptor Drone**: 6 images — bare prototype parts, assembled, eCalc sims, parts list (6-slide carousel)
+- **Pinhole Camera**: Expanded from 1 to 5 slides — front view, back view, 3D render, Blender screenshots
+- **Maze**: Added maze-photo.jpg (HEIC → JPEG conversion)
 
-### Image Validation Script
-Created `scripts/validate_images.py` — validates JPEG (SOI/EOI markers), PNG (signature + IHDR), video (size check), WebP (RIFF header). Run before any image processing.
-```bash
-python3 scripts/validate_images.py [directory]
+### Thumbnail Updates
+- RoboCup: → `thumbnail.png` (new screenshot, had unicode filename issue U+202F)
+- SkyHammer: → `SkyHammer - CLI Offensive engaged.JPG`
+- Rockstar Datathon: → `IMG_8311.JPG`
+- Solar Heater: → `thumbnail.jpg` (HEIC → JPEG)
+- Pinhole Camera: → `thumbnail.jpg` (HEIC → JPEG)
+- Blender Donut: → `Electronic Arts/Donut/Donut Render Final.webp`
+- Voodoo Block: New entry → `Electronic Arts/Voodoo Block/voodoo_block.webp`
+
+### Game Engine Merge
+- "Sparky Game Engine" + "Hazel Engine (WIP)" → single "C++ Game Engine" in both `cpp.md` and `year-2023.md`
+
+### remark-gfm Fix
+- Upgraded `remark-gfm` from v3.0.1 to v4.0.1 to fix `this.getData is not a function` error with @mdx-js/mdx v3
+
+### AAH IA Optimiser Project Added
+- Created `computer-science/projects/aah-ia-optimiser/index.mdx`
+- Copied 9.8MB PDF (IB Math AA HL IA — "A Comparative Study of First-order and Second-order Optimizers for Training Large-Scale AI Models")
+- Scored 18/20 internally, 13/20 after external moderation
+- GitHub: https://github.com/Ice-Citron/AAH-IA
+- Thumbnail: Three-Hump Camel 3D surface + contour plot at `Computing/Optimisers/thumbnail.png`
+- Added to `aiml.md` and `year-2025.md`
+
+### Project Title Renames (ALL projects renamed to match CV/LinkedIn)
+
+| Old Title | New Title |
+|---|---|
+| Interceptor Drone — 400km/h... | **Project Interceptor** |
+| NVIDIA Isaac Sim — Robotic Manipulation | **Project Automaton** |
+| First Order Robotics (RoboCup) — AI Engineer | **First-Order Robotics** |
+| Custom FPV Racing Drone — 240km/h... | **Custom 5" FPV Drone** |
+| 450V Augmented Railgun | **Project Railgun** |
+| Anduril F1 — F1 in Schools Competition | **Anduril F1** |
+| IGCSE DT Coursework — POV Display Spinner | **iGCSE DT Coursework — Display Spinner** |
+| GPT-2 Pre-training Research — IB Extended Essay | **IB Extended Essay — Transformer Architecture Research** |
+| Google Edutech Asia Challenge — Champion of Asia | **Recon Drone (Edutech Asia)** |
+| New Dejima — Autonomous AI Agent Revenue System | **New Dejima — Modified OpenClaw** |
+| Nosco WorkHours — Full-Stack Developer | **Nosco Workhours App** |
+| AAH IA Optimiser — First vs Second-Order... | **IB AAHL IA — Optimisers Exploration** |
+| Custom C++ Game Engine — Low-Level Graphics | **C++ Game Engine** |
+| IB Physics IA — Electromagnetic Railgun | **Physics IA — Built Railgun** |
+| IGCSE Awards — Best in Asia & Malaysia | **Award Ceremony** |
+| Voodoo Block | **Voodoo Cube** |
+
+### Hackathon Renames & Reorder
+Order: SkyHammer → EDTH Warsaw → RL Iterate → Reply AIM → Rockstar → Perplexity
+
+| Old Title | New Title |
+|---|---|
+| xAI Grokathon (merged into SkyHammer) | **Project SkyHammer** |
+| SkyHammer — Gemini Hackathon | **Project SkyHammer** |
+| EDTH Warsaw — Defense Drones | **EDTH Warsaw** (Anti-Shahed system) |
+| RL-Iterate London Hackathon | **RL Iterate Hackathon** |
+| Reply AIM Hackathon — CareCompass | **Reply AIM Hackathon** |
+| Rockstar GTA V Datathon | **Rockstar Datathon** |
+| Perplexity Hackathon — Ground News Clone | **Perplexity Hackathon** |
+
+### Interceptor Drone — Removed IC Drone Soc Affiliation
+- The interceptor is a PERSONAL project, NOT affiliated with Imperial College Drone Society
+- Removed all IC Drone Soc references from `interceptor-drone/index.mdx` and `ongoing.md`
+
+### New Dejima Page Header
+- Changed from `# Introduction` → `# New Dejima` (project title/callsign first)
+
+### Hover Overlay Fix
+- Added `<h4 className="project-title">{proj.title}</h4>` to project cards in `ProjectGrid.jsx`
+- CSS: `.po_item .content .project-title` — 1.1rem, bold, centered
+- CSS: `.po_item .content p` — 0.85rem, centered, with padding
+
+### Mobile Resume PDF Fix
+- iOS Safari only renders page 1 of PDF in iframe
+- On mobile: swaps to Google Docs viewer (`https://docs.google.com/gview?url=...&embedded=true`)
+- On desktop: keeps direct PDF iframe
+
+### Cache-Control / .htaccess Overhaul
+- `index.html`: `Cache-Control: no-cache, no-store, must-revalidate`
+- Static assets (JS/CSS/images/fonts): `Expires: access plus 1 year`
+- `AddType text/plain .md .mdx` — ensures Apache serves markdown files
+- HTML meta tags: `<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />`
+- Service worker unregistration script in `<body>` of `index.html`
+- Cache-busting `?v=${Date.now()}` on all `.md` fetch calls in `ProjectGrid.jsx`
+- **CRITICAL**: `RewriteCond` must be IMMEDIATELY before `RewriteRule` — separating them crashes the site (all requests rewrite to index.html including JS/CSS/images)
+
+### Copyright Footer
+- Changed from `copyright __ SIENAR INDUSTRIES` to `© 2026 SIENAR INDUSTRIES`
+
+### Mobile Thumbnail Fix
+- Added `box-sizing: border-box` to `.po_item`
+- Mobile: added `overflow: hidden` and padding to `.po_items_ho`
+- Image positioning: `position: absolute; top: 6px; left: 6px; width: calc(100% - 12px); height: calc(100% - 12px)` to prevent bottom border clipping
+
+---
+
+## Files Modified in Session 5
+
+### Content Files (titles, descriptions, thumbnails)
+```
+public/content/portfolio/engineering/ongoing.md          — Project Interceptor, Project Automaton, First-Order Robotics
+public/content/portfolio/engineering/year-2025.md        — Custom 5" FPV Drone
+public/content/portfolio/engineering/year-2024.md        — Project Railgun, Anduril F1
+public/content/portfolio/engineering/year-2023.md        — iGCSE DT Coursework — Display Spinner
+public/content/portfolio/engineering/year-2022.md        — (pinhole camera thumbnail updated)
+public/content/portfolio/computer-science/aiml.md        — IB Extended Essay, Recon Drone, New Dejima, IB AAHL IA
+public/content/portfolio/computer-science/ongoing.md     — New Dejima — Modified OpenClaw
+public/content/portfolio/computer-science/year-2025.md   — Nosco Workhours App, IB AAHL IA
+public/content/portfolio/computer-science/year-2024.md   — IB Extended Essay, Recon Drone
+public/content/portfolio/computer-science/year-2023.md   — C++ Game Engine
+public/content/portfolio/computer-science/cpp.md         — C++ Game Engine
+public/content/portfolio/computer-science/fullstack.md   — Nosco Workhours App
+public/content/portfolio/computer-science/hackathons.md  — All hackathons reordered + renamed
+public/content/portfolio/academic/ib.md                  — IB Extended Essay, Physics IA, Display Spinner, Award Ceremony
+public/content/portfolio/electronic-art/blender.md       — Voodoo Cube (was Block)
+public/content/portfolio/miscellaneous/hackathons.md     — All hackathons reordered + renamed
 ```
 
-### What We're Doing Now (Session 4 Goals)
-1. **Search computer for code repos** relevant to CV projects
-2. **Read repos** and write about them for portfolio pages
-3. **Copy images** from source directories into project folders
-4. **Create/update project sub-pages** on the website
-5. **Track missing resources** that need to be gathered
-6. **Discover new projects** not yet on CV (hackathons, side projects)
+### New Files Created
+```
+public/content/portfolio/computer-science/projects/aah-ia-optimiser/index.mdx     — AAH IA project page
+public/content/portfolio/computer-science/projects/aah-ia-optimiser/aah-ia-optimiser.pdf  — 30-page IA paper (9.8MB)
+public/assets/images/thumbnails/Computing/Optimisers/thumbnail.png                 — Optimiser thumbnail
+```
 
-### CV Reference
-Full LaTeX CV was provided in Session 4 — contains all projects, experience, skills. See the conversation for full text.
+### Source Code Files
+```
+src/components/portfolio/ProjectGrid.jsx    — Title in hover overlay, cache-busting, mobile PDF
+src/pages/portfolio/style.css               — .project-title CSS, mobile fixes, image positioning
+src/header/index.js                         — © 2026 copyright
+public/index.html                           — Cache-control meta tags, service worker unregistration
+public/.htaccess                            — AddType .md, cache headers, CRITICAL RewriteCond placement
+```
 
----
-
-## Computer Scan Results — Repos & Images Found
-
-### CODE REPOSITORIES
-
-#### 1. Project-Automaton (Isaac Sim / SO-101)
-- **Repo:** `/Users/administrator/Black Projects/Project-Automaton/`
-- **Git:** Yes
-- **Contents:** SO-101 lerobot code, Intrinsic-AI, Liberty-Notes, Lychee-AI, References
-- **README:** Detailed roadmap (Phase 1-3), tech stack, SO-100/SO-101 arm
-- **Images found:** 12 Intrinsic AI Notes screenshots in `References/Intrinsic AI Notes/`
-- **Physical arm photos:** Found in Red Coast Base (see below)
-- **Portfolio page exists:** Yes (`isaac-sim/index.mdx`) — needs images and more content from README
-
-#### 2. Utama-Core (RoboCup First Order Robotics)
-- **Repo:** `/Users/administrator/imperial-college-london/Projects/2025/First-Order-Robotics/Utama-Core/`
-- **Git:** Yes (pixi-managed Python project)
-- **Contents:** MPC control, replays (PID/MPC damping variants), pipeline diagrams, grSim simulator
-- **README:** Setup guide, pixi tasks, system architecture
-- **Images found:**
-  - `assets/images/pipeline.drawio.png` — system architecture diagram
-  - `assets/images/pipeline_new.drawio.png` — updated pipeline
-  - `assets/images/field_guide.jpg` — RoboCup field
-  - `assets/images/grsim_setup.png` — simulator setup
-  - `assets/images/robot_ids.svg` — robot ID diagram
-- **Also:** grSim simulator at `/Users/administrator/imperial-college-london/Projects/2025/First-Order-Robotics/grSim/`
-- **Portfolio page exists:** Yes (`robocup/index.mdx`) — needs images and pipeline diagrams
-
-#### 3. Nosco-Workhours-WebApp
-- **Repo:** `/Users/administrator/HTML, CSS, JS/Nosco-Workhours-WebApp/Nosco-app/`
-- **Contents:** ReactJS + Firebase workforce management app
-- **Portfolio page exists:** Yes (`nosco-workhours/index.mdx`) — has 2 demo videos, needs screenshots
-
-#### 4. New-Dejima / Project Altiera (OpenClaw)
-- **Repo:** `/Users/administrator/Black Projects/Project Altiera/New-Dejima/`
-- **Git:** Yes
-- **Contents:** OpenClaw-based autonomous app generation, design docs, miscellaneous
-- **No project images found** — need architecture diagrams, screenshots, HackEurope photos
-- **Portfolio page exists:** Yes (`new-dejima/index.mdx`) — needs images
-
-#### 5. FPV Drone [5 Inch]
-- **Repo:** `/Users/administrator/Black Projects/FPV Drone [5 Inch]/`
-- **Contents:** Blender files (`5-Inch modification.blend`), DJI O4 camera mount designs, STLs, print designs
-- **Subdirs:** `5-Inch FPV Drone/`, `DJI O4 Camera VTX Mount/`, `Blender Modified Prints/`, `To Prints/`, `Sienar Industries [logo]/`
-- **No photo images found in root** — photos are in Red Coast Base (see below)
-- **Portfolio page exists:** Yes (`fpv-drone/index.mdx`) — needs images
-
-#### 6. xAI Grokathon
-- **Repo:** `/Users/administrator/imperial-college-london/Projects/2026/2026-01 January/xAI Grokathon/`
-- **Git:** Yes
-- **Description:** Hackathon project at xAI London (January 2025/2026)
-- **Contents:** `grok_code.py`, `ci_scan.py`, `cli.py`, `PROJECT_STATUS.md`
-- **NOT on CV** — could be added as a hackathon project
-- **Portfolio page exists:** No
-
-#### 7. SkyHammer-Gemini-Hack
-- **Repo:** `/Users/administrator/imperial-college-london/Projects/2026/2026-02 February/SkyHammer-Gemini-Hack/`
-- **Git:** Yes
-- **Description:** AI-powered cybersecurity agent for the Gemini 3 Hackathon 2026. Attack/Defend/Learn modes using Gemini.
-- **Contents:** Full codebase, `PROJECT_STATUS.md`, `CLAUDE_CONTEXT.md`
-- **NOT on CV** — could be added as a hackathon/AI project
-- **Portfolio page exists:** No
-
-#### 8. Project-Liberty
-- **Repo:** `/Users/administrator/Black Projects/Project-Liberty/`
-- **Git:** Yes
-- **Description:** Typing out famous repos (llama.cpp) to learn code deeply. Personal skill-building project.
-- **NOT on CV** — interesting but niche
-- **Portfolio page exists:** No
-
-#### 9. Interceptor Drone
-- **Location:** `/Users/administrator/Black Projects/Interceptor Drone/`
-- **Status:** Empty directory (project is in-progress, early stage)
-- **Portfolio page exists:** Yes (`interceptor-drone/index.mdx`)
-
-#### 10. SuperTorch 3D Modelling
-- **Location:** `/Users/administrator/Black Projects/SuperTorch 3D Modelling/`
-- **Contents:** Blender nozzle design, 6 source reference images, STL exports
-- **NOT on CV** — minor 3D modelling project
-
-### IMAGES & MEDIA FOUND (Source Directories)
-
-#### IBM Z Datathon RLAIF — 7 files, ALL VALID
-**Source:** `/Users/administrator/imperial-college-london/Projects/2025/Red Coast Base/IBM Z Datathon RLAIF/`
-- `IMG_6462.JPG`, `IMG_6463.JPG`, `IMG_6473.JPG`, `IMG_6476.JPG`, `IMG_6477.JPG`
-- `WhatsApp Video 2025-10-12 at 10.15.26 AM.mp4`
-- `IMG_8108.MOV`
-- **Status:** Ready to copy to `ibm-datathon/images/`
-
-#### FPV Drone Maiden Flight — 17 files, ALL VALID
-**Source:** `/Users/administrator/imperial-college-london/Projects/2025/Red Coast Base/FPV Drone - Maiden Flight/`
-- ~14 JPGs + 1 PNG + 1 screenshot + `DJI_0015.mp4` (actual FPV flight footage!)
-- **Status:** Ready to copy to `fpv-drone/images/`
-
-#### FPV Sims — 1 file
-**Source:** `/Users/administrator/imperial-college-london/Projects/2025/Red Coast Base/FPV Sims/`
-- `30 Oct 2025 - Drone Update.mp4`
-- **Status:** Could add to FPV drone page or drone society page
-
-#### First Order Robotics Announcement — 7 files, ALL VALID
-**Source:** `/Users/administrator/imperial-college-london/Projects/2025/Red Coast Base/First Order Robotics [Announcement]/`
-- 7 JPGs including team photos and robot images
-- **Status:** Ready to copy to `robocup/images/`
-
-#### SO-101 & Isaac Sim — 27 files, ALL VALID
-**Source:** `/Users/administrator/imperial-college-london/Projects/2025/Red Coast Base/9 January 2026/SO-101 & Isaac Sim/`
-- ~15 JPGs of assembled SO-101 arm + 3 MOVs (videos of arm moving!)
-- **Status:** Ready to copy to `isaac-sim/images/`
-
-#### Iterate RL Hackathon — 6 files
-**Source:** `/Users/administrator/imperial-college-london/Projects/2025/Red Coast Base/9 January 2026/Iterate RL Hackathon/`
-- 4 JPGs + 2 MP4s
-- **Status:** Could add to a hackathon page or Isaac Sim page
-
-#### Perplexity Hackathon — 4 files, ALL VALID
-**Source:** `/Users/administrator/imperial-college-london/Projects/2025/Red Coast Base/Perplexity Hackathon/`
-- 4 JPGs
-- **Status:** Not on CV yet — could add as hackathon project
-
-#### Rockstar Datathon + IC Talks — 5 JPGs
-**Source:** `/Users/administrator/imperial-college-london/Projects/2025/Red Coast Base/Rockstar Datathon + IC Talks/`
-- 5 JPGs from datathon and IC talks events
-- **Status:** Not on CV — could add
-
-#### IGCSE Top In the World — 7 files
-**Source:** `/Users/administrator/imperial-college-london/Projects/2025/Red Coast Base/IGCSE Top In the World/`
-- 7 JPGs of awards
-- **Status:** Could add to Academic section
-
-#### Google Funding — 1 file
-**Source:** `/Users/administrator/imperial-college-london/Projects/2025/Red Coast Base/Google Funding/`
-- Screenshot of Google funding for Drone Society
-- **Status:** Could add to interceptor-drone or drone society page
-
-#### Singapore Events — 16+ JPGs
-**Source:** `/Users/administrator/imperial-college-london/Projects/2025/Red Coast Base/Singapore Events - [Buisness + MLSG]/`
-- Business meetings and ML Singapore meetup photos
-- **Status:** Not critical for portfolio but good for "about" or extracurriculars
-
-#### Utama-Core Pipeline Diagrams — 5 files
-**Source:** `/Users/administrator/imperial-college-london/Projects/2025/First-Order-Robotics/Utama-Core/assets/images/`
-- `pipeline.drawio.png`, `pipeline_new.drawio.png`, `field_guide.jpg`, `grsim_setup.png`, `robot_ids.svg`
-- **Status:** Ready to copy to `robocup/images/`
+### Project Page MDX Files Modified
+```
+public/content/portfolio/computer-science/projects/new-dejima/index.mdx       — Header → "# New Dejima", added 10-slide carousel
+public/content/portfolio/computer-science/projects/rl-iterate/index.mdx       — YouTube embeds replacing local video
+public/content/portfolio/computer-science/projects/nosco-workhours/index.mdx  — YouTube embed replacing local video
+public/content/portfolio/computer-science/projects/skyhammer/index.mdx        — 2 new carousels
+public/content/portfolio/engineering/projects/isaac-sim/index.mdx             — 5090 workstation + VR sections, YouTube embeds
+public/content/portfolio/engineering/projects/interceptor-drone/index.mdx     — Removed IC Drone Soc, added prototype carousel
+public/content/portfolio/engineering/projects/pinhole-camera/index.mdx        — Expanded to 5 slides
+public/content/portfolio/engineering/projects/maze/index.mdx                  — Added maze-photo
+public/content/portfolio/engineering/projects/fpv-drone/index.mdx             — Removed duplicate video entry
+```
 
 ---
 
-## Still To Do
+## Still To Do (Next Session)
 
-### NEXT SESSION (Sunday) — UI & GitHub Polish
+### HIGH PRIORITY
+- [ ] **Verify deployed site works** — After uploading latest build, confirm all tabs load correctly. Clear Brave cache if needed.
+- [ ] **Fix corrupted edutech images** — 5 JPEGs with missing EOI markers need re-export or replacement
+- [ ] **Remaining videos to YouTube** — ~200MB still local: railgun firing ×4, tissue culture, f1-in-schools ×2, maze, solar heater, new-dejima MOVs. User hit YouTube upload limit last session.
+- [ ] **Voodoo Cube project page** — Entry exists in `blender.md` but no MDX project page created yet
 
-- [x] **GitHub repo links on project pages** — DONE. Added GitHubButton component in ProjectDetail.jsx with slug→repo mapping (GITHUB_REPOS object). Covers 20 projects.
-- [ ] **Polish GitHub READMEs** — Go through each repo, clean up READMEs, and add links back to the relevant sienarindustries.com portfolio page
-- [ ] **Fix picture problems** — Mismatched images, corrupted edutech JPEGs, missing hero images
-- [ ] **Optimize build/ size (currently ~900MB)** — Compress images, lazy-load assets, ensure pictures load quickly on the live site
+### MEDIUM PRIORITY
+- [ ] **Polish GitHub READMEs** — Add sienarindustries.com backlinks to each repo
+- [ ] **Image mismatches** — Several images in wrong project folders (see list below)
+- [ ] **Mobile styling verification** — Check thumbnail borders, hover overlay, responsive layout on actual phone
+- [ ] **Remove Permissions-Policy header** — The custom header in `.htaccess` causes console warnings. Can safely remove it.
 
-### HIGH PRIORITY — Copy Images & Enhance Existing Pages
-
-- [ ] **IBM Datathon** — Copy 5 JPGs + 1 MP4 from Red Coast Base → `ibm-datathon/images/`, update MDX with carousel
-- [ ] **FPV Drone** — Copy ~15 JPGs + `DJI_0015.mp4` from Red Coast Base → `fpv-drone/images/`, update MDX
-- [ ] **RoboCup** — Copy 7 announcement JPGs + 5 pipeline diagrams → `robocup/images/`, update MDX
-- [ ] **Isaac Sim** — Copy ~15 JPGs + 3 MOVs of SO-101 arm → `isaac-sim/images/`, update MDX with README content
-- [ ] **Fix corrupted edutech images** — Re-save the 5 truncated JPEGs or replace them
-
-### MEDIUM PRIORITY — New Project Pages
-
-- [ ] **xAI Grokathon** — Read codebase, create portfolio page (hackathon project)
-- [ ] **SkyHammer-Gemini-Hack** — Read codebase, create portfolio page (cybersecurity AI agent)
-- [ ] **Perplexity Hackathon** — Create page with photos
-
-### LOW PRIORITY — Additional Content
-
-- [ ] **IGCSE Awards** — Add to Academic section
-- [ ] **Google Funding screenshot** — Add to drone society/interceptor drone page
-- [ ] Fix mismatched images identified by vision scan (see Image Mismatches below)
-- [ ] Compress large images (some >5MB PNGs in electronic-art and display-spinner)
-- [ ] Hero images for project cards (still using placeholder paths for new projects)
-- [ ] Consider uploading large railgun videos to YouTube like game engine
-- [ ] New Dejima — Still needs: architecture diagram, app screenshots, HackEurope photos, Paid.ai dashboard
-
-### STILL NEED FROM USER (Can't Find on Computer)
-
-- [ ] **New Dejima / HackEurope Paris** — Team photo, app screenshots, architecture diagram, YouTube Shorts screenshot
-- [ ] **Interceptor Drone** — CAD designs, gimbal design, prototype photos (project seems very early stage)
-- [ ] **Nosco WorkHours** — App screenshots (has demo videos already)
-- [ ] **Hero images** for all new project cards
+### LOW PRIORITY
+- [ ] **Compress remaining large images** — Some >5MB PNGs in electronic-art and display-spinner
+- [ ] **Hero images for new hackathon cards** — Some still use placeholder paths from `/assets/projects/` that may not exist
+- [ ] **python.md and robotics.md** — These subsections exist but contain placeholder/template data, not shown in index.md sections list
+- [ ] **drone-go-brrrrr** — Still in CS hackathons.md but was removed from misc hackathons. Verify if user wants it.
 
 ---
 
-## Image Mismatches Found (Vision Scan — Session 3)
-These images appear to be in wrong locations or don't match their context:
+## Image Mismatches (from Session 3 Vision Scan)
 - `maze/images/maze-render.png` → Shows a camera model (should be in pinhole-camera?)
 - `solar-heater/images/solar-heater-2.jpg` → Shows a car parked on road, not a solar heater
 - `f1-in-schools/images/Car Design/img2.jpg` → Shows school hall video on laptop
@@ -289,296 +247,138 @@ These images appear to be in wrong locations or don't match their context:
 
 ---
 
-## What's Been Completed (All Sessions)
-
-### Engineering Section (8 projects)
-| Project | Slug | Status |
-|---------|------|--------|
-| Railgun | `railgun` | Complete with extensive MDX + images + PDF + videos |
-| F1 in Schools | `f1-in-schools` | Complete (some images in wrong subfolders) |
-| Display Spinner | `display-spinner` | Complete with Google Slides embed |
-| Solar Heater | `solar-heater` | Complete (1 mismatched image) |
-| Maze | `maze` | Complete (1 mismatched image - shows camera) |
-| Pinhole Camera | `pinhole-camera` | Complete |
-| Custom FPV Drone | `fpv-drone` | **COMPLETE** — 17 images + flight video, 3 carousels |
-| Interceptor Drone | `interceptor-drone` | Page created, needs images |
-| Tissue Culture | `tissue-culture` | Page created with 14 images + 1 video |
-
-### Computer Science Section (18 projects)
-| Project | Slug | Status |
-|---------|------|--------|
-| GPT-Valkyrie | `gpt-valkyrie` | Complete with ablation diagrams, GPU screenshots |
-| Edutech Asia | `edutech` | Complete but **5 corrupted images** — only team-1/team-2 are valid |
-| Game Engine | `game-engine` | Complete — video now YouTube embed |
-| IBM Datathon RLAIF | `ibm-datathon` | **COMPLETE** — 5 slides + 1 video carousel |
-| New Dejima | `new-dejima` | **ENHANCED** — 201 lines, full HackEurope details, still needs images |
-| RoboCup | `robocup` | **COMPLETE** — 5 team photos + 5 pipeline diagrams, detailed MPC/strategy writeup |
-| Isaac Sim | `isaac-sim` | **COMPLETE** — 21 images + 2 MOVs + 3 Intrinsic AI screenshots, full roadmap |
-| Nosco WorkHours | `nosco-workhours` | Complete with 2 demo videos |
-| xAI Grokathon | `xai-grokathon` | **NEW** — hackathon page created |
-| SkyHammer | `skyhammer` | **NEW** — Gemini hackathon cybersecurity AI |
-| EDTH Warsaw | `edth-warsaw` | **NEW** — defense drones hackathon |
-| Perplexity Hack | `perplexity-hack` | **NEW** — 4 photos + page |
-| Rockstar Datathon | `rockstar-datathon` | **NEW** — 6 photos + page |
-| Reply AIM (CareCompass) | `reply-aim` | **NEW** — medical AI platform |
-| RL-Iterate | `rl-iterate` | **NEW** — 4 photos + 2 videos + RLAIF cybersecurity |
-| Drone-go-brrrrr | `drone-go-brrrrr` | **NEW** — Liquid NNs for drone control |
-| Project Liberty | `project-liberty` | **NEW** — code typing practice (llama.cpp) |
-
-### Academic Section (1 new project)
-| Project | Slug | Status |
-|---------|------|--------|
-| IGCSE Awards | `igcse-awards` | **NEW** — 7 award photos + results table |
-
-### Electronic Art Section (6 projects)
-| Project | Slug | Status |
-|---------|------|--------|
-| McLaren Speedtail | `mclaren-speedtail` | Complete |
-| Mercedes G Class | `mercedes-g-class` | Complete |
-| Ferrari LaFerrari | `ferrari-laferrari` | Complete |
-| McLaren P1 | `mclaren-p1` | Complete |
-| Dodge Challenger | `dodge-challenger` | Complete |
-| Blender Donut | `blender-donut` | Complete |
-
-### Subsection Structure
-| Section | Subsections |
-|---------|-------------|
-| Computing (`computer-science/`) | AI/ML (`aiml.md`), Robotics & Simulation (`robotics.md`), Full-Stack & Apps (`fullstack.md`), C/C++ (`cpp.md`) |
-| Engineering (`engineering/`) | Current/Ongoing (`ongoing.md`), 2025 (`year-2025.md`), 2024 (`year-2024.md`), 2023 (`year-2023.md`), 2022 (`year-2022.md`) |
-| Electronic Art (`electronic-art/`) | Blender (`blender.md`) |
-| Academic (`academic/`) | IB (`ib.md`), Self-Study (`self-study.md`) |
-| Miscellaneous (`miscellaneous/`) | Hackathons & Competitions (`hackathons.md`) |
-
-### Portfolio Nav Tabs (RESTRUCTURED Session 4)
-1. Resume (PDF embed + download)
-2. Computing (was "Computer Science" — content folder still `computer-science/`)
-3. Engineering
-4. MIT Portfolio (was "Video Summary" — YouTube embed, notes "projects till December 2024")
-5. Academic (was "Academic & Miscellaneous")
-6. Electronic Art
-7. Miscellaneous (NEW — hackathons and smaller/unfinished projects)
-
-**Key mapping:** Tab id `computing` → content folder `computer-science/`. Tab id `mit-portfolio` → special component `VideoSummary` (fetches from `video-summary/index.md`).
-
----
-
 ## Key File Locations
 
 ### Configuration Files
 ```
-/craco.config.js          - CRACO config (fixes ResizeObserver error)
-/package.json             - Uses CRACO instead of react-scripts
-/public/.htaccess         - SPA routing + Tractable redirect
-/src/index.js             - React entry point
-/.env                     - PUBLIC_URL=. and GENERATE_SOURCEMAP=false
+/craco.config.js          — CRACO config (fixes ResizeObserver error)
+/package.json             — Uses CRACO instead of react-scripts
+/public/.htaccess         — SPA routing, cache headers, .md MIME type, Tractable redirect
+/public/index.html        — Cache-control meta tags, SW unregistration
+/src/index.js             — React entry point
+/.env                     — PUBLIC_URL=. and GENERATE_SOURCEMAP=false
 ```
 
 ### Main Components
 ```
-/src/app/App.js                                - Routes (/, /portfolio, /project/:slug)
-/src/content_option.js                         - All About page data, skills, services, contact
-/src/components/portfolio/ProjectDetail.jsx    - Renders individual project pages (MDX)
-/src/components/portfolio/ProjectGrid.jsx      - Grid view + Resume/VideoSummary special cases
-/src/components/portfolio/PortfolioNav.jsx     - Tab navigation
-/src/components/portfolio/Carousel.jsx         - Image/video carousel component
-/src/components/portfolio/VideoSummary.jsx     - Video summary tab
-/src/components/portfolio/SkillsShowcase.jsx   - Skills grid component
+/src/app/App.js                                — Routes (/, /portfolio, /project/:slug)
+/src/content_option.js                         — All About page data, skills, services, contact
+/src/components/portfolio/ProjectDetail.jsx    — Renders individual project pages (MDX)
+/src/components/portfolio/ProjectGrid.jsx      — Grid view + Resume/VideoSummary special cases
+/src/components/portfolio/PortfolioNav.jsx     — Tab navigation
+/src/components/portfolio/Carousel.jsx         — Image/video carousel component
+/src/components/portfolio/VideoSummary.jsx     — Video summary tab (MIT Portfolio)
+/src/components/portfolio/SkillsShowcase.jsx   — Skills grid component
 ```
 
 ### Content Structure
 ```
 /public/content/portfolio/
-├── video-summary/index.md              ← MIT Portfolio content (heading, video URL)
+├── video-summary/index.md              ← MIT Portfolio content
 ├── engineering/
-│   ├── index.md, year-2025.md, year-2024.md, year-2023.md, year-2022.md, ongoing.md, skills.md
+│   ├── index.md, ongoing.md, year-2025.md, year-2024.md, year-2023.md, year-2022.md, skills.md
 │   └── projects/{railgun,f1-in-schools,display-spinner,solar-heater,maze,pinhole-camera,fpv-drone,interceptor-drone,tissue-culture}/
-├── computer-science/                    ← "Computing" tab maps here
-│   ├── index.md, aiml.md, robotics.md, fullstack.md, cpp.md, hackathons.md (legacy), skills.md
-│   └── projects/{gpt-valkyrie,edutech,game-engine,ibm-datathon,new-dejima,robocup,isaac-sim,nosco-workhours,xai-grokathon,skyhammer,edth-warsaw,perplexity-hack,rockstar-datathon,reply-aim,rl-iterate,drone-go-brrrrr,project-liberty}/
+├── computer-science/                    ← "Computing" tab maps here (id "computing" → folder "computer-science")
+│   ├── index.md, aiml.md, ongoing.md, fullstack.md, cpp.md, hackathons.md, python.md, robotics.md, skills.md
+│   ├── year-2025.md, year-2024.md, year-2023.md
+│   └── projects/{gpt-valkyrie,edutech,game-engine,ibm-datathon,new-dejima,nosco-workhours,
+│                  skyhammer,rl-iterate,aah-ia-optimiser,project-liberty,
+│                  xai-grokathon,edth-warsaw,perplexity-hack,rockstar-datathon,reply-aim,drone-go-brrrrr}/
 ├── electronic-art/
 │   ├── index.md, blender.md, skills.md
 │   └── projects/{mclaren-speedtail,mercedes-g-class,ferrari-laferrari,mclaren-p1,dodge-challenger,blender-donut}/
 ├── academic/
 │   ├── index.md, ib.md, self-study.md, skills.md
 │   └── projects/{igcse-awards}/
-└── miscellaneous/                       ← NEW — hackathons moved here
+└── miscellaneous/
     ├── index.md, hackathons.md
-    └── projects/                        ← MDX files still in computer-science/projects/ (slug lookup searches all sections)
+    └── (MDX pages are in computer-science/projects/ — slug lookup searches all sections)
 ```
+
+### Portfolio Nav Tabs
+1. **Resume** — PDF embed (Google Docs viewer on mobile) + download button
+2. **Computing** — Maps to `computer-science/` content folder
+3. **Engineering** — Direct mapping
+4. **MIT Portfolio** — Special `VideoSummary` component (YouTube embed, "projects till December 2024")
+5. **Academic** — IB results, coursework, awards
+6. **Electronic Art** — Blender 3D models
+7. **Miscellaneous** — Hackathons
+
+### index.md Sections (what's actually displayed per tab)
+**computer-science/index.md** lists: ongoing, year-2025, year-2024, year-2023 (NOTE: aiml.md, cpp.md, fullstack.md, hackathons.md are NOT in index.md sections — they exist as files but aren't rendered in the Computing tab)
 
 ### Source Directories on Computer
 ```
-/Users/administrator/imperial-college-london/Projects/
-├── 2025/
-│   ├── First-Order-Robotics/        — Utama-Core (RoboCup) + grSim
-│   │   ├── Utama-Core/              — Main codebase, MPC, replays, pipeline diagrams
-│   │   └── grSim/                   — RoboCup simulator
-│   ├── IC Drone Soc/                — Event forms only
-│   └── Red Coast Base/              — ALL THE PHOTOS/VIDEOS (LinkedIn posts, events)
-│       ├── IBM Z Datathon RLAIF/    — 5 JPGs + 1 MP4 + 1 MOV ✓
-│       ├── FPV Drone - Maiden Flight/ — ~15 JPGs + 1 MP4 ✓
-│       ├── FPV Sims/                — 1 MP4 ✓
-│       ├── First Order Robotics [Announcement]/ — 7 JPGs ✓
-│       ├── Perplexity Hackathon/    — 4 JPGs ✓
-│       ├── IGCSE Top In the World/  — 7 JPGs ✓
-│       ├── Rockstar Datathon + IC Talks/ — 5 JPGs
-│       ├── Singapore Events/        — 16+ JPGs
-│       ├── Google Funding/          — 1 screenshot
-│       ├── Imperial College & IB 42 777/ — TBD
-│       ├── CV/                      — TBD
-│       └── 9 January 2026/
-│           ├── SO-101 & Isaac Sim/  — ~15 JPGs + 3 MOVs ✓✓✓
-│           └── Iterate RL Hackathon/ — 4 JPGs + 2 MP4s
-├── 2026/
-│   ├── 2026-01 January/
-│   │   ├── Project Automaton/       — TBD
-│   │   └── xAI Grokathon/          — Hackathon codebase (not on CV)
-│   └── 2026-02 February/
-│       ├── Project Altiera/         — New Dejima copy?
-│       ├── SkyHammer-Gemini-Hack/   — Cybersecurity AI (Gemini Hackathon, not on CV)
-│       └── xAI-Grokathon-Copy/     — Copy of Grokathon
-
-/Users/administrator/Black Projects/
-├── Project-Automaton/               — Isaac Sim robotics, SO-101, lerobot
-├── Project-Liberty/                 — Code typing practice (llama.cpp)
-├── Project Altiera/                 — New Dejima + OpenClaw
-├── FPV Drone [5 Inch]/             — Blender files, STLs, DJI mount designs
-├── Interceptor Drone/              — Empty (project very early)
-├── SuperTorch 3D Modelling/        — Blender nozzle + 6 source images
-├── 3D Print Funs/                  — Future/Printed/Queue
-├── 07_Magneco Metrel/              — TBD
-├── DJI - Lands/                    — TBD
-├── Tech Meetups/                   — Google events, papers, SSH key
-└── Archive/                        — TBD
-
-/Users/administrator/HTML, CSS, JS/
-└── Nosco-Workhours-WebApp/         — Source code for Nosco app
-
-/Users/administrator/Documentations/
-├── Computer Science/Nosco WorkHours App/ — Documentation
-├── Academic & Miscellaneous/Biotechnology - Tissue Culture/ — Already copied
-└── ... (other docs from Session 1-2)
-```
-
-### Scripts
-```
-/scripts/validate_images.py          - Image corruption checker (JPEG/PNG/video/WebP)
-/tmp/vision_helper.py               - OpenRouter Gemini flash-lite image identification
+/Users/administrator/imperial-college-london/Projects/2026/Red Coast Base/8 March 2026/  — Latest photos (Session 5)
+/Users/administrator/imperial-college-london/Projects/2025/Red Coast Base/                — Older photos
+/Users/administrator/Black Projects/                                                       — Project repos
+/Users/administrator/HTML, CSS, JS/Nosco-Workhours-WebApp/                                — Nosco source
+/Users/administrator/School/IB - AAHL/IA/                                                 — IB IA papers
+/Users/administrator/Documentations/Engineering/DT Coursework - Pinhole Camera, Maze/     — DT coursework photos
 ```
 
 ---
 
 ## Key Techniques & Patterns
 
-### Available MDX Components (in ProjectDetail.jsx)
+### MDX Components (available in ProjectDetail.jsx)
 ```jsx
 <MyCarousel slides={[{src, caption}, {type:"video", src, videoType, caption}]} width={900} height={600} />
 <PDFViewer url="/path/to/file.pdf" />
 <GoogleSlides url="https://docs.google.com/.../edit..." height={569} />
-<DocumentLink href="url" title="Title" description="Desc" icon="icon" />
+<DocumentLink href="url" title="Title" description="Desc" icon="code|pdf|link" />
 ```
 
-### YouTube Embed Pattern (used for game engine)
+### YouTube Embed Pattern
 ```jsx
 <div style={{position: "relative", width: "100%", paddingBottom: "56.25%", marginBottom: "1rem"}}>
   <iframe src="https://www.youtube.com/embed/VIDEO_ID" style={{position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: "none", borderRadius: "8px"}} allowFullScreen title="Title" />
 </div>
 ```
 
-### Vision API for Image Identification
+### HEIC to JPEG Conversion (macOS)
 ```bash
-python3 /tmp/vision_helper.py "/path/to/image.jpg" "What does this show?"
-# Uses OpenRouter API with google/gemini-2.0-flash-lite-001
-# API key in environment, NOT committed to git
+sips -s format jpeg input.HEIC --out output.jpg
+```
+
+### Image Compression
+```bash
+sips -s format jpeg -s formatOptions 70 --resampleWidth 1920 input.jpg --out output.jpg  # JPEG
+sips --resampleWidth 1920 input.png --out output.png                                       # PNG
+```
+
+### Unicode Filename Fix (macOS screenshots with U+202F)
+```bash
+cd /target/dir && for f in Screenshot*; do mv "$f" "thumbnail.png"; done
 ```
 
 ### Image Validation
 ```bash
 python3 scripts/validate_images.py [directory]
-# Validates JPEG (SOI/EOI), PNG (signature+IHDR), video (size), WebP (RIFF)
-# Run BEFORE processing images to avoid API crashes
 ```
 
-### Quick Commands
+### Build Commands
 ```bash
 cd "/Users/administrator/Python/New United States of America"
-npm start          # Dev server
-npx craco build    # Production build → /build/
+npm start          # Dev server on localhost:3000
+npm run build      # Production build → /build/ (uses craco)
+```
+
+### .htaccess Critical Rule
+**RewriteCond MUST be immediately before RewriteRule** — if you add content between them, ALL requests (including JS/CSS/images) get rewritten to index.html and the site crashes:
+```apache
+# CORRECT — these must be adjacent:
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
 ```
 
 ---
 
 ## Session History
 
-1. **Session 1 (Jan 2026):** Populated engineering projects from Caltech HTML, added PDF/Slides/DocumentLink components, fixed ResizeObserver, enabled CS and Electronic Art sections
-2. **Session 2 (Jan 2026):** Continued populating projects, fixed ProjectDetail multi-section search, hit MDX loading bug
-3. **Session 3 (Mar 7, 2026):** Fixed MDX bug, added Resume tab, Tractable redirect, filled About/Academic/Contact with real data from resume, vision-scanned all images (found mismatches), swapped game engine video to YouTube, set up for adding new projects, created new project pages (ibm-datathon, new-dejima, robocup, isaac-sim, nosco-workhours, fpv-drone, interceptor-drone, tissue-culture), added subsections (robotics.md, fullstack.md), created RESOURCES-NEEDED.md. **Crashed at end due to corrupted edutech images.**
-4. **Session 4 (Mar 7-8, 2026):** Fresh start after crash. Scanned entire computer for repos and images. Found: xAI Grokathon, SkyHammer-Gemini-Hack, Project-Liberty as new repos not on CV. Found photos for IBM Datathon (7), FPV Drone (17), RoboCup (12), Isaac Sim/SO-101 (27), Perplexity Hackathon (4), IGCSE awards (7). Created image validation script. Identified 5 corrupted edutech JPEGs as crash root cause. Queried GitHub (`gh repo list Ice-Citron`) — found 50 repos total. Launched 6 parallel agents to: copy images for IBM/FPV/RoboCup/Isaac Sim, create new hackathon pages (xAI Grokathon, SkyHammer, EDTH-Warsaw, Perplexity, Rockstar, Reply-AIM), read Black Projects repos deeply, create Hackathons subsection.
-   - **Context crash & resume (Session 4b):** Fixed electronic art hero image paths in `blender.md`. Then RESTRUCTURED LAYOUT per user request:
-     - Nav: [Resume] [Computing] [Engineering] [MIT Portfolio] [Academic] [Electronic Art] [Miscellaneous]
-     - `video-summary` → `mit-portfolio` (note: "projects till December 2024")
-     - `computer-science` label → `Computing` (content folder unchanged)
-     - `academic` label dropped "& Miscellaneous"
-     - NEW `miscellaneous` section — moved hackathons from computer-science to here
-     - Default tab changed from `video-summary` to `resume`
-     - `ProjectDetail.jsx` sections array updated to include `miscellaneous`
-     - Files modified: `PortfolioNav.jsx`, `ProjectGrid.jsx`, `ProjectDetail.jsx`, `portfolio/index.js`, `video-summary/index.md`, `computer-science/index.md`
-     - Files created: `miscellaneous/index.md`, `miscellaneous/hackathons.md`
-
----
-
-## GitHub Repo Inventory (Ice-Citron — 50 repos)
-
-### Already on Portfolio
-| Repo | Portfolio Page | Status |
-|------|---------------|--------|
-| New-United-States-of-America | This portfolio | Active |
-| Project-Automaton | `isaac-sim` | Updating |
-| New-Dejima | `new-dejima` | Updating |
-| IBM-Z-Datathon | `ibm-datathon` | Updating |
-| Edutech-Recon-Drone | `edutech` | Complete (5 corrupted images) |
-| GPT-Valkyrie / nanoGPT-Valkyrie | `gpt-valkyrie` | Complete |
-| Nosco-Workhours-WebApp | `nosco-workhours` | Complete with videos |
-| grSim | Part of `robocup` | Updating |
-| Anduril-F1 / Anduril-F1-Blend / Anduril-F1-Main / Anduril-Meshing / anduril | `f1-in-schools` | Complete |
-| FEA-Physics_IA | Part of `railgun` | Complete |
-
-### Being Added This Session
-| Repo | New Page | Description |
-|------|----------|-------------|
-| xAI-Grokathon | `xai-grokathon` | xAI hackathon London (Jan 2026) |
-| Gemini-Hackathon (SkyHammer) | `skyhammer` | AI cybersecurity agent — Attack/Defend/Learn |
-| EDTH-Warsaw | `edth-warsaw` | Defense drones hackathon Warsaw — "Angel" multi-device defense system |
-| Perplexity-Hackathon-2025 | `perplexity-hack` | "Really?" AI news platform with bias analysis, quizzes |
-| Rockstar-GTAV-Datathon | `rockstar-datathon` | GTA V player data analysis, PCA, spending patterns |
-| Reply-AIM-Hackathon | `reply-aim` | "CareCompass" — Medical AI cost comparison platform |
-| Project-Liberty | `project-liberty` | Code typing practice (llama.cpp) for deep code learning |
-| Drone-go-brrrrr | `drone-go-brrrrr` | Liquid Neural Networks vs MLP for drone RL control |
-
-### Could Add Later (Lower Priority)
-| Repo | Description | Notes |
-|------|-------------|-------|
-| RL-Iterate-London-Hackathon | RL cybersecurity agent | Private repo, has photos in Red Coast Base |
-| Cyber-AutoAgent | Fork of autonomous pentest agent | Fork, not original |
-| cai-vllm | Fork of CAI framework | Fork, not original |
-| helmholtz | Fork of EM wave visualizer | Fork, not original (Junction 2025 winners) |
-| nanochat | ChatGPT clone | Fork/minor |
-| Kotlin-Course | Learning Kotlin | Course follow-along |
-| Google-IO-June-2025 | Google I/O test code | Minor |
-| warm-up-vscode | VSCode typing extension | Fork |
-| DT-Coursework | IGCSE DT Arduino code | Minor, could add to engineering |
-| Sparky | First C++ game engine (Cherno course) | Predecessor to CAS-Project--Hazel |
-| Summer-Hackclub-Projects | Hackclub projects | Archive |
-| GPT-dev__Andrej-course | Karpathy course notes | Learning material |
-| GPTesla | Pre-EE transformer research | Predecessor to GPT-Valkyrie |
-| NLP-Transformer | O'Reilly NLP book work | Learning material |
-| Nvidia__CUDA-Course / Nvidia-GTC-* | NVIDIA courses | Learning material |
-| AAH-IA | IB Art HL IA | Could add to Academic |
-| firestore-read | Claude MCP for Firestore | Tool, minor |
-| Extended-Essay-Appendix | EE data appendix | Supporting material |
-| 2022-Programming-Archive-of-the-Past | Old Python code archive | Archive |
-| C-Beginner-Courses-Archive-of-the-Past- | C++ tutorials archive | Archive |
-| Personal-Portfolio | Old portfolio website | Superseded |
-| TDL-app-React-Firebase | Firebase tutorial | Learning material |
-| Getting-started-with-Firebase | Firebase init | Learning material |
-| Ice-Citron | GitHub profile README | Profile config |
+1. **Session 1 (Jan 2026):** Populated engineering projects, added PDF/Slides/DocumentLink components, fixed ResizeObserver, enabled CS and Electronic Art sections
+2. **Session 2 (Jan 2026):** Continued populating, fixed ProjectDetail multi-section search, hit MDX loading bug
+3. **Session 3 (Mar 7, 2026):** Fixed MDX, added Resume tab, Tractable redirect, filled About/Academic/Contact, vision-scanned images, created 8 new project pages. Crashed from corrupted edutech images.
+4. **Session 4 (Mar 7-8, 2026):** Computer scan for repos/images, created hackathon pages, restructured nav layout (added Miscellaneous, MIT Portfolio), moved RoboCup/Isaac Sim to Engineering
+5. **Session 5 (Mar 8, 2026):** Build optimization (1.4GB→456MB via YouTube embeds + image compression + dedup), added new photos from Red Coast Base, title renames to match CV/LinkedIn, hover overlay shows titles, mobile PDF fix, .htaccess cache-control overhaul, AAH IA Optimiser project added, copyright updated, mobile thumbnail fix, game engine merge, remark-gfm v4 upgrade

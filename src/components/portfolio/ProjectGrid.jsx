@@ -24,7 +24,8 @@ const ProjectGrid = ({ category }) => {
 
       try {
         // 1) Fetch and parse the category's index.md
-        const indexPath = `/content/portfolio/${contentFolder}/index.md`;
+        const cacheBust = `?v=${Date.now()}`;
+        const indexPath = `/content/portfolio/${contentFolder}/index.md${cacheBust}`;
         const indexResp = await fetch(indexPath);
         if (!indexResp.ok) {
           throw new Error(`Failed to fetch index.md: ${indexResp.status}`);
@@ -37,7 +38,7 @@ const ProjectGrid = ({ category }) => {
         if (indexData.sections) {
           for (const section of indexData.sections) {
             try {
-              const subResp = await fetch(section.path);
+              const subResp = await fetch(section.path + cacheBust);
               if (!subResp.ok) {
                 console.error(`Subsection fetch failed: ${section.path}`);
                 continue;
@@ -62,7 +63,7 @@ const ProjectGrid = ({ category }) => {
         if (indexData.skills?.path) {
           try {
             const skillsPath = indexData.skills.path;
-            const skillsResp = await fetch(skillsPath);
+            const skillsResp = await fetch(skillsPath + cacheBust);
             if (skillsResp.ok) {
               const rawSkills = await skillsResp.text();
               const { data: skillsData } = matter(rawSkills);

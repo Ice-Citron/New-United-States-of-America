@@ -11,7 +11,7 @@ const introdata = {
         second: "I am the machine herald",
         third: "I love r/Singularity",
     },
-    description: "This portfolio isn't fully ready yet — I've been busy with school, hackathons, and work. It's currently updated through January 2025. I'll be updating soon with everything I've done between January 2025 and March 2026. Stay tuned!",
+    description: "This portfolio is a work in progress — some project thumbnails may be placeholders or mismatched while I sort through photos. Content is current as of March 2026. Stay tuned for updates!",
     your_img_url: "/assets/images/IMG_4109.JPG",
 };
 

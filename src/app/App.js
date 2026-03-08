@@ -15,6 +15,8 @@ import "./App.css";
 // Import your pages/components
 import Home from "../pages/home";
 import Portfolio from "../pages/portfolio";
+import { About } from "../pages/about";
+import { ContactUs } from "../pages/contact";
 import ProjectDetail from "../components/portfolio/ProjectDetail";
 
 function _ScrollToTop(props) {
@@ -50,6 +52,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<ContactUs />} />
             <Route path="/project/:slug" element={<ProjectDetail />} />
           </Routes>
         </ScrollToTop>

@@ -195,62 +195,57 @@
     text-decoration: underline;
   }
   
-  .po_skills_ho {
-    display: grid;
-    /* auto-fill so you can fit multiple columns, or if you want 2 columns, 
-       you can do repeat(2, 1fr) - depends on your layout preference */
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 0.4rem;
-    padding: 0.4rem 0; 
+  /* Skills Showcase — text-only tags */
+  .skills-showcase {
+    margin-top: 2rem;
   }
-  
-  .po_skill {
-    width: 90px; 
-    height: 90px;
-    position: relative;
-    overflow: hidden;
-    background: var(--secondary-color);  /* If this is black, you might see a black box */
-    transition: 0.3s ease;
-    cursor: pointer;
+
+  .skill-category {
+    margin-bottom: 1.5rem;
+  }
+
+  .skill-category-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: var(--text-color, #ccc);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.85rem;
+  }
+
+  .skill-tags {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
-  
-  /* The main image inside .po_skill */
-  .po_skill img {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.3s;
+
+  .skill-tag {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border-color, #444);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-color, #ddd);
+    background: transparent;
+    transition: all 0.2s ease;
+    cursor: default;
   }
-  
-  .po_skill:hover img {
-    transform: scale(1.1);
+
+  .skill-tag:hover {
+    border-color: var(--primary-color, #4a90d9);
+    color: var(--primary-color, #4a90d9);
+    transform: translateY(-1px);
   }
-  
-  /* The overlay */
-  .po_skill .content {
-    position: absolute;
-    /* Initially 0-size + transparent (like your .po_item .content) */
-    height: 0;
-    width: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--overlay-color); /* half-transparent gray? */
-    opacity: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.3s ease-in-out;
-    /* e.g. border: 1px solid black if you want a border. Otherwise none. */
+
+  .skill-tag.primary {
+    border-color: var(--primary-color, #4a90d9);
+    color: var(--primary-color, #4a90d9);
   }
-  
-  .po_skill:hover .content {
-    height: calc(100% - 10px);
-    width: calc(100% - 10px);
-    opacity: 1;
-    /* If you want a bigger margin, adjust -30px to something else. */
+
+  .skill-tag.secondary {
+    border-color: var(--border-color, #555);
+    color: var(--text-color, #bbb);
   }
   

@@ -202,6 +202,12 @@ Full LaTeX CV was provided in Session 4 — contains all projects, experience, s
 
 ## Still To Do
 
+### NEXT SESSION (Sunday) — UI & GitHub Polish
+
+- [ ] **GitHub repo links on project pages** — Add a nice UI element (button/icon) on each project page that links to the corresponding GitHub repo
+- [ ] **Polish GitHub READMEs** — Go through each repo, clean up READMEs, and add links back to the relevant sienarindustries.com portfolio page
+- [ ] **Fix picture problems** — Mismatched images, corrupted edutech JPEGs, missing hero images
+
 ### HIGH PRIORITY — Copy Images & Enhance Existing Pages
 
 - [ ] **IBM Datathon** — Copy 5 JPGs + 1 MP4 from Red Coast Base → `ibm-datathon/images/`, update MDX with carousel

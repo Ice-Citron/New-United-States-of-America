@@ -1,8 +1,10 @@
 # Introduction
 
-**New Dejima** is an autonomous AI agent revenue system — a pipeline where AI agents generate Android apps from natural language, compile them, deploy to real hardware, run vision-based QA, and self-debug — all with **no human-in-the-loop**.
+**New Dejima** is an autonomous AI agent economic infrastructure layer -- a system where AI agents autonomously generate Android apps from natural language, compile them, deploy to real hardware, run vision-based QA, and self-debug -- all with **no human-in-the-loop**. The core thesis: can revenue-per-token exceed cost-per-token, making AI financially self-sustaining?
 
-Built on top of **OpenClaw**, this project also includes an autonomous marketing engine using ElevenLabs, Veo 3.1, and Lyria to publish AI-generated videos to YouTube Shorts, achieving **1,200+ views in 30 hours**.
+Named after the artificial island in Nagasaki harbour that served as Japan's only point of trade during its 200-year isolation period, New Dejima is **an interface between human economic systems and increasingly capable AI agents** that lack the legal and institutional access to participate on their own.
+
+Built at **HackEurope Paris 2026** in 21 hours by a team of 3 developers (Imperial/ETH CS), all running Claude Code with Opus 4.6.
 
 *This is an in-progress project (expected completion: June 2026).*
 
@@ -10,37 +12,177 @@ Built on top of **OpenClaw**, this project also includes an autonomous marketing
   href="https://github.com/Ice-Citron/New-Dejima"
   title="GitHub Repository"
   description="New Dejima source code"
-  icon="💻"
+  icon="code"
+/>
+
+<DocumentLink
+  href="https://devpost.com/software/new-dejima"
+  title="DevPost Submission"
+  description="HackEurope Paris hackathon submission"
+  icon="link"
 />
 
 <DocumentLink
   href="https://www.linkedin.com/posts/shi-hao-ng_hackeurope-paris-was-intense-in-the-activity-7432916612594184192-jSB8"
-  title="LinkedIn Post — HackEurope Paris"
+  title="LinkedIn Post -- HackEurope Paris"
   description="Read about the project's origin at HackEurope"
-  icon="🔗"
+  icon="link"
 />
 
 ---
 
-# Architecture
+# HackEurope Paris -- Origin Story
 
-**The autonomous pipeline:**
+The project was born at HackEurope Paris 2026, a 21-hour hackathon. The team split into three parallel tracks:
 
-1. **App Generation** — AI agents take natural language specs and generate complete Android applications
-2. **Compilation & Deployment** — Automated build and deploy to real hardware
-3. **Vision-Based QA** — Automated quality assurance using computer vision to verify app functionality
-4. **Self-Debugging** — When QA fails, the system automatically diagnoses and fixes issues
+- **Track A (Agent + Android Pipeline)** -- 2 developers built the autonomous app generation pipeline using OpenClaw, Claude Opus 4.6, and Gemini for vision QA
+- **Track B (Finance + Crypto Infrastructure)** -- 1 developer built the Solana wallet system, Paid.ai cost tracking integration, and Stripe payment rails
+- **Track C (Marketing Engine)** -- Stretch goal for AI-generated YouTube content using ElevenLabs, Veo 3.1, and Lyria
 
-**Marketing Engine:**
-- **ElevenLabs** for voice generation
-- **Veo 3.1** for AI video generation
-- **Lyria** for music generation
-- Autonomous publishing pipeline to YouTube Shorts
+The team had access to significant compute credits: $20K Azure, $20K AWS, $5K OpenAI, $1K Anthropic, and $6.7K xAI.
 
-**Revenue Tracking:**
-- Real-time economic tracking layer via Paid.ai
-- Measuring revenue-per-token vs cost-per-token
-- Target: $10K USD ARR by end of 2026
+The core narrative to judges: *"The hardest part is done -- no-human-in-the-loop app development. Everything else (trading, real estate, SaaS) is just more tool calls."*
+
+---
+
+# The OpenClaw Agent Framework
+
+The project is built on top of a forked **OpenClaw** -- an open-source personal AI assistant framework that runs locally and connects to channels like WhatsApp, Telegram, Slack, Discord, and more. OpenClaw acts as the control plane; the product is the assistant.
+
+For New Dejima, OpenClaw was modified at three layers:
+
+1. **Configuration (Layer A)** -- Custom `android-dev` agent definition with Gemini as a vision provider, pre-approved exec commands for Gradle/ADB, and model selection (Claude Opus 4.6 for coding, Gemini 3.1 Pro for vision)
+2. **Custom Skill (Layer B)** -- An `android-app-builder` skill (SKILL.md) containing the complete 7-phase pipeline instructions that the agent follows autonomously
+3. **Custom Plugins (Layer C)** -- `android_build`, `android_test`, and `android_logcat` tools for direct Android development interaction
+
+---
+
+# The 7-Phase Autonomous Pipeline
+
+The core of New Dejima is a 7-phase pipeline powered by **Claude Opus 4.6** (brain), **Gemini 3.1 Flash** (vision QA), and **Gemini 3.1 Pro** (UI generation):
+
+| Phase | What Happens | Technology |
+|-------|-------------|------------|
+| 1. Scaffold | Creates Gradle project structure from template | Python |
+| 2. Code Generation | Claude Opus 4.6 writes all Kotlin/Compose code | Anthropic API |
+| 3. Compilation | `./gradlew assembleDebug` with up to 10 retries | Gradle 8.7.3, JDK 17 |
+| 4. APK Verification | Validates APK exists, size > 100KB, package name | Shell |
+| 5. Device Deployment | Installs via ADB on Samsung Galaxy A16 | Android Debug Bridge |
+| 6. Vision QA | Gemini 3.1 Flash screenshots and analyses UI | Google DeepMind API |
+| 7. Report | Generates build summary with all metrics | JSON |
+
+**Phase 3 is a hard gate** -- if compilation fails after 10 retries, the pipeline stops. In practice, all apps compiled on first attempt.
+
+**Phase 6 is the self-debugging loop** -- if vision QA finds UI issues, the agent loops back to Phase 2 and fixes its own code. The Habit Tracker app demonstrated this by self-debugging a touch target bug across 3 build iterations, entirely autonomously.
+
+---
+
+# 12 Apps Built Autonomously
+
+All compiled on first attempt. All deployed to a real Samsung Galaxy A16. Zero crashes on real hardware.
+
+| App | Category | API Integrations | Result |
+|-----|----------|-----------------|--------|
+| Tip Calculator | Utility | -- | SUCCESS |
+| Workout Timer | Health & Fitness | -- | SUCCESS |
+| Mood Tracker | Wellness | -- | SUCCESS |
+| Unit Converter | Utility | -- | SUCCESS |
+| Flashcard Study | Education | -- | SUCCESS |
+| Tic Tac Toe | Games | -- | SUCCESS |
+| Habit Tracker | Productivity | -- | SUCCESS (self-debugged x3) |
+| Expense Tracker | Finance | -- | SUCCESS |
+| Crypto Dashboard | Finance | CoinGecko API | SUCCESS |
+| Stock Tracker | Finance | Finnhub API | SUCCESS |
+| Recipe Finder | Food | Spoonacular API | SUCCESS |
+| Country Explorer | Travel | REST Countries API | SUCCESS |
+| Weather & Space | Science | Open-Meteo + NASA | SUCCESS |
+
+Build cost per app: approximately $0.50 in Claude inference tokens. Build time: 4-19 seconds (after Gradle caching optimization).
+
+---
+
+# Marketing Engine
+
+A fully autonomous marketing pipeline generates YouTube content with zero human involvement:
+
+- **ElevenLabs** for AI voice generation (using `eleven_flash_v2_5` model)
+- **Google Veo 3.1** for AI video generation
+- **Lyria 3** for AI music generation
+- Autonomous publishing to YouTube Shorts via YouTube API v3
+
+Result: **500+ cumulative views in 4 hours** with zero human involvement. Post-hackathon, the content reached **1,200+ views in 30 hours**.
+
+---
+
+# Revenue Tracking and Business Model
+
+## The Self-Sustaining AI Thesis
+
+The core equation:
+
+**revenue-per-token > cost-per-token = self-sustaining AI**
+
+## Three Revenue Streams Per App
+
+| Stream | How It Works | Margin |
+|--------|-------------|--------|
+| Ad Revenue (AdMob) | Passive income proportional to installs | Passive |
+| API Subscriptions | Users pay $10/month, APIs cost $1/month | **10x** |
+| AI Feature Upsells | Gemini queries cost ~$0.01 each, bundled as $4.99/month premium | **~99%** |
+
+## Real-Time Financial Tracking
+
+- **Paid.ai SignalV2 API** wraps every AI API call as a trackable financial event with idempotency keys
+- **Agent Watchtower Dashboard** (React + TypeScript + Recharts + shadcn/ui) shows live cost/revenue tracking, per-agent economics, prompt/response feeds, build history
+- **Finance Server** (Node.js/Express) with SSE streaming for real-time updates
+- **Stripe** for payment processing and subscription management
+- **Solana** blockchain for agent-controlled crypto wallet (proof-of-concept on devnet)
+
+**Important caveat:** These are projections, not measured revenue. No apps have been published to the Play Store yet. The system demonstrates the infrastructure and unit economics model, not a proven business.
+
+---
+
+# The Port Map -- Revenue Axes
+
+| Port | Status | What It Enables |
+|------|--------|----------------|
+| Android App Factory | LIVE -- 12 apps | Build and monetise Android apps |
+| Marketing Engine | LIVE -- 500+ views | AI-generated YouTube content |
+| Idea Engine | LIVE | Reddit scraping + Claude opportunity ranking |
+| Financial Dashboard | LIVE | Real-time cost/revenue via Paid.ai |
+| Web SaaS Factory | LIVE (Lovable) | Build web applications |
+| Crypto Wallet | Proof-of-concept | Agent-controlled Solana wallet |
+| Stock/Options Trading | Designed | Brokerage API integration |
+| Crypto Arbitrage | Designed | Cross-exchange strategies |
+| iOS App Factory | Planned | Swift/SwiftUI pipeline |
+| E-Commerce | Scaffolded | Dropship Engine |
+| Agent Reproduction | Designed | Profitable agents spawn new agents |
+
+---
+
+# Supporting Infrastructure
+
+- **Idea Engine** -- Python pipeline that scrapes Reddit, analyses market opportunities with Claude, ranks app ideas by revenue potential, and feeds them to the build agent
+- **Dropship Engine** -- Research pipeline for sourcing products and building e-commerce apps
+- **20+ API integrations** -- CoinGecko, Finnhub, NASA, Spoonacular, DeepL, Pexels, Spotify, MapBox, WolframAlpha, Groq, REST Countries, Open-Meteo, Reddit, and more
+
+---
+
+# Tech Stack
+
+| Layer | Technologies |
+|-------|-------------|
+| **AI Brain** | Claude Opus 4.6 (code generation, reasoning, idea analysis) |
+| **Vision QA** | Gemini 3.1 Flash (screenshot analysis, UI verification) |
+| **UI Generation** | Gemini 3.1 Pro (Compose UI writing inside OpenClaw) |
+| **Agent Framework** | OpenClaw (forked, modified) -- Python, WebSocket gateway |
+| **Android** | Kotlin, Jetpack Compose, Material 3, Gradle 8.7.3, JDK 17 |
+| **Finance Backend** | Node.js, Express, TypeScript, SSE |
+| **Cost Tracking** | Paid.ai SignalV2 API |
+| **Dashboard** | React 18, TypeScript, Vite, TanStack React Query, Recharts, shadcn/ui, Tailwind CSS |
+| **Marketing** | ElevenLabs, Google Veo 3.1, Lyria 3, YouTube API v3 |
+| **Payments** | Stripe |
+| **Crypto** | Solana (agent-controlled wallet on devnet) |
 
 <br></br>
 <br></br>
@@ -49,8 +191,11 @@ Built on top of **OpenClaw**, this project also includes an autonomous marketing
 
 # Skills Developed
 
-- Agentic AI system architecture
-- Android app generation and compilation pipelines
-- Computer vision for automated QA
-- AI content generation (video, voice, music)
-- Revenue optimization and cost tracking
+- Agentic AI system architecture and orchestration
+- Autonomous Android app generation and compilation pipelines (Kotlin, Jetpack Compose, Gradle)
+- Computer vision for automated QA (Gemini Flash)
+- AI content generation pipelines (video, voice, music)
+- Revenue optimization, unit economics modeling, and real-time cost tracking
+- Multi-model AI orchestration (Claude + Gemini + OpenClaw)
+- Financial infrastructure (Stripe, Solana, Paid.ai)
+- Full-stack dashboard development (React, TypeScript, SSE streaming)

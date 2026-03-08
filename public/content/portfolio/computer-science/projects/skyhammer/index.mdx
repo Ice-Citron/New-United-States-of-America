@@ -1,0 +1,50 @@
+# Introduction
+
+**SkyHammer** was built for the **Gemini 3 Hackathon 2026**, powered by Google's Gemini model. It is an autonomous cybersecurity AI agent for vulnerability detection, exploitation, and remediation, with an RLAIF training pipeline for teaching smaller models to write secure code.
+
+<DocumentLink
+  href="https://github.com/Ice-Citron/Gemini-Hackathon"
+  title="GitHub Repository"
+  description="Source code for SkyHammer (Gemini Hackathon)"
+  icon="💻"
+/>
+
+---
+
+# Architecture and Approach
+
+SkyHammer operates in three modes:
+
+1. **ATTACK Mode** — Scans code for vulnerabilities, attempts exploits, and generates detailed reports with severity ratings, proof-of-concept curl commands, and before/after code comparisons.
+2. **DEFENSE Mode** — Generates secure patches with split-pane diff visualization, backup/rollback support, and workspace sandboxing.
+3. **LEARN Mode** — RLAIF training pipeline using Gemini as a judge to train smaller models (Devstral 2 123B / Mistral-Small 24B) via SFT and DPO.
+
+**Training Infrastructure:**
+- Model: Devstral 2 123B (mistralai) with FP8/BF16 mixed precision on H200 GPUs
+- Training: DeepSpeed ZeRO-3 + LoRA (later migrated to FSDP due to DeepSpeed+LoRA incompatibility)
+- Dataset: 116 examples of vulnerable-to-secure code transformations, uploaded to HuggingFace
+- Fallback: Mistral-Small 24B verified working on A100 GPUs
+
+**Key Technical Challenges Solved:**
+- Discovered and documented that DeepSpeed + LoRA is fundamentally broken in v0.12+ with PyTorch 2.4
+- Solved FP8 model loading issues (A100 cannot natively handle FP8 — requires H100/H200 Hopper architecture)
+- Fixed FSDP weight synchronization issues with large model sharding
+- Resolved TRL API breaking changes (v0.13+)
+
+**Vulnerability types covered:** SQL Injection, XSS, Command Injection, Path Traversal, Hardcoded Secrets.
+
+<br></br>
+<br></br>
+
+---
+
+# Skills Developed
+
+- Gemini API integration for AI agent systems
+- RLAIF and DPO training pipelines
+- DeepSpeed ZeRO-3 and FSDP distributed training
+- LoRA fine-tuning on 123B parameter models
+- Multi-GPU training infrastructure (8x A100, 4x H200)
+- FP8/BF16 mixed-precision model handling
+- Cybersecurity vulnerability detection and auto-patching
+- HuggingFace model and dataset publishing

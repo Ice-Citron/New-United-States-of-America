@@ -24,6 +24,13 @@ projects:
     link: "https://github.com/Ice-Citron/CAS-Project--Hazel"
     featured: false
 
+  - title: "Project Liberty"
+    description: "Deep codebase study via manual typing -- llama.cpp, GGML, AlphaZero, and more"
+    technologies: ["C/C++", "GGML", "llama.cpp", "Python"]
+    link: "/computer-science/projects/project-liberty"
+    slug: "project-liberty"
+    featured: false
+
 courses:
   - title: "TheCherno C++ Series"
     institution: "YouTube"

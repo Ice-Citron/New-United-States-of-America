@@ -1,0 +1,44 @@
+# Introduction
+
+This project was built for the **European Defense Tech Hub (EDTH) Hackathon** in Warsaw, representing **Imperial College London SPQR**. The challenge involved developing AI-powered drone detection systems for defense applications, specifically targeting Shahed-136 kamikaze drones.
+
+<DocumentLink
+  href="https://github.com/Ice-Citron/EDTH-Warsaw"
+  title="GitHub Repository"
+  description="Source code for EDTH Warsaw drone detection project"
+  icon="💻"
+/>
+
+---
+
+# Technical Approach
+
+The project centered on training a **YOLO11** object detection model to identify Shahed-136 drones in real-time, designed for deployment on edge hardware such as Raspberry Pi.
+
+**Pipeline:**
+1. **Dataset** — Shahed-136 detection dataset sourced via Roboflow, with YOLO-format annotations
+2. **Model Training** — YOLO11 (nano variant for Pi deployment) trained on Google Colab T4 GPU for 100 epochs with AdamW optimizer and mosaic augmentation
+3. **Logging** — Weights & Biases for experiment tracking (predictions, ground-truth vs. prediction comparisons, label distributions) and HuggingFace Hub for model checkpointing
+4. **Deployment Target** — Optimized for Raspberry Pi edge inference using the YOLO11n (nano) model
+
+**Configuration:**
+- Image size: 640x640
+- Batch size: 16
+- Training: 100 epochs with patience=20 early stopping
+- W&B entity: Imperial-College-London-SPQR
+- HuggingFace model: shng2025/EDTH-Warsaw-shahed136-detector
+
+<br></br>
+<br></br>
+
+---
+
+# Skills Developed
+
+- YOLO object detection model training and optimization
+- Roboflow dataset management and annotation
+- Edge deployment considerations (Raspberry Pi)
+- Weights & Biases experiment tracking
+- HuggingFace model publishing and checkpointing
+- Defense technology and drone detection systems
+- Computer vision for real-time object detection

@@ -9,6 +9,9 @@ sections:
   - id: fullstack
     title: "Full-Stack & Apps"
     path: "/content/portfolio/computer-science/fullstack.md"
+  - id: hackathons
+    title: "Hackathons & Competitions"
+    path: "/content/portfolio/computer-science/hackathons.md"
   - id: cpp
     title: "C/C++"
     path: "/content/portfolio/computer-science/cpp.md"

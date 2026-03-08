@@ -9,24 +9,18 @@ show_courses: true
 show_books: true
 
 projects:
-  - title: "Sparky Game Engine"
-    description: "Custom 3D game engine built from scratch following TheCherno's tutorials"
-    technologies: ["C++", "OpenGL", "GLSL"]
-    image: "/assets/projects/game-engine/engine-hero.png"
+  - title: "Sparky & Hazel Game Engines"
+    description: "Custom 3D game engines built from scratch following TheCherno's C++ and Hazel series"
+    technologies: ["C++17", "OpenGL", "GLSL", "ImGui"]
+    image: "/assets/images/thumbnails/Computing/Game Engine/thumbnail.png"
     link: "/computer-science/projects/game-engine"
     slug: "game-engine"
     featured: true
 
-  - title: "Hazel Engine (WIP)"
-    description: "Advanced game engine following TheCherno's Hazel series"
-    technologies: ["C++17", "OpenGL", "ImGui"]
-    image: "/assets/projects/hazel/hazel-hero.png"
-    link: "https://github.com/Ice-Citron/CAS-Project--Hazel"
-    featured: false
-
   - title: "Project Liberty"
     description: "Deep codebase study via manual typing -- llama.cpp, GGML, AlphaZero, and more"
     technologies: ["C/C++", "GGML", "llama.cpp", "Python"]
+    image: "/assets/images/thumbnails/Computing/Project Liberty/Lucky.jpeg"
     link: "/computer-science/projects/project-liberty"
     slug: "project-liberty"
     featured: false
@@ -36,31 +30,15 @@ courses:
     institution: "YouTube"
     status: "Completed"
     year: "2023"
-    topics:
-      - "Modern C++"
-      - "Memory Management"
-      - "Templates"
-      - "Smart Pointers"
-    detail_page: "/courses/cherno-cpp"
 
   - title: "TheCherno OpenGL Series"
     institution: "YouTube"
     status: "Completed"
     year: "2023"
-    topics:
-      - "Shaders"
-      - "Textures"
-      - "Batch Rendering"
-    detail_page: "/courses/cherno-opengl"
 
 books:
   - title: "Professional C++ (Marc Gregoire)"
     author: "Marc Gregoire"
     status: "Completed"
     year: "2023"
-    topics:
-      - "Advanced C++"
-      - "Best Practices"
-      - "Design Patterns"
-    detail_page: "/books/professional-cpp"
 ---

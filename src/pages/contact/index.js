@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as emailjs from "emailjs-com";
 import "./style.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import { meta } from "../../content_option";
+import { meta, socialprofils } from "../../content_option";
 import { Container, Row, Col, Alert } from "react-bootstrap";
 import { contactConfig } from "../../content_option";
 
@@ -40,7 +40,7 @@ export const ContactUs = () => {
           console.log(result.text);
           setFormdata({
             loading: false,
-            alertmessage: "SUCCESS! ,Thankyou for your messege",
+            alertmessage: "Message sent successfully! Thank you for reaching out.",
             variant: "success",
             show: true,
           });
@@ -48,7 +48,7 @@ export const ContactUs = () => {
         (error) => {
           console.log(error.text);
           setFormdata({
-            alertmessage: `Faild to send!,${error.text}`,
+            alertmessage: `Failed to send: ${error.text}`,
             variant: "danger",
             show: true,
           });
@@ -94,20 +94,31 @@ export const ContactUs = () => {
           </Col>
           <Col lg="5" className="mb-5">
             <h3 className="color_sec py-4">Get in touch</h3>
-            <address>
+            <address style={{ lineHeight: '2' }}>
               <strong>Email:</strong>{" "}
+              <a href={`mailto:${contactConfig.YOUR_IMPERIAL_EMAIL}`}>
+                {contactConfig.YOUR_IMPERIAL_EMAIL}
+              </a>
+              <br />
+              <strong>Personal Email:</strong>{" "}
               <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>
                 {contactConfig.YOUR_EMAIL}
               </a>
               <br />
+              <strong>Phone:</strong>{" "}
+              <a href={`tel:${contactConfig.YOUR_FONE}`}>
+                {contactConfig.YOUR_FONE}
+              </a>
               <br />
-              {contactConfig.hasOwnProperty("YOUR_FONE") ? (
-                <p>
-                  <strong>Phone:</strong> {contactConfig.YOUR_FONE}
-                </p>
-              ) : (
-                ""
-              )}
+              <strong>LinkedIn:</strong>{" "}
+              <a href={contactConfig.YOUR_LINKEDIN} target="_blank" rel="noopener noreferrer">
+                Shi Hao Ng
+              </a>
+              <br />
+              <strong>GitHub:</strong>{" "}
+              <a href={socialprofils.github} target="_blank" rel="noopener noreferrer">
+                Ice-Citron
+              </a>
             </address>
             <p>{contactConfig.description}</p>
           </Col>

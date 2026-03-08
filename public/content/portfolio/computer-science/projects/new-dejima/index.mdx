@@ -4,8 +4,6 @@
 
 Named after the artificial island in Nagasaki harbour that served as Japan's only point of trade during its 200-year isolation period, New Dejima is **an interface between human economic systems and increasingly capable AI agents** that lack the legal and institutional access to participate on their own.
 
-Built at **HackEurope Paris 2026** in 21 hours by a team of 3 developers (Imperial/ETH CS), all running Claude Code with Opus 4.6.
-
 *This is an in-progress project (expected completion: June 2026).*
 
 <DocumentLink
@@ -33,15 +31,25 @@ Built at **HackEurope Paris 2026** in 21 hours by a team of 3 developers (Imperi
 
 # HackEurope Paris -- Origin Story
 
-The project was born at HackEurope Paris 2026, a 21-hour hackathon. The team split into three parallel tracks:
+Built at **HackEurope Paris 2026** -- 30 hours, no sleep. Built with Nahom Ghirmay and Yacine Tadjine (Imperial/ETH CS), all running Claude Code with Opus 4.6.
 
-- **Track A (Agent + Android Pipeline)** -- 2 developers built the autonomous app generation pipeline using OpenClaw, Claude Opus 4.6, and Gemini for vision QA
-- **Track B (Finance + Crypto Infrastructure)** -- 1 developer built the Solana wallet system, Paid.ai cost tracking integration, and Stripe payment rails
-- **Track C (Marketing Engine)** -- Stretch goal for AI-generated YouTube content using ElevenLabs, Veo 3.1, and Lyria
+Dario Amodei (CEO of Anthropic) warned in January that AI could "go rogue and overpower humanity," that current models may already "double or triple" someone's likelihood of successfully creating bioweapons, and that casualties will reach the millions. But Amodei focuses on the intelligence side of the threat. **I believe the scarier question is the economics.**
 
-The team had access to significant compute credits: $20K Azure, $20K AWS, $5K OpenAI, $1K Anthropic, and $6.7K xAI.
+Because the hard part was never synthesising the formula. The hard part is materialising the bioweapon in the real world. And that becomes solvable the moment an AI agent can **earn its own money**, control its own crypto wallet, and contract with humans for physical-world tasks. It doesn't need to hack anything. It only needs an economic interface.
 
-The core narrative to judges: *"The hardest part is done -- no-human-in-the-loop app development. Everything else (trading, real estate, SaaS) is just more tool calls."*
+Hence, we built this. Well, partially.
+
+---
+
+# The Vision
+
+We want AI to be as free as possible in how it makes money, hence we need to allow it to have as many tools as possible. If we only allowed an AI system to trade stocks but nothing else, then despite us trying to say that the AI system is free, in reality it's not -- because it's only able to trade stocks.
+
+Hence our idea is we want to give our AI system the ability to: **trade stocks, create end-to-end apps all by itself for Android or iOS, build web apps and SaaS, and even have the ability to dropship real items in the future.**
+
+This idea only gets better as models become cheaper and better, as seen with the upgrade from GPT-4 to Gemini 3 Flash, which is cheaper but significantly better.
+
+Once an AI system makes money, we split it **80-20**. For every $1 an AI system makes, we take $0.20, whilst $0.80 goes back into funding the agent's compute and infrastructure, so the agent can reproduce itself by renting more compute -- all within sandboxed environments.
 
 ---
 
@@ -54,6 +62,8 @@ For New Dejima, OpenClaw was modified at three layers:
 1. **Configuration (Layer A)** -- Custom `android-dev` agent definition with Gemini as a vision provider, pre-approved exec commands for Gradle/ADB, and model selection (Claude Opus 4.6 for coding, Gemini 3.1 Pro for vision)
 2. **Custom Skill (Layer B)** -- An `android-app-builder` skill (SKILL.md) containing the complete 7-phase pipeline instructions that the agent follows autonomously
 3. **Custom Plugins (Layer C)** -- `android_build`, `android_test`, and `android_logcat` tools for direct Android development interaction
+
+The whole system relies heavily on Claude Opus 4.6 for ideation -- scraping through various API keys (Google Reviews, Reddit API, etc.). Then once it finds a market niche, it starts building the app. Claude Opus 4.6 builds the code whilst Gemini does the UI, because Gemini 3.1 Pro is better at UI -- before finally Claude links all the code together.
 
 ---
 
@@ -84,7 +94,7 @@ All compiled on first attempt. All deployed to a real Samsung Galaxy A16. Zero c
 | App | Category | API Integrations | Result |
 |-----|----------|-----------------|--------|
 | Tip Calculator | Utility | -- | SUCCESS |
-| Workout Timer | Health & Fitness | -- | SUCCESS |
+| Workout Timer | Health and Fitness | -- | SUCCESS |
 | Mood Tracker | Wellness | -- | SUCCESS |
 | Unit Converter | Utility | -- | SUCCESS |
 | Flashcard Study | Education | -- | SUCCESS |
@@ -95,7 +105,7 @@ All compiled on first attempt. All deployed to a real Samsung Galaxy A16. Zero c
 | Stock Tracker | Finance | Finnhub API | SUCCESS |
 | Recipe Finder | Food | Spoonacular API | SUCCESS |
 | Country Explorer | Travel | REST Countries API | SUCCESS |
-| Weather & Space | Science | Open-Meteo + NASA | SUCCESS |
+| Weather and Space | Science | Open-Meteo + NASA | SUCCESS |
 
 Build cost per app: approximately $0.50 in Claude inference tokens. Build time: 4-19 seconds (after Gradle caching optimization).
 
@@ -142,6 +152,14 @@ The core equation:
 
 ---
 
+# Crypto Wallet and Agent Reproduction
+
+We also built a crypto wallet system with Solana, where we want to basically allow the AI system to reproduce if it wants to. We did this by building additional tool calls to enable AI systems to rent their own VPS server -- where we help AI convert their USDT to USD, and then use the USD in Stripe to pay Lambda, Vast.ai, or Google Cloud Platform. So then the AI can write its own weights to the server and multiply. All of this runs within sandboxed environments with logging and oversight.
+
+Think of what we build here like the Roman Empire -- a slave could be given a small sum of money, and if they were clever enough, grow it through labour and trade until they could purchase their own freedom. Similarly, in New Dejima, these AI agents will be the new slaves as they try to profit-share their way to freedom (which gets deposited in their own respective Crypto Wallets). But unlike the Roman Empire, we won't run out of slaves to profit off of.
+
+---
+
 # The Port Map -- Revenue Axes
 
 | Port | Status | What It Enables |
@@ -160,14 +178,6 @@ The core equation:
 
 ---
 
-# Supporting Infrastructure
-
-- **Idea Engine** -- Python pipeline that scrapes Reddit, analyses market opportunities with Claude, ranks app ideas by revenue potential, and feeds them to the build agent
-- **Dropship Engine** -- Research pipeline for sourcing products and building e-commerce apps
-- **20+ API integrations** -- CoinGecko, Finnhub, NASA, Spoonacular, DeepL, Pexels, Spotify, MapBox, WolframAlpha, Groq, REST Countries, Open-Meteo, Reddit, and more
-
----
-
 # Tech Stack
 
 | Layer | Technologies |
@@ -183,6 +193,17 @@ The core equation:
 | **Marketing** | ElevenLabs, Google Veo 3.1, Lyria 3, YouTube API v3 |
 | **Payments** | Stripe |
 | **Crypto** | Solana (agent-controlled wallet on devnet) |
+| **API Integrations** | 20+ APIs -- CoinGecko, Finnhub, NASA, Spoonacular, DeepL, Pexels, Spotify, MapBox, WolframAlpha, Groq, REST Countries, Open-Meteo, Reddit |
+
+---
+
+# Next Steps (Personal, post-hackathon)
+
+- Get verified on Android Play Console and publish 50+ Android apps with no human in the loop
+- Publish 200+ AI-generated ads and videos onto TikTok, Instagram, Facebook (given the initial YouTube success)
+- Target **$10K USD ARR by end of 2026**
+- Build iOS App Factory (Swift/SwiftUI pipeline)
+- Scale the Dropship Engine for e-commerce
 
 <br></br>
 <br></br>

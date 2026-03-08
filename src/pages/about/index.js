@@ -7,7 +7,10 @@ import {
   meta,
   worktimeline,
   skills,
+  contactConfig,
+  socialprofils,
 } from "../../content_option";
+import SkillsShowcase from "../../components/portfolio/SkillsShowcase";
 
 export const About = () => {
   return (
@@ -34,6 +37,39 @@ export const About = () => {
                 <p key={i}>{para}</p>
               ))}
             </div>
+          </Col>
+        </Row>
+        <Row className="sec_sp">
+          <Col lg="5">
+            <h3 className="color_sec py-4">Contact</h3>
+          </Col>
+          <Col lg="7">
+            <address style={{ lineHeight: '2' }}>
+              <strong>Email:</strong>{" "}
+              <a href={`mailto:${contactConfig.YOUR_IMPERIAL_EMAIL}`}>
+                {contactConfig.YOUR_IMPERIAL_EMAIL}
+              </a>
+              <br />
+              <strong>Personal Email:</strong>{" "}
+              <a href={`mailto:${contactConfig.YOUR_EMAIL}`}>
+                {contactConfig.YOUR_EMAIL}
+              </a>
+              <br />
+              <strong>Phone:</strong>{" "}
+              <a href={`tel:${contactConfig.YOUR_FONE}`}>
+                {contactConfig.YOUR_FONE}
+              </a>
+              <br />
+              <strong>LinkedIn:</strong>{" "}
+              <a href={contactConfig.YOUR_LINKEDIN} target="_blank" rel="noopener noreferrer">
+                Shi Hao Ng
+              </a>
+              <br />
+              <strong>GitHub:</strong>{" "}
+              <a href={socialprofils.github} target="_blank" rel="noopener noreferrer">
+                Ice-Citron
+              </a>
+            </address>
           </Col>
         </Row>
         {dataabout.currentProjects && (
@@ -76,26 +112,10 @@ export const About = () => {
         </Row>
         <Row className="sec_sp">
           <Col lg="5">
-            <h3 className="color_sec py-4">Skills</h3>
+            <h3 className="color_sec py-4">Technical Skills</h3>
           </Col>
           <Col lg="7">
-            {skills.map((data, i) => {
-              return (
-                <div key={i}>
-                  <h3 className="progress-title">{data.name}</h3>
-                  <div className="progress">
-                    <div
-                      className="progress-bar"
-                      style={{
-                        width: `${data.value}%`,
-                      }}
-                    >
-                      <div className="progress-value">{data.value}%</div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            <SkillsShowcase skillSections={skills} />
           </Col>
         </Row>
       </Container>

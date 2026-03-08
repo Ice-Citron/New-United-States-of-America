@@ -39,61 +39,130 @@ I have a background in low-level game engine programming with C/C++ and OpenGL, 
 
 const worktimeline = [
     {
-        jobtitle: "Co-President & Re-Founder",
+        jobtitle: "Re-Founder & Co-President",
         where: "Imperial College Drone Society",
-        date: "2025–Present",
+        date: "Nov 2025–Present",
     },
     {
-        jobtitle: "AI Engineer",
+        jobtitle: "Algorithms and AI Engineer",
         where: "First Order Robotics (RoboCup)",
-        date: "2025–Present",
+        date: "Oct 2025–Present",
     },
     {
-        jobtitle: "Engineering Intern",
-        where: "Nosco Asia — Taichung, Taiwan",
-        date: "2025",
+        jobtitle: "Welder (Intern)",
+        where: "Nosco Asia — Taiwan Glass, Taichung",
+        date: "Jun 2025",
     },
     {
-        jobtitle: "Full-Stack Developer",
-        where: "Nosco Asia — Singapore (ReactJS, Firebase, GCP)",
-        date: "2024",
+        jobtitle: "ML Engineer — Recon Drone",
+        where: "Edutech Asia (Google)",
+        date: "Aug–Nov 2024",
+    },
+    {
+        jobtitle: "Team Leader & Chief Engineer",
+        where: "F1 in Schools — Team Anduril",
+        date: "Feb–Oct 2024",
+    },
+    {
+        jobtitle: "Full-Stack Developer (Intern)",
+        where: "Nosco Asia — Singapore",
+        date: "Jun–Aug 2024",
     },
     {
         jobtitle: "Founder & Director",
         where: "Computational Engineering Society — MCM",
-        date: "2024–2025",
+        date: "Nov 2023–May 2025",
     },
     {
-        jobtitle: "Chief Engineer & Team Lead",
-        where: "F1 in Schools — Team Anduril",
-        date: "2023–2024",
+        jobtitle: "Silica Plant Researcher (Intern)",
+        where: "Nosco Asia — Singapore",
+        date: "Jun–Aug 2023",
     },
 ];
 
 const skills = [
     {
-        name: "Python (PyTorch, RLAIF, GRPO, LoRA)",
-        value: 90,
+        heading: "Languages",
+        skills: [
+            { name: "Python", level: "primary" },
+            { name: "C/C++", level: "primary" },
+            { name: "C/CUDA", level: "primary" },
+            { name: "Java" },
+            { name: "Kotlin" },
+            { name: "JavaScript/TypeScript", level: "primary" },
+            { name: "Haskell" },
+            { name: "HTML/CSS" },
+        ],
     },
     {
-        name: "C / C++ / CUDA (OpenGL, MPC, Robotics)",
-        value: 80,
+        heading: "AI/ML Frameworks",
+        skills: [
+            { name: "PyTorch", level: "primary" },
+            { name: "TensorFlow" },
+            { name: "YOLO-v11", level: "primary" },
+            { name: "HF Transformers", level: "primary" },
+            { name: "RLAIF", level: "primary" },
+            { name: "LoRA", level: "primary" },
+            { name: "GRPO", level: "primary" },
+            { name: "OpenClaw" },
+        ],
     },
     {
-        name: "JavaScript / TypeScript (React, Node, Firebase)",
-        value: 75,
+        heading: "Web Development",
+        skills: [
+            { name: "ReactJS", level: "primary" },
+            { name: "Node.js", level: "primary" },
+            { name: "Firebase", level: "primary" },
+            { name: "Tailwind CSS" },
+        ],
     },
     {
-        name: "Blender & CAD (Fusion 360, SolidWorks)",
-        value: 85,
+        heading: "Cloud & DevOps",
+        skills: [
+            { name: "Google Cloud Platform", level: "primary" },
+            { name: "Git", level: "primary" },
+            { name: "API Development" },
+            { name: "HPC Cluster Management" },
+            { name: "Docker" },
+            { name: "Vast.ai" },
+            { name: "AWS" },
+        ],
     },
     {
-        name: "FEA / CFD (Ansys Fluent, LS-Dyna)",
-        value: 70,
+        heading: "CAD/FEA Simulation",
+        skills: [
+            { name: "Autodesk Fusion 360", level: "primary" },
+            { name: "Blender", level: "primary" },
+            { name: "SolidWorks" },
+            { name: "Mastercam" },
+            { name: "Ansys Fluent", level: "primary" },
+            { name: "Ansys EM" },
+            { name: "LS-Dyna", level: "primary" },
+        ],
     },
     {
-        name: "Robotics (Isaac Sim, Betaflight, ROS2)",
-        value: 65,
+        heading: "Hardware/Robotics",
+        skills: [
+            { name: "Betaflight", level: "primary" },
+            { name: "Circuit Design" },
+            { name: "High-Voltage Systems" },
+            { name: "3D Printing", level: "primary" },
+            { name: "CNC Machining" },
+            { name: "Soldering" },
+        ],
+    },
+    {
+        heading: "Robotics/Simulation (In-Progress)",
+        skills: [
+            { name: "NVIDIA Isaac Sim", level: "primary" },
+            { name: "NVIDIA Isaac Lab", level: "primary" },
+            { name: "MuJoCo" },
+            { name: "Gazebo" },
+            { name: "OpenUSD" },
+            { name: "Model Predictive Control", level: "primary" },
+            { name: "ROS2" },
+            { name: "Sim-to-Real Transfer" },
+        ],
     },
 ];
 
@@ -176,14 +245,16 @@ const dataportfolio = [{
 ];
 
 const contactConfig = {
-    YOUR_EMAIL: "shi-hao.ng25@imperial.ac.uk",
-    YOUR_FONE: "",
+    YOUR_EMAIL: "shng2025@gmail.com",
+    YOUR_IMPERIAL_EMAIL: "shi-hao.ng25@imperial.ac.uk",
+    YOUR_FONE: "+44 7436 514 602",
+    YOUR_LINKEDIN: "https://www.linkedin.com/in/shi-hao-ng-83b55b224/",
     description: "Feel free to reach out if you'd like to collaborate on frontier AI, defense tech, robotics, or anything interesting.",
     // creat an emailjs.com account
     // check out this tutorial https://www.emailjs.com/docs/examples/reactjs/
-    YOUR_SERVICE_ID: "service_id",
-    YOUR_TEMPLATE_ID: "template_id",
-    YOUR_USER_ID: "user_id",
+    YOUR_SERVICE_ID: "service_bicnrhc",
+    YOUR_TEMPLATE_ID: "template_ui5x697",
+    YOUR_USER_ID: "x79I4B5lifhvNyXSY",
 };
 
 const socialprofils = {

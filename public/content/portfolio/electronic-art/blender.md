@@ -12,7 +12,7 @@ projects:
   - title: "McLaren Speedtail"
     description: "Photorealistic render of McLaren's ultimate grand tourer"
     technologies: ["Blender", "Cycles", "HDRI"]
-    image: "/content/portfolio/electronic-art/projects/mclaren-speedtail/images/speedtail-photorealistic.png"
+    image: "/assets/images/thumbnails/Electronic Art/McLaren Speedtail/speedtail-photorealistic.png"
     link: "/electronic-art/projects/mclaren-speedtail"
     slug: "mclaren-speedtail"
     featured: true
@@ -20,7 +20,7 @@ projects:
   - title: "Mercedes-Benz G Class"
     description: "Iconic SUV with boxy, angular design"
     technologies: ["Blender", "Cycles"]
-    image: "/content/portfolio/electronic-art/projects/mercedes-g-class/images/g-class-front.png"
+    image: "/assets/images/thumbnails/Electronic Art/Mercedes G Class/g-class-front.png"
     link: "/electronic-art/projects/mercedes-g-class"
     slug: "mercedes-g-class"
     featured: true
@@ -28,7 +28,7 @@ projects:
   - title: "Ferrari LaFerrari"
     description: "Italian hypercar with aggressive aerodynamics"
     technologies: ["Blender", "Cycles"]
-    image: "/content/portfolio/electronic-art/projects/ferrari-laferrari/images/laferrari-front.png"
+    image: "/assets/images/thumbnails/Electronic Art/Ferrari LaFerrari/laferrari-front.png"
     link: "/electronic-art/projects/ferrari-laferrari"
     slug: "ferrari-laferrari"
     featured: true
@@ -36,7 +36,7 @@ projects:
   - title: "McLaren P1"
     description: "British hypercar with active aerodynamic elements"
     technologies: ["Blender", "Cycles"]
-    image: "/content/portfolio/electronic-art/projects/mclaren-p1/images/p1-front-green.png"
+    image: "/assets/images/thumbnails/Electronic Art/McLaren P1/p1-front-green.png"
     link: "/electronic-art/projects/mclaren-p1"
     slug: "mclaren-p1"
     featured: true
@@ -44,7 +44,7 @@ projects:
   - title: "Dodge Challenger"
     description: "Classic American muscle car - my first Blender project"
     technologies: ["Blender", "Cycles"]
-    image: "/content/portfolio/electronic-art/projects/dodge-challenger/images/challenger-red.png"
+    image: "/assets/images/thumbnails/Electronic Art/Dodge Challenger/challenger-red.png"
     link: "/electronic-art/projects/dodge-challenger"
     slug: "dodge-challenger"
     featured: false
@@ -52,9 +52,15 @@ projects:
   - title: "Blender Donut Tutorial"
     description: "Where it all began - BlenderGuru's famous introduction"
     technologies: ["Blender", "Cycles"]
-    image: "/content/portfolio/electronic-art/projects/blender-donut/images/coffee-cup.png"
+    image: "/assets/images/thumbnails/Electronic Arts/Donut/Donut Render Final.webp"
     link: "/electronic-art/projects/blender-donut"
     slug: "blender-donut"
+    featured: false
+
+  - title: "Voodoo Block"
+    description: "Blender sculpting exercise"
+    technologies: ["Blender", "Cycles"]
+    image: "/assets/images/thumbnails/Electronic Arts/Voodoo Block/voodoo_block.webp"
     featured: false
 
 courses:
@@ -62,20 +68,9 @@ courses:
     institution: "YouTube"
     status: "Completed"
     year: "2020"
-    topics:
-      - "Blender Basics"
-      - "Modeling"
-      - "Texturing"
-      - "Rendering"
-    detail_page: "/courses/blenderguru-donut"
 
   - title: "Car Modeling Course"
     institution: "YouTube"
     status: "Completed"
     year: "2020"
-    topics:
-      - "Hard Surface Modeling"
-      - "Automotive Design"
-      - "PBR Materials"
-    detail_page: "/courses/car-modeling"
 ---

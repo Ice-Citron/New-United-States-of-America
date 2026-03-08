@@ -24,6 +24,40 @@ Personal portfolio website for **Shi Hao Ng** — MEng Computing (AI & ML) stude
 
 ---
 
+## Session 5 Context (March 8, 2026)
+
+### What Was Done This Session
+1. **remark-gfm installed** — Added `remark-gfm@3` so MDX tables render properly (New Dejima page had broken tables)
+2. **New Dejima MDX rewritten** — Full rewrite with LinkedIn post content: HackEurope Paris origin story, 7-phase pipeline, 12 apps, marketing engine, crypto wallet, revenue tracking, tech stack, next steps
+3. **NVIDIA certifications fixed** — Corrected to: "Getting Started with Accelerated Computing in CUDA C/C++" and "Building Transformer-Based NLP Applications", added Ansys Innovation Course
+4. **Broken course/certification links removed** — Removed all `detail_page` fields from aiml.md, cpp.md, blender.md (pointed to non-existent routes)
+5. **Game engine entries merged** — "Sparky Game Engine" + "Hazel Engine (WIP)" → single "Sparky & Hazel Game Engines" in cpp.md
+6. **RoboCup thumbnail updated** — User added new screenshot, renamed from unicode filename to `thumbnail.png`
+7. **Electronic Art thumbnails updated** — Blender Donut now uses `Electronic Arts/Donut/Donut Render Final.webp`, added Voodoo Block project entry
+8. **SkyHammer MDX** — Merged xAI Grokathon + Gemini Hackathon into unified "Project SkyHammer" page
+9. **YouTube embeds added** — IBM Datathon (VdRrR-3tqBI), FPV Drone flying (VfRMeVB7RLk) + maiden flight (A3WwhNlCwlY), SkyHammer (u8NdAZnB5io)
+10. **GitHub buttons redesigned** — Sharp corners, monospace, uppercase "SOURCE CODE", color-inversion hover, flat SVG icons
+11. **DocumentLink redesigned** — Sharp corners, 3px left border, flat monochrome SVG icons, getDocIcon() mapper
+12. **EmailJS fixed** — New service (service_bicnrhc) with fresh Gmail connection after old one expired
+13. **Skills tags fixed** — All uniform white bg / black text / black border (were invisible with var(--primary-color))
+14. **About page restructured** — Full LinkedIn profile, contact details, current projects, work timeline, SkillsShowcase
+15. **Robocup + Isaac Sim moved to Engineering** — from computer-science ongoing.md
+16. **drone-go-brrrrr removed** — from misc hackathons (not user's project)
+17. **xAI Grokathon removed** — merged into SkyHammer
+
+### Still To Do
+- [ ] Copy New Dejima photos from Red Coast Base (14 files: Eiffel Tower, HackEurope venue, team photos) into project images
+- [ ] Copy SkyHammer photos from Red Coast Base (CLI screenshots, SFT training) into project images
+- [ ] Copy Automaton photos from Red Coast Base (5090 PC, Isaac Sim, Quest 3 VR) into project images
+- [ ] Copy Interceptor photos from Red Coast Base (prototype, eCalc, assembled) into project images
+- [ ] SkyHammer thumbnail still needed
+- [ ] Voodoo Block — need project page MDX (currently just thumbnail)
+- [ ] Polish GitHub READMEs with sienarindustries.com backlinks
+- [ ] Fix corrupted edutech JPEGs (5 files missing EOI markers)
+- [ ] Optimize build/ size (~900MB) — compress images, lazy-load
+
+---
+
 ## Session 4 Context (March 7, 2026)
 
 ### Previous Session Bug
@@ -204,9 +238,10 @@ Full LaTeX CV was provided in Session 4 — contains all projects, experience, s
 
 ### NEXT SESSION (Sunday) — UI & GitHub Polish
 
-- [ ] **GitHub repo links on project pages** — Add a nice UI element (button/icon) on each project page that links to the corresponding GitHub repo
+- [x] **GitHub repo links on project pages** — DONE. Added GitHubButton component in ProjectDetail.jsx with slug→repo mapping (GITHUB_REPOS object). Covers 20 projects.
 - [ ] **Polish GitHub READMEs** — Go through each repo, clean up READMEs, and add links back to the relevant sienarindustries.com portfolio page
 - [ ] **Fix picture problems** — Mismatched images, corrupted edutech JPEGs, missing hero images
+- [ ] **Optimize build/ size (currently ~900MB)** — Compress images, lazy-load assets, ensure pictures load quickly on the live site
 
 ### HIGH PRIORITY — Copy Images & Enhance Existing Pages
 

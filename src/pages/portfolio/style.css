@@ -223,29 +223,26 @@
   .skill-tag {
     display: inline-block;
     padding: 0.35rem 0.85rem;
-    border: 1px solid var(--border-color, #444);
+    border: 1px solid #333;
     border-radius: 4px;
     font-size: 0.85rem;
     font-weight: 500;
-    color: var(--text-color, #ddd);
-    background: transparent;
+    color: #111;
+    background: #fff;
     transition: all 0.2s ease;
     cursor: default;
   }
 
   .skill-tag:hover {
-    border-color: var(--primary-color, #4a90d9);
-    color: var(--primary-color, #4a90d9);
+    border-color: #000;
     transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
   }
 
-  .skill-tag.primary {
-    border-color: var(--primary-color, #4a90d9);
-    color: var(--primary-color, #4a90d9);
-  }
-
+  .skill-tag.primary,
   .skill-tag.secondary {
-    border-color: var(--border-color, #555);
-    color: var(--text-color, #bbb);
+    border-color: #333;
+    color: #111;
+    background: #fff;
   }
   

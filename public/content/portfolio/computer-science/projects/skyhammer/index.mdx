@@ -1,13 +1,34 @@
 # Introduction
 
-**SkyHammer** was built for the **Gemini 3 Hackathon 2026**, powered by Google's Gemini model. It is an autonomous cybersecurity AI agent for vulnerability detection, exploitation, and remediation, with an RLAIF training pipeline for teaching smaller models to write secure code.
+**Project SkyHammer** is an autonomous cybersecurity AI system for vulnerability detection, exploitation, and remediation, with an RLAIF training pipeline for teaching smaller models to write secure code.
+
+The project originated at the **xAI Grokathon** in **January 2026** in Central London, where it was built using xAI's Grok model. It was then further developed at the **Gemini 3 Hackathon 2026**, where it was rebuilt and extended using Google's Gemini model — adding distributed training infrastructure, DPO pipelines, and multi-GPU support.
+
+<DocumentLink
+  href="https://github.com/Ice-Citron/xAI-Grokathon"
+  title="GitHub Repository — xAI Grokathon"
+  description="Original SkyHammer source code (Grok-powered)"
+  icon="💻"
+/>
 
 <DocumentLink
   href="https://github.com/Ice-Citron/Gemini-Hackathon"
-  title="GitHub Repository"
-  description="Source code for SkyHammer (Gemini Hackathon)"
+  title="GitHub Repository — Gemini Hackathon"
+  description="Extended SkyHammer source code (Gemini-powered)"
   icon="💻"
 />
+
+<br></br>
+
+<div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: '8px', marginBottom: '1rem' }}>
+  <iframe
+    src="https://www.youtube.com/embed/u8NdAZnB5io"
+    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+    title="Project SkyHammer Demo"
+  />
+</div>
 
 ---
 
@@ -17,7 +38,32 @@ SkyHammer operates in three modes:
 
 1. **ATTACK Mode** — Scans code for vulnerabilities, attempts exploits, and generates detailed reports with severity ratings, proof-of-concept curl commands, and before/after code comparisons.
 2. **DEFENSE Mode** — Generates secure patches with split-pane diff visualization, backup/rollback support, and workspace sandboxing.
-3. **LEARN Mode** — RLAIF training pipeline using Gemini as a judge to train smaller models (Devstral 2 123B / Mistral-Small 24B) via SFT and DPO.
+3. **LEARN Mode** — RLAIF training pipeline using a frontier model as a judge to train smaller models via SFT, DPO, and GRPO.
+
+The core of the project is an **interactive CLI** with an Evangelion/Cyberpunk aesthetic, featuring NERV-style system banners, real-time progress spinners, and split-pane diff visualization for vulnerability reports.
+
+**Vulnerability types covered:** SQL Injection, XSS, Command Injection, Path Traversal, Hardcoded Secrets.
+
+---
+
+# Grokathon Version (Grok / xAI)
+
+The original Grokathon build used Grok as the teacher model in an RLAIF pipeline:
+
+1. **Student Model** (Qwen 14B, local) generates patches for vulnerable code
+2. **Teacher Model** (Grok API) scores the patches using a hybrid reward function (0.0 to 1.0)
+3. **GRPO Weight Update** — Generate 4 patches per vulnerability, Grok scores them, update LoRA adapters
+4. **Benchmark** — Compare SkyHammer-RLAIF against base Qwen-14B and frontier models across 50 synthetic SQL injection vulnerabilities
+
+The target was to demonstrate that a small local model trained via RLAIF using Grok as a teacher can outperform its base model by 45%+ and approach the performance of frontier models at a fraction of the cost.
+
+**Tech stack:** Python, Grok API (xAI), Rich CLI, LoRA/PEFT, GRPO training on H200 GPU.
+
+---
+
+# Gemini Hackathon Version (Gemini / Google)
+
+The Gemini Hackathon build extended the system with larger models and distributed training:
 
 **Training Infrastructure:**
 - Model: Devstral 2 123B (mistralai) with FP8/BF16 mixed precision on H200 GPUs
@@ -31,8 +77,6 @@ SkyHammer operates in three modes:
 - Fixed FSDP weight synchronization issues with large model sharding
 - Resolved TRL API breaking changes (v0.13+)
 
-**Vulnerability types covered:** SQL Injection, XSS, Command Injection, Path Traversal, Hardcoded Secrets.
-
 <br></br>
 <br></br>
 
@@ -40,11 +84,13 @@ SkyHammer operates in three modes:
 
 # Skills Developed
 
-- Gemini API integration for AI agent systems
-- RLAIF and DPO training pipelines
+- Grok API and Gemini API integration for AI agent systems
+- RLAIF, DPO, and GRPO training pipelines
 - DeepSpeed ZeRO-3 and FSDP distributed training
-- LoRA fine-tuning on 123B parameter models
+- LoRA fine-tuning on models up to 123B parameters
 - Multi-GPU training infrastructure (8x A100, 4x H200)
 - FP8/BF16 mixed-precision model handling
-- Cybersecurity vulnerability detection and auto-patching
+- Automated vulnerability detection and patching
+- CLI tool development with Rich/Questionary
+- Cybersecurity testing methodology (SQLi, XSS, command injection)
 - HuggingFace model and dataset publishing

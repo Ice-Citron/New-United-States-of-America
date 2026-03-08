@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import matter from "gray-matter";
 import { evaluate } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
+import remarkGfm from "remark-gfm";
 import MyCarousel from "./Carousel";
 
 // Add the base URL utility function
@@ -52,6 +53,36 @@ const GoogleSlides = ({ url, height = 569 }) => {
   );
 };
 
+// Icon mapping for DocumentLink — flat monochrome SVGs
+const LINK_ICONS = {
+  github: (
+    <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+  ),
+  doc: (
+    <svg height="20" width="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+      <polyline points="14 2 14 8 20 8"/>
+      <line x1="16" y1="13" x2="8" y2="13"/>
+      <line x1="16" y1="17" x2="8" y2="17"/>
+    </svg>
+  ),
+  link: (
+    <svg height="20" width="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+    </svg>
+  ),
+};
+
+const getDocIcon = (icon) => {
+  if (icon === "code" || icon === "💻") return LINK_ICONS.github;
+  if (icon === "📄") return LINK_ICONS.doc;
+  if (icon === "🌐" || icon === "🔗") return LINK_ICONS.link;
+  return LINK_ICONS.link;
+};
+
 // Document Link Box component for external documents
 const DocumentLink = ({ href, title, description, icon = "📄" }) => (
   <a
@@ -61,64 +92,123 @@ const DocumentLink = ({ href, title, description, icon = "📄" }) => (
     style={{
       display: 'flex',
       alignItems: 'center',
-      padding: '1rem 1.25rem',
+      padding: '0.75rem 1rem',
       margin: '1rem 0',
-      backgroundColor: 'var(--bg-secondary, #f8f9fa)',
-      border: '1px solid var(--border-color, #dee2e6)',
-      borderRadius: '8px',
+      backgroundColor: 'transparent',
+      border: '1px solid var(--text-color, #333)',
+      borderLeft: '3px solid var(--text-color, #333)',
+      borderRadius: '0',
       textDecoration: 'none',
       color: 'inherit',
-      transition: 'all 0.2s ease',
-      boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
+      transition: 'all 0.15s ease',
+      fontFamily: '"SFMono-Regular", "Fira Code", "Consolas", monospace',
     }}
     onMouseEnter={(e) => {
-      e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-      e.currentTarget.style.borderColor = 'var(--primary-color, #4a90d9)';
-      e.currentTarget.style.transform = 'translateY(-2px)';
+      e.currentTarget.style.backgroundColor = 'var(--text-color, #333)';
+      e.currentTarget.style.color = 'var(--bg-color, #fff)';
     }}
     onMouseLeave={(e) => {
-      e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)';
-      e.currentTarget.style.borderColor = 'var(--border-color, #dee2e6)';
-      e.currentTarget.style.transform = 'translateY(0)';
+      e.currentTarget.style.backgroundColor = 'transparent';
+      e.currentTarget.style.color = 'inherit';
     }}
   >
     <span style={{
-      fontSize: '2rem',
-      marginRight: '1rem',
+      marginRight: '0.75rem',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center',
-      width: '48px',
-      height: '48px',
-      backgroundColor: 'var(--bg-tertiary, #e9ecef)',
-      borderRadius: '8px',
+      flexShrink: 0,
     }}>
-      {icon}
+      {getDocIcon(icon)}
     </span>
-    <div style={{ flex: 1 }}>
+    <div style={{ flex: 1, minWidth: 0 }}>
       <div style={{
         fontWeight: '600',
-        fontSize: '1rem',
-        marginBottom: description ? '0.25rem' : 0,
-        color: 'var(--text-primary, #212529)',
+        fontSize: '0.9rem',
+        letterSpacing: '0.02em',
+        marginBottom: description ? '0.15rem' : 0,
       }}>
         {title}
       </div>
       {description && (
         <div style={{
-          fontSize: '0.875rem',
-          color: 'var(--text-secondary, #6c757d)',
+          fontSize: '0.8rem',
+          opacity: 0.7,
         }}>
           {description}
         </div>
       )}
     </div>
     <span style={{
-      color: 'var(--text-secondary, #6c757d)',
-      marginLeft: '0.5rem',
+      marginLeft: '0.75rem',
+      fontWeight: '700',
+      fontSize: '1.1rem',
+      flexShrink: 0,
     }}>
-      →
+      &gt;
     </span>
+  </a>
+);
+
+// Slug → GitHub repo URL mapping
+const GITHUB_REPOS = {
+  // Computer Science
+  'gpt-valkyrie': 'https://github.com/Ice-Citron/GPT-Valkyrie',
+  'edutech': 'https://github.com/Ice-Citron/Edutech-Recon-Drone',
+  'game-engine': 'https://github.com/Ice-Citron/CAS-Project--Hazel',
+  'ibm-datathon': 'https://github.com/Ice-Citron/IBM-Z-Datathon',
+  'new-dejima': 'https://github.com/Ice-Citron/New-Dejima',
+  'nosco-workhours': 'https://github.com/Ice-Citron/Nosco-Workhours-WebApp',
+  'skyhammer': 'https://github.com/Ice-Citron/Gemini-Hackathon',
+  'edth-warsaw': 'https://github.com/Ice-Citron/EDTH-Warsaw',
+  'perplexity-hack': 'https://github.com/Ice-Citron/Perplexity-Hackathon-2025',
+  'rockstar-datathon': 'https://github.com/Ice-Citron/Rockstar-GTAV-Datathon',
+  'reply-aim': 'https://github.com/Ice-Citron/Reply-AIM-Hackathon',
+  'rl-iterate': 'https://github.com/Ice-Citron/RL-Iterate-London-Hackathon',
+
+  'project-liberty': 'https://github.com/Ice-Citron/Project-Liberty',
+  // Engineering
+  'robocup': 'https://github.com/First-Order-RoboCup-SSL/Utama-Core',
+  'isaac-sim': 'https://github.com/Ice-Citron/Project-Automaton',
+  'railgun': 'https://github.com/Ice-Citron/FEA-Physics_IA',
+  'f1-in-schools': 'https://github.com/Ice-Citron/Anduril-F1',
+  'display-spinner': 'https://github.com/Ice-Citron/DT-Coursework',
+};
+
+const GitHubButton = ({ url }) => (
+  <a
+    href={url}
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '0.6rem',
+      padding: '0.45rem 0.9rem',
+      backgroundColor: 'transparent',
+      border: '1px solid var(--text-color, #333)',
+      borderRadius: '0',
+      textDecoration: 'none',
+      color: 'inherit',
+      fontSize: '0.85rem',
+      fontWeight: '600',
+      fontFamily: '"SFMono-Regular", "Fira Code", "Consolas", monospace',
+      letterSpacing: '0.04em',
+      textTransform: 'uppercase',
+      transition: 'all 0.15s ease',
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.backgroundColor = 'var(--text-color, #333)';
+      e.currentTarget.style.color = 'var(--bg-color, #fff)';
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.backgroundColor = 'transparent';
+      e.currentTarget.style.color = 'inherit';
+    }}
+  >
+    <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+    Source Code
   </a>
 );
 
@@ -202,7 +292,7 @@ export default function ProjectDetail() {  // Changed name to match your file
         // The new approach: pass the leftover MDX + the "runtime" from "react/jsx-runtime"
         const { default: MdxComponent } = await evaluate(mdxBody, {
           ...runtime,
-          // You can also pass remarkPlugins, rehypePlugins, etc. here if needed
+          remarkPlugins: [remarkGfm],
         });
 
         // MdxComponent is a React component
@@ -245,21 +335,26 @@ export default function ProjectDetail() {  // Changed name to match your file
     }}>
       <div style={{ marginBottom: '1rem' }}> {/* Reduced margin for header */}
         {frontMatter.title && (
-          <h1 style={{ 
-            fontSize: '2rem', 
+          <h1 style={{
+            fontSize: '2rem',
             fontWeight: 'bold',
-            marginBottom: '0.5rem' 
+            marginBottom: '0.5rem'
           }}>
             {frontMatter.title}
           </h1>
         )}
         {frontMatter.summary && (
-          <p style={{ 
+          <p style={{
             fontSize: '1.1rem',
             marginBottom: '0.5rem'
           }}>
             {frontMatter.summary}
           </p>
+        )}
+        {GITHUB_REPOS[slug] && (
+          <div style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>
+            <GitHubButton url={GITHUB_REPOS[slug]} />
+          </div>
         )}
       </div>
 

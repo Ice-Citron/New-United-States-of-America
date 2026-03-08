@@ -44,10 +44,24 @@ projects:
     slug: "rockstar-datathon"
     featured: true
 
-  - title: "Reply AIM Hackathon — Eunomia AI"
-    description: "Agentic AI lawyer system for accessible legal assistance"
-    technologies: ["HTML", "Python", "AI Agents"]
+  - title: "Reply AIM Hackathon — CareCompass"
+    description: "AI-powered medical cost comparison platform with global hospital map"
+    technologies: ["Node.js", "OpenAI", "Mapbox"]
     image: "/assets/projects/reply-aim/hero.jpg"
     slug: "reply-aim"
+    featured: true
+
+  - title: "RL-Iterate London Hackathon"
+    description: "RLAIF + GRPO training system for ethical white-hat cybersecurity agents"
+    technologies: ["Python", "vLLM", "GRPO", "Claude MCP"]
+    image: "/content/portfolio/computer-science/projects/rl-iterate/images/hackathon-1.jpg"
+    slug: "rl-iterate"
+    featured: true
+
+  - title: "Drone-go-brrrrr"
+    description: "Liquid Neural Networks vs MLP for robust drone RL control in wind"
+    technologies: ["Python", "PPO", "Stable-Baselines3", "Three.js"]
+    image: "/assets/projects/drone-go-brrrrr/hero.jpg"
+    slug: "drone-go-brrrrr"
     featured: true
 ---

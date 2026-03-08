@@ -1,6 +1,6 @@
 # Portfolio Website Project Notes
 
-**Last Updated:** March 7, 2026 (Session 4)
+**Last Updated:** March 8, 2026 (Session 4 — ongoing)
 **Project Location:** `/Users/administrator/Python/New United States of America`
 **Live URL:** https://sienarindustries.com
 
@@ -259,21 +259,35 @@ These images appear to be in wrong locations or don't match their context:
 | Solar Heater | `solar-heater` | Complete (1 mismatched image) |
 | Maze | `maze` | Complete (1 mismatched image - shows camera) |
 | Pinhole Camera | `pinhole-camera` | Complete |
-| Custom FPV Drone | `fpv-drone` | Page created, needs images from Red Coast Base |
+| Custom FPV Drone | `fpv-drone` | **COMPLETE** — 17 images + flight video, 3 carousels |
 | Interceptor Drone | `interceptor-drone` | Page created, needs images |
 | Tissue Culture | `tissue-culture` | Page created with 14 images + 1 video |
 
-### Computer Science Section (7 projects)
+### Computer Science Section (18 projects)
 | Project | Slug | Status |
 |---------|------|--------|
 | GPT-Valkyrie | `gpt-valkyrie` | Complete with ablation diagrams, GPU screenshots |
 | Edutech Asia | `edutech` | Complete but **5 corrupted images** — only team-1/team-2 are valid |
 | Game Engine | `game-engine` | Complete — video now YouTube embed |
-| IBM Datathon RLAIF | `ibm-datathon` | Page created, needs images (found 7 in Red Coast Base) |
-| New Dejima | `new-dejima` | Page created, needs images (none found on computer) |
-| RoboCup | `robocup` | Page created, needs images (found 7 + 5 pipeline diagrams) |
-| Isaac Sim | `isaac-sim` | Page created, needs images (found 27 SO-101 photos!) |
-| Nosco WorkHours | `nosco-workhours` | Page created with 2 demo videos |
+| IBM Datathon RLAIF | `ibm-datathon` | **COMPLETE** — 5 slides + 1 video carousel |
+| New Dejima | `new-dejima` | **ENHANCED** — 201 lines, full HackEurope details, still needs images |
+| RoboCup | `robocup` | **COMPLETE** — 5 team photos + 5 pipeline diagrams, detailed MPC/strategy writeup |
+| Isaac Sim | `isaac-sim` | **COMPLETE** — 21 images + 2 MOVs + 3 Intrinsic AI screenshots, full roadmap |
+| Nosco WorkHours | `nosco-workhours` | Complete with 2 demo videos |
+| xAI Grokathon | `xai-grokathon` | **NEW** — hackathon page created |
+| SkyHammer | `skyhammer` | **NEW** — Gemini hackathon cybersecurity AI |
+| EDTH Warsaw | `edth-warsaw` | **NEW** — defense drones hackathon |
+| Perplexity Hack | `perplexity-hack` | **NEW** — 4 photos + page |
+| Rockstar Datathon | `rockstar-datathon` | **NEW** — 6 photos + page |
+| Reply AIM (CareCompass) | `reply-aim` | **NEW** — medical AI platform |
+| RL-Iterate | `rl-iterate` | **NEW** — 4 photos + 2 videos + RLAIF cybersecurity |
+| Drone-go-brrrrr | `drone-go-brrrrr` | **NEW** — Liquid NNs for drone control |
+| Project Liberty | `project-liberty` | **NEW** — code typing practice (llama.cpp) |
+
+### Academic Section (1 new project)
+| Project | Slug | Status |
+|---------|------|--------|
+| IGCSE Awards | `igcse-awards` | **NEW** — 7 award photos + results table |
 
 ### Electronic Art Section (6 projects)
 | Project | Slug | Status |
@@ -288,7 +302,7 @@ These images appear to be in wrong locations or don't match their context:
 ### Subsection Structure
 | Section | Subsections |
 |---------|-------------|
-| Computer Science | AI/ML (`aiml.md`), Robotics & Simulation (`robotics.md`), Full-Stack & Apps (`fullstack.md`), C/C++ (`cpp.md`) |
+| Computer Science | AI/ML (`aiml.md`), Robotics & Simulation (`robotics.md`), Full-Stack & Apps (`fullstack.md`), Hackathons & Competitions (`hackathons.md`), C/C++ (`cpp.md`) |
 | Engineering | Current/Ongoing (`ongoing.md`), 2025 (`year-2025.md`), 2024 (`year-2024.md`), 2023 (`year-2023.md`), 2022 (`year-2022.md`) |
 | Electronic Art | Blender (`blender.md`) |
 | Academic | IB (`ib.md`), Self-Study (`self-study.md`) |
@@ -451,4 +465,62 @@ npx craco build    # Production build → /build/
 1. **Session 1 (Jan 2026):** Populated engineering projects from Caltech HTML, added PDF/Slides/DocumentLink components, fixed ResizeObserver, enabled CS and Electronic Art sections
 2. **Session 2 (Jan 2026):** Continued populating projects, fixed ProjectDetail multi-section search, hit MDX loading bug
 3. **Session 3 (Mar 7, 2026):** Fixed MDX bug, added Resume tab, Tractable redirect, filled About/Academic/Contact with real data from resume, vision-scanned all images (found mismatches), swapped game engine video to YouTube, set up for adding new projects, created new project pages (ibm-datathon, new-dejima, robocup, isaac-sim, nosco-workhours, fpv-drone, interceptor-drone, tissue-culture), added subsections (robotics.md, fullstack.md), created RESOURCES-NEEDED.md. **Crashed at end due to corrupted edutech images.**
-4. **Session 4 (Mar 7, 2026):** Fresh start after crash. Scanned entire computer for repos and images. Found: xAI Grokathon, SkyHammer-Gemini-Hack, Project-Liberty as new repos not on CV. Found photos for IBM Datathon (7), FPV Drone (17), RoboCup (12), Isaac Sim/SO-101 (27), Perplexity Hackathon (4), IGCSE awards (7). Created image validation script. Identified 5 corrupted edutech JPEGs as crash root cause.
+4. **Session 4 (Mar 7-8, 2026):** Fresh start after crash. Scanned entire computer for repos and images. Found: xAI Grokathon, SkyHammer-Gemini-Hack, Project-Liberty as new repos not on CV. Found photos for IBM Datathon (7), FPV Drone (17), RoboCup (12), Isaac Sim/SO-101 (27), Perplexity Hackathon (4), IGCSE awards (7). Created image validation script. Identified 5 corrupted edutech JPEGs as crash root cause. Queried GitHub (`gh repo list Ice-Citron`) — found 50 repos total. Launched 6 parallel agents to: copy images for IBM/FPV/RoboCup/Isaac Sim, create new hackathon pages (xAI Grokathon, SkyHammer, EDTH-Warsaw, Perplexity, Rockstar, Reply-AIM), read Black Projects repos deeply, create Hackathons subsection.
+
+---
+
+## GitHub Repo Inventory (Ice-Citron — 50 repos)
+
+### Already on Portfolio
+| Repo | Portfolio Page | Status |
+|------|---------------|--------|
+| New-United-States-of-America | This portfolio | Active |
+| Project-Automaton | `isaac-sim` | Updating |
+| New-Dejima | `new-dejima` | Updating |
+| IBM-Z-Datathon | `ibm-datathon` | Updating |
+| Edutech-Recon-Drone | `edutech` | Complete (5 corrupted images) |
+| GPT-Valkyrie / nanoGPT-Valkyrie | `gpt-valkyrie` | Complete |
+| Nosco-Workhours-WebApp | `nosco-workhours` | Complete with videos |
+| grSim | Part of `robocup` | Updating |
+| Anduril-F1 / Anduril-F1-Blend / Anduril-F1-Main / Anduril-Meshing / anduril | `f1-in-schools` | Complete |
+| FEA-Physics_IA | Part of `railgun` | Complete |
+
+### Being Added This Session
+| Repo | New Page | Description |
+|------|----------|-------------|
+| xAI-Grokathon | `xai-grokathon` | xAI hackathon London (Jan 2026) |
+| Gemini-Hackathon (SkyHammer) | `skyhammer` | AI cybersecurity agent — Attack/Defend/Learn |
+| EDTH-Warsaw | `edth-warsaw` | Defense drones hackathon Warsaw — "Angel" multi-device defense system |
+| Perplexity-Hackathon-2025 | `perplexity-hack` | "Really?" AI news platform with bias analysis, quizzes |
+| Rockstar-GTAV-Datathon | `rockstar-datathon` | GTA V player data analysis, PCA, spending patterns |
+| Reply-AIM-Hackathon | `reply-aim` | "CareCompass" — Medical AI cost comparison platform |
+| Project-Liberty | `project-liberty` | Code typing practice (llama.cpp) for deep code learning |
+| Drone-go-brrrrr | `drone-go-brrrrr` | Liquid Neural Networks vs MLP for drone RL control |
+
+### Could Add Later (Lower Priority)
+| Repo | Description | Notes |
+|------|-------------|-------|
+| RL-Iterate-London-Hackathon | RL cybersecurity agent | Private repo, has photos in Red Coast Base |
+| Cyber-AutoAgent | Fork of autonomous pentest agent | Fork, not original |
+| cai-vllm | Fork of CAI framework | Fork, not original |
+| helmholtz | Fork of EM wave visualizer | Fork, not original (Junction 2025 winners) |
+| nanochat | ChatGPT clone | Fork/minor |
+| Kotlin-Course | Learning Kotlin | Course follow-along |
+| Google-IO-June-2025 | Google I/O test code | Minor |
+| warm-up-vscode | VSCode typing extension | Fork |
+| DT-Coursework | IGCSE DT Arduino code | Minor, could add to engineering |
+| Sparky | First C++ game engine (Cherno course) | Predecessor to CAS-Project--Hazel |
+| Summer-Hackclub-Projects | Hackclub projects | Archive |
+| GPT-dev__Andrej-course | Karpathy course notes | Learning material |
+| GPTesla | Pre-EE transformer research | Predecessor to GPT-Valkyrie |
+| NLP-Transformer | O'Reilly NLP book work | Learning material |
+| Nvidia__CUDA-Course / Nvidia-GTC-* | NVIDIA courses | Learning material |
+| AAH-IA | IB Art HL IA | Could add to Academic |
+| firestore-read | Claude MCP for Firestore | Tool, minor |
+| Extended-Essay-Appendix | EE data appendix | Supporting material |
+| 2022-Programming-Archive-of-the-Past | Old Python code archive | Archive |
+| C-Beginner-Courses-Archive-of-the-Past- | C++ tutorials archive | Archive |
+| Personal-Portfolio | Old portfolio website | Superseded |
+| TDL-app-React-Firebase | Firebase tutorial | Learning material |
+| Getting-started-with-Firebase | Firebase init | Learning material |
+| Ice-Citron | GitHub profile README | Profile config |

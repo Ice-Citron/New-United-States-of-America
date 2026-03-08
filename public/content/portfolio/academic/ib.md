@@ -30,6 +30,13 @@ projects:
     slug: "display-spinner"
     featured: true
 
+  - title: "IGCSE Awards — Best in Asia & Malaysia"
+    description: "10A* 2A — Best in Asia for CS, Best in Malaysia for DT, Physics & Chemistry"
+    technologies: ["Computer Science", "Design Technology", "Physics", "Chemistry"]
+    image: "/content/portfolio/academic/projects/igcse-awards/images/award-1.jpg"
+    slug: "igcse-awards"
+    featured: true
+
 certifications:
   - title: "IGCSE: 10A*, 2A"
     org: "Cambridge — Best in Asia for CS, Best in Malaysia for DT, Physics & Chemistry"
